@@ -1,0 +1,1212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/registration_view"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
+    android:orientation="vertical" >
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="#efeeee"
+        android:layout_height="80dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/iv_image"
+                android:layout_width="60dp"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/img_logo_full"
+                android:layout_height="60dp"
+                android:layout_centerInParent="true"
+                app:civ_border_color="@color/lightgrey"
+                app:civ_border_width="1dp" />
+
+            <!--<ImageView-->
+                <!--android:id="@+id/iv_image"-->
+                <!--android:layout_width="50dp"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:src="@drawable/admin_image"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:layout_height="50dp" />-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="match_parent"
+                    android:text=""
+                    android:textSize="20dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:paddingLeft="20dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_designation"
+                    android:layout_width="match_parent"
+                    android:text=""
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimary"
+                    android:paddingLeft="20dp"
+                    android:layout_height="wrap_content" />
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/separater_color"></View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_height="130dp">
+
+
+
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="0dp"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_weight=".5"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            card_view:cardElevation="5dp"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:id="@+id/lay1"
+                android:paddingTop="10dp"
+                android:background="#efeeee"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical"
+                tools:ignore="Suspicious0dp">
+
+                <LinearLayout
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/bg_circular_imageview"
+                    android:layout_gravity="center_horizontal">
+
+                    <com.mikhaellopez.circularimageview.CircularImageView
+                        android:layout_width="50dp"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_marginTop="2.5dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/group_icon2"
+                        app:civ_border_color="@color/Gray"
+                        app:civ_border_width="0dp"
+                        app:civ_shadow="true"
+                        app:civ_shadow_radius="0"
+                        app:civ_shadow_color="@color/colorPrimary"/>
+
+                </LinearLayout>
+
+
+                <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                <!--android:layout_width='match_parent'-->
+                <!--android:layout_height="60dp"-->
+                <!--tools:ignore="Suspicious0dp"-->
+                <!--android:src="@drawable/attendence_icon"-->
+                <!--app:civ_border_color="@color/colorPrimaryDark"-->
+                <!--app:civ_border_width="1dp" />-->
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/separater_color"></View>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical"
+                    android:background="#f5f4f4"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:text="Courses"
+                        android:textColor="@color/Black"
+                        android:textSize="18dp"
+                        android:gravity="center_horizontal"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="0dp"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_weight=".5"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="5dp"
+            card_view:cardElevation="5dp"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:id="@+id/lay2"
+                android:paddingTop="10dp"
+                android:background="#efeeee"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical"
+                tools:ignore="Suspicious0dp">
+
+                <LinearLayout
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/bg_circular_imageview"
+                    android:layout_gravity="center_horizontal">
+
+                    <com.mikhaellopez.circularimageview.CircularImageView
+                        android:layout_width="50dp"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_marginTop="2.5dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/group_icon2"
+                        app:civ_border_color="@color/Gray"
+                        app:civ_border_width="0dp"
+                        app:civ_shadow="true"
+                        app:civ_shadow_radius="0"
+                        app:civ_shadow_color="@color/colorPrimary"/>
+
+                </LinearLayout>
+
+
+                <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                <!--android:layout_width='match_parent'-->
+                <!--android:layout_height="60dp"-->
+                <!--tools:ignore="Suspicious0dp"-->
+                <!--android:src="@drawable/attendence_icon"-->
+                <!--app:civ_border_color="@color/colorPrimaryDark"-->
+                <!--app:civ_border_width="1dp" />-->
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/separater_color"></View>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical"
+                    android:background="#f5f4f4"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:text="Departments"
+                        android:textColor="@color/Black"
+                        android:textSize="18dp"
+                        android:gravity="center_horizontal"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_height="130dp">
+
+
+
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="0dp"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_weight=".5"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            card_view:cardElevation="5dp"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:id="@+id/lay3"
+                android:paddingTop="10dp"
+                android:background="#efeeee"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical"
+                tools:ignore="Suspicious0dp">
+
+                <LinearLayout
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/bg_circular_imageview"
+                    android:layout_gravity="center_horizontal">
+
+                    <com.mikhaellopez.circularimageview.CircularImageView
+                        android:layout_width="50dp"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_marginTop="2.5dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/group_icon2"
+                        app:civ_border_color="@color/Gray"
+                        app:civ_border_width="0dp"
+                        app:civ_shadow="true"
+                        app:civ_shadow_radius="0"
+                        app:civ_shadow_color="@color/colorPrimary"/>
+
+                </LinearLayout>
+
+
+                <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                <!--android:layout_width='match_parent'-->
+                <!--android:layout_height="60dp"-->
+                <!--tools:ignore="Suspicious0dp"-->
+                <!--android:src="@drawable/attendence_icon"-->
+                <!--app:civ_border_color="@color/colorPrimaryDark"-->
+                <!--app:civ_border_width="1dp" />-->
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/separater_color"></View>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical"
+                    android:background="#f5f4f4"
+                    android:layout_height="match_parent">
+
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:text="Directors"
+                        android:textColor="@color/Black"
+                        android:textSize="18dp"
+                        android:gravity="center_horizontal"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="0dp"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_weight=".5"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="5dp"
+            card_view:cardElevation="5dp"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:id="@+id/lay4"
+                android:paddingTop="10dp"
+                android:background="#efeeee"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical"
+                tools:ignore="Suspicious0dp">
+
+                <LinearLayout
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/bg_circular_imageview"
+                    android:layout_gravity="center_horizontal">
+
+                    <com.mikhaellopez.circularimageview.CircularImageView
+                        android:layout_width="50dp"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_marginTop="2.5dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/group_icon2"
+                        app:civ_border_color="@color/Gray"
+                        app:civ_border_width="0dp"
+                        app:civ_shadow="true"
+                        app:civ_shadow_radius="0"
+                        app:civ_shadow_color="@color/colorPrimary"/>
+
+                </LinearLayout>
+
+
+                <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                <!--android:layout_width='match_parent'-->
+                <!--android:layout_height="60dp"-->
+                <!--tools:ignore="Suspicious0dp"-->
+                <!--android:src="@drawable/attendence_icon"-->
+                <!--app:civ_border_color="@color/colorPrimaryDark"-->
+                <!--app:civ_border_width="1dp" />-->
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/separater_color"></View>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical"
+                    android:background="#f5f4f4"
+                    android:layout_height="match_parent">
+
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:text="HODs"
+                        android:textColor="@color/Black"
+                        android:textSize="18dp"
+                        android:gravity="center_horizontal"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_height="130dp">
+
+
+
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="0dp"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_weight=".5"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
+            card_view:cardElevation="5dp"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:id="@+id/lay5"
+                android:paddingTop="10dp"
+                android:background="#efeeee"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical"
+                tools:ignore="Suspicious0dp">
+
+                <LinearLayout
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/bg_circular_imageview"
+                    android:layout_gravity="center_horizontal">
+
+                    <com.mikhaellopez.circularimageview.CircularImageView
+                        android:layout_width="50dp"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_marginTop="2.5dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/group_icon2"
+                        app:civ_border_color="@color/Gray"
+                        app:civ_border_width="0dp"
+                        app:civ_shadow="true"
+                        app:civ_shadow_radius="0"
+                        app:civ_shadow_color="@color/colorPrimary"/>
+
+                </LinearLayout>
+
+
+                <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                <!--android:layout_width='match_parent'-->
+                <!--android:layout_height="60dp"-->
+                <!--tools:ignore="Suspicious0dp"-->
+                <!--android:src="@drawable/attendence_icon"-->
+                <!--app:civ_border_color="@color/colorPrimaryDark"-->
+                <!--app:civ_border_width="1dp" />-->
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/separater_color"></View>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical"
+                    android:background="#f5f4f4"
+                    android:layout_height="match_parent">
+
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:text="Faculties"
+                        android:textColor="@color/Black"
+                        android:textSize="18dp"
+                        android:gravity="center_horizontal"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="0dp"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_weight=".5"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="5dp"
+            card_view:cardElevation="5dp"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:id="@+id/lay6"
+                android:paddingTop="10dp"
+                android:background="#efeeee"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical"
+                tools:ignore="Suspicious0dp">
+
+                <LinearLayout
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/bg_circular_imageview"
+                    android:layout_gravity="center_horizontal">
+
+                    <com.mikhaellopez.circularimageview.CircularImageView
+                        android:layout_width="50dp"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_marginTop="2.5dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/group_icon2"
+                        app:civ_border_color="@color/Gray"
+                        app:civ_border_width="0dp"
+                        app:civ_shadow="true"
+                        app:civ_shadow_radius="0"
+                        app:civ_shadow_color="@color/colorPrimary"/>
+
+                </LinearLayout>
+
+
+                <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                <!--android:layout_width='match_parent'-->
+                <!--android:layout_height="60dp"-->
+                <!--tools:ignore="Suspicious0dp"-->
+                <!--android:src="@drawable/attendence_icon"-->
+                <!--app:civ_border_color="@color/colorPrimaryDark"-->
+                <!--app:civ_border_width="1dp" />-->
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/separater_color"></View>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical"
+                    android:background="#f5f4f4"
+                    android:layout_height="match_parent">
+
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:text="Students"
+                        android:textColor="@color/Black"
+                        android:textSize="18dp"
+                        android:gravity="center_horizontal"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+
+
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_height="130dp">
+
+
+
+            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="0dp"
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_weight=".5"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="5dp"
+                card_view:cardElevation="5dp"
+                android:layout_height="match_parent">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:id="@+id/lay7"
+                    android:paddingTop="10dp"
+                    android:background="#efeeee"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical"
+                    tools:ignore="Suspicious0dp">
+
+                    <LinearLayout
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:gravity="center_horizontal"
+                        android:background="@drawable/bg_circular_imageview"
+                        android:layout_gravity="center_horizontal">
+
+                        <com.mikhaellopez.circularimageview.CircularImageView
+                            android:layout_width="50dp"
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:layout_marginTop="2.5dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/group_icon2"
+                            app:civ_border_color="@color/Gray"
+                            app:civ_border_width="0dp"
+                            app:civ_shadow="true"
+                            app:civ_shadow_radius="0"
+                            app:civ_shadow_color="@color/colorPrimary"/>
+
+                    </LinearLayout>
+
+
+                    <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                    <!--android:layout_width='match_parent'-->
+                    <!--android:layout_height="60dp"-->
+                    <!--tools:ignore="Suspicious0dp"-->
+                    <!--android:src="@drawable/attendence_icon"-->
+                    <!--app:civ_border_color="@color/colorPrimaryDark"-->
+                    <!--app:civ_border_width="1dp" />-->
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/separater_color"></View>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:gravity="center_vertical"
+                        android:background="#f5f4f4"
+                        android:layout_height="match_parent">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:text="Faculties"
+                            android:textColor="@color/Black"
+                            android:textSize="18dp"
+                            android:gravity="center_horizontal"
+                            android:layout_height="wrap_content" />
+
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="0dp"
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_weight=".5"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="5dp"
+                card_view:cardElevation="5dp"
+                android:layout_height="match_parent">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:id="@+id/lay8"
+                    android:paddingTop="10dp"
+                    android:background="#efeeee"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical"
+                    tools:ignore="Suspicious0dp">
+
+                    <LinearLayout
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:gravity="center_horizontal"
+                        android:background="@drawable/bg_circular_imageview"
+                        android:layout_gravity="center_horizontal">
+
+                        <com.mikhaellopez.circularimageview.CircularImageView
+                            android:layout_width="50dp"
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:layout_marginTop="2.5dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/group_icon2"
+                            app:civ_border_color="@color/Gray"
+                            app:civ_border_width="0dp"
+                            app:civ_shadow="true"
+                            app:civ_shadow_radius="0"
+                            app:civ_shadow_color="@color/colorPrimary"/>
+
+                    </LinearLayout>
+
+
+                    <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                    <!--android:layout_width='match_parent'-->
+                    <!--android:layout_height="60dp"-->
+                    <!--tools:ignore="Suspicious0dp"-->
+                    <!--android:src="@drawable/attendence_icon"-->
+                    <!--app:civ_border_color="@color/colorPrimaryDark"-->
+                    <!--app:civ_border_width="1dp" />-->
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/separater_color"></View>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:gravity="center_vertical"
+                        android:background="#f5f4f4"
+                        android:layout_height="match_parent">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:text="Students"
+                            android:textColor="@color/Black"
+                            android:textSize="18dp"
+                            android:gravity="center_horizontal"
+                            android:layout_height="wrap_content" />
+
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_height="130dp">
+
+
+
+            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="0dp"
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_weight=".5"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="5dp"
+                card_view:cardElevation="5dp"
+                android:layout_height="match_parent">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:id="@+id/lay9"
+                    android:paddingTop="10dp"
+                    android:background="#efeeee"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical"
+                    tools:ignore="Suspicious0dp">
+
+                    <LinearLayout
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:gravity="center_horizontal"
+                        android:background="@drawable/bg_circular_imageview"
+                        android:layout_gravity="center_horizontal">
+
+                        <com.mikhaellopez.circularimageview.CircularImageView
+                            android:layout_width="50dp"
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:layout_marginTop="2.5dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/group_icon2"
+                            app:civ_border_color="@color/Gray"
+                            app:civ_border_width="0dp"
+                            app:civ_shadow="true"
+                            app:civ_shadow_radius="0"
+                            app:civ_shadow_color="@color/colorPrimary"/>
+
+                    </LinearLayout>
+
+
+                    <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                    <!--android:layout_width='match_parent'-->
+                    <!--android:layout_height="60dp"-->
+                    <!--tools:ignore="Suspicious0dp"-->
+                    <!--android:src="@drawable/attendence_icon"-->
+                    <!--app:civ_border_color="@color/colorPrimaryDark"-->
+                    <!--app:civ_border_width="1dp" />-->
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/separater_color"></View>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:gravity="center_vertical"
+                        android:background="#f5f4f4"
+                        android:layout_height="match_parent">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:text="Faculties"
+                            android:textColor="@color/Black"
+                            android:textSize="18dp"
+                            android:gravity="center_horizontal"
+                            android:layout_height="wrap_content" />
+
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="0dp"
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_weight=".5"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="5dp"
+                card_view:cardElevation="5dp"
+                android:layout_height="match_parent">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:id="@+id/lay10"
+                    android:paddingTop="10dp"
+                    android:background="#efeeee"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical"
+                    tools:ignore="Suspicious0dp">
+
+                    <LinearLayout
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:gravity="center_horizontal"
+                        android:background="@drawable/bg_circular_imageview"
+                        android:layout_gravity="center_horizontal">
+
+                        <com.mikhaellopez.circularimageview.CircularImageView
+                            android:layout_width="50dp"
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:layout_marginTop="2.5dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/group_icon2"
+                            app:civ_border_color="@color/Gray"
+                            app:civ_border_width="0dp"
+                            app:civ_shadow="true"
+                            app:civ_shadow_radius="0"
+                            app:civ_shadow_color="@color/colorPrimary"/>
+
+                    </LinearLayout>
+
+
+                    <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                    <!--android:layout_width='match_parent'-->
+                    <!--android:layout_height="60dp"-->
+                    <!--tools:ignore="Suspicious0dp"-->
+                    <!--android:src="@drawable/attendence_icon"-->
+                    <!--app:civ_border_color="@color/colorPrimaryDark"-->
+                    <!--app:civ_border_width="1dp" />-->
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/separater_color"></View>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:gravity="center_vertical"
+                        android:background="#f5f4f4"
+                        android:layout_height="match_parent">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:text="Students"
+                            android:textColor="@color/Black"
+                            android:textSize="18dp"
+                            android:gravity="center_horizontal"
+                            android:layout_height="wrap_content" />
+
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="25dp"
+            android:layout_height="130dp">
+
+
+
+            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="0dp"
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_weight=".5"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="5dp"
+                card_view:cardElevation="5dp"
+                android:layout_height="match_parent">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:id="@+id/lay11"
+                    android:paddingTop="10dp"
+                    android:background="#efeeee"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical"
+                    tools:ignore="Suspicious0dp">
+
+                    <LinearLayout
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:gravity="center_horizontal"
+                        android:background="@drawable/bg_circular_imageview"
+                        android:layout_gravity="center_horizontal">
+
+                        <com.mikhaellopez.circularimageview.CircularImageView
+                            android:layout_width="50dp"
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:layout_marginTop="2.5dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/group_icon2"
+                            app:civ_border_color="@color/Gray"
+                            app:civ_border_width="0dp"
+                            app:civ_shadow="true"
+                            app:civ_shadow_radius="0"
+                            app:civ_shadow_color="@color/colorPrimary"/>
+
+                    </LinearLayout>
+
+
+                    <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                    <!--android:layout_width='match_parent'-->
+                    <!--android:layout_height="60dp"-->
+                    <!--tools:ignore="Suspicious0dp"-->
+                    <!--android:src="@drawable/attendence_icon"-->
+                    <!--app:civ_border_color="@color/colorPrimaryDark"-->
+                    <!--app:civ_border_width="1dp" />-->
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/separater_color"></View>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:gravity="center_vertical"
+                        android:background="#f5f4f4"
+                        android:layout_height="match_parent">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:text="Faculties"
+                            android:textColor="@color/Black"
+                            android:textSize="18dp"
+                            android:gravity="center_horizontal"
+                            android:layout_height="wrap_content" />
+
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="0dp"
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_weight=".5"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="5dp"
+                card_view:cardElevation="5dp"
+                android:layout_height="match_parent">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:id="@+id/lay12"
+                    android:paddingTop="10dp"
+                    android:background="#efeeee"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical"
+                    tools:ignore="Suspicious0dp">
+
+                    <LinearLayout
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:gravity="center_horizontal"
+                        android:background="@drawable/bg_circular_imageview"
+                        android:layout_gravity="center_horizontal">
+
+                        <com.mikhaellopez.circularimageview.CircularImageView
+                            android:layout_width="50dp"
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:layout_marginTop="2.5dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/group_icon2"
+                            app:civ_border_color="@color/Gray"
+                            app:civ_border_width="0dp"
+                            app:civ_shadow="true"
+                            app:civ_shadow_radius="0"
+                            app:civ_shadow_color="@color/colorPrimary"/>
+
+                    </LinearLayout>
+
+
+                    <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                    <!--android:layout_width='match_parent'-->
+                    <!--android:layout_height="60dp"-->
+                    <!--tools:ignore="Suspicious0dp"-->
+                    <!--android:src="@drawable/attendence_icon"-->
+                    <!--app:civ_border_color="@color/colorPrimaryDark"-->
+                    <!--app:civ_border_width="1dp" />-->
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/separater_color"></View>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:gravity="center_vertical"
+                        android:background="#f5f4f4"
+                        android:layout_height="match_parent">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:text="Students"
+                            android:textColor="@color/Black"
+                            android:textSize="18dp"
+                            android:gravity="center_horizontal"
+                            android:layout_height="wrap_content" />
+
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>
+</ScrollView>

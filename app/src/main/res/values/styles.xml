@@ -1,0 +1,115 @@
+<resources>
+
+    <!-- Base application theme. -->
+  <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#067b93</item>
+        <item name="colorPrimaryDark">#0C6173</item>
+        <item name="colorAccent">#067b93</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+   </style>
+
+
+    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
+        <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+        <!--<item name="colorPrimary">#009999</item>-->
+        <!--<item name="colorPrimaryDark">#076e6e</item>-->
+        <!--<item name="colorAccent">#088484</item>-->
+        <!--<item name="windowActionBar">false</item>-->
+        <!--<item name="windowNoTitle">true</item>-->
+
+    <!--</style>-->
+
+
+
+    //----------------------------for splash------------------------------------
+    <style name="SplashTheme" parent="AppTheme.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="colorPrimaryDark">#ffffff</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowBackground">@drawable/app_image_splash1</item>
+    </style>
+
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="MatchParent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="MatchParentWrapContent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="WrapContent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="WrapContentMatchParent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="CardViewDesign">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_margin">2dp</item>
+    </style>
+
+    <style name="RelativeViewDesign">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:clickable">true</item>
+        <item name=" android:focusable">true</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:elevation">15dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingTop">3dp</item>
+    </style>
+
+    <style name="T1ViewDesign" parent="WrapContent">
+        <item name="android:textColor">@color/White</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_centerInParent">true</item>
+    </style>
+
+    <style name="TextAppearence.App.TextInputLayout" parent="@android:style/TextAppearance">
+        //added attributes
+        <item name="colorControlActivated">#ac4b84</item>
+        <item name="colorControlHighlight">#ac4b84</item>
+
+    </style>
+
+    <!--<style name="MyMaterialTheme" parent="MyMaterialTheme.Base"></style>-->
+
+    <!--<style name="MyMaterialTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">-->
+        <!--<item name="windowNoTitle">true</item>-->
+        <!--<item name="windowActionBar">false</item>-->
+        <!--<item name="colorPrimary">#ac4b84</item>-->
+        <!--<item name="colorPrimaryDark">#000000</item>-->
+        <!--<item name="colorAccent">@color/Red</item>-->
+    <!--</style>-->
+
+    <!--<style name="TabLayoutStyle" parent="Base.Widget.Design.TabLayout">-->
+        <!--<item name="android:textSize">12dp</item>-->
+        <!--<item name="android:textAllCaps">true</item>-->
+    <!--</style>-->
+
+</resources>
