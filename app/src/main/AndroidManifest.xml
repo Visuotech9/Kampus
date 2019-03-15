@@ -86,36 +86,54 @@
         <activity
             android:name=".Activities.Administrator.Act_department_list"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activities.Director.Act_add_Hod2"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.Director.Act_hod_list2"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.Director.Act_faculty_list2"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.Director.Act_add_faculty2"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.Director.Act_director_profile2"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.Hod.Act_faculty_list3"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.Hod.Act_hod_profile2"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.Administrator.Act_student_list"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.Hod.Act_add_timetable"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.Hod.Act_student_list3"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.Director.Act_student_list2"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.Director.Act_add_student2"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.Faculty.Act_student_list4"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.Faculty.Act_add_assignment"
-            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Activities.Director.Act_add_Hod2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.Director.Act_hod_list2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.Director.Act_faculty_list2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.Director.Act_add_faculty2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.Director.Act_director_profile2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.Hod.Act_faculty_list3"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.Hod.Act_hod_profile2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.Administrator.Act_student_list"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.Hod.Act_add_timetable"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.Hod.Act_student_list3"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.Director.Act_student_list2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.Director.Act_add_student2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.Faculty.Act_student_list4"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.Faculty.Act_add_assignment"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Activities.Faculty.Act_add_studymaterials" />
+        <activity android:name=".Activities.Faculty.Act_assignment_list" />
+        <activity android:name=".Activities.Faculty.Act_study_list"></activity>
     </application>
 
 </manifest>

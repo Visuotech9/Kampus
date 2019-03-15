@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
@@ -524,6 +525,19 @@ public class BaseRequest<T> extends BaseRequestParser {
         Call<JsonElement> call = apiInterface_.addDirector(body,name_,email_,mobile_no_,address_,dob_,doj_,dir_id_,course_id,organization_id_,gender_);
         call.enqueue(responseCallback);
     }
+    public void callAPIAddAssignment(final int APINumber, String remainingUrl, List<MultipartBody.Part> parts, RequestBody title_, RequestBody description_, RequestBody starttime_, RequestBody endtime_, RequestBody startdate_, RequestBody enddate_, RequestBody dept_id_, RequestBody course_id_, RequestBody userId_, RequestBody hod_id_, RequestBody director_id_, RequestBody org_id_, RequestBody semId_, RequestBody sectionId_, RequestBody subId_) {
+        APINumber_ = APINumber;
+        requestType = RequestType.Post;
+        showLoader();
+        //String baseURL = ApiClient.getClient().baseUrl().toString() + remainingURL;
+//        System.out.println("BaseReq INPUT URL : " + remainingURL);
+        ApiInterface apiInterface_ = ApiClient.getCustomClient(remainingUrl).create(ApiInterface.class);
+        //Call<JsonElement> call = apiInterface_.formData(images,latitude,fcm_token,msg_detail,app_name,email_id_to,ssecrete,device_id,longitude,location_detail);
+        Call<JsonElement> call = apiInterface_.addAssignment(parts,title_,description_,starttime_,endtime_,startdate_,enddate_,dept_id_,course_id_,userId_,hod_id_,director_id_,org_id_, semId_,sectionId_,subId_);
+        call.enqueue(responseCallback);
+    }
+
+
 
     public void callAPIAddTimeTable(final int APINumber, String remainingUrl, RequestBody semId_, RequestBody sectionId_, RequestBody day_, RequestBody org_id_, RequestBody course_id_, RequestBody dept_id_, RequestBody userId_, RequestBody hod_director_id_, String[] starthrs, String[] endhrs, String[] startmin, String[] endmin, String[] facId, String[] subId) {
         APINumber_ = APINumber;

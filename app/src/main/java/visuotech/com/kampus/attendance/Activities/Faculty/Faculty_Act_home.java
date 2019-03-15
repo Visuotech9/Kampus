@@ -30,23 +30,41 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import visuotech.com.kampus.attendance.Activities.Act_College_list;
+import visuotech.com.kampus.attendance.Activities.Administrator.Act_course_list;
+import visuotech.com.kampus.attendance.Activities.Administrator.Act_department_list;
+import visuotech.com.kampus.attendance.Activities.Administrator.Act_director_list;
+import visuotech.com.kampus.attendance.Activities.Administrator.Act_faculty_list;
+import visuotech.com.kampus.attendance.Activities.Administrator.Act_hod_list;
+import visuotech.com.kampus.attendance.Activities.Administrator.Act_student_list;
+import visuotech.com.kampus.attendance.Activities.Administrator.Administrator_Act_home;
+import visuotech.com.kampus.attendance.MainActivity;
 import visuotech.com.kampus.attendance.MarshMallowPermission;
+import visuotech.com.kampus.attendance.Model.Faculty;
+import visuotech.com.kampus.attendance.Model.HOD;
 import visuotech.com.kampus.attendance.R;
 import visuotech.com.kampus.attendance.SessionParam;
 import visuotech.com.kampus.attendance.retrofit.BaseRequest;
 import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 
 public class Faculty_Act_home extends AppCompatActivity {
-    String user_typee,user_id,organization_id,device_id;
+    String user_typee,user_id,organization_id,device_id,dept_id,course_id,dept_name,fac_director_id,fac_hod_id;
     LinearLayout lay1,lay2,lay3,lay4,lay5,lay6;
-    TextView tv_designation,tv_name;
+    TextView tv_designation,tv_name,tv_course;
     ImageView iv_image;
     Dialog mDialog;
     String old_pswd,new_pswd,cnfirm_pswd;
     TextView tv_alert;
+    ArrayList<Faculty> faculty_list;
+
 
     Context context;
     Activity activity;
@@ -106,13 +124,18 @@ public class Faculty_Act_home extends AppCompatActivity {
         lay5=findViewById(R.id.lay5);
         lay6=findViewById(R.id.lay6);
         tv_designation=findViewById(R.id.tv_designation);
+        tv_course=findViewById(R.id.tv_course);
         tv_name=findViewById(R.id.tv_name);
         iv_image=findViewById(R.id.iv_image);
+
+        faculty_list=new ArrayList<>();
 
 
         tv_name.setText(sessionParam.login_name);
         tv_designation.setText("("+sessionParam.designation+")");
         Picasso.get().load(sessionParam.user_image).into(iv_image);
+
+        ApigetFaculty();
 
         iv_image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,7 +197,105 @@ public class Faculty_Act_home extends AppCompatActivity {
 
             }
         });
+
+        lay1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Intent i = new Intent(Faculty_Act_home.this, Act_student_list4.class);
+//                startActivity(i);
+//                finish();
+
+            }
+        });
+        lay2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Faculty_Act_home.this, Act_add_assignment.class);
+                startActivity(i);
+
+
+                finish();
+            }
+        });
+
+        lay3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Faculty_Act_home.this, MainActivity.class);
+                startActivity(i);
+                finish();
+
+            }
+        });
+
+        lay4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Faculty_Act_home.this, Act_hod_list.class);
+                startActivity(i);
+                finish();
+            }
+        });
+        lay5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Faculty_Act_home.this, Act_faculty_list.class);
+                startActivity(i);
+                finish();
+            }
+        });
+        lay6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Faculty_Act_home.this, Act_student_list.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
     }
+
+    private void ApigetFaculty(){
+        baseRequest = new BaseRequest(context);
+        baseRequest.setBaseRequestListner(new RequestReciever() {
+            @Override
+            public void onSuccess(int requestCode, String Json, Object object) {
+                try {
+                    JSONObject jsonObject = new JSONObject(Json);
+                    JSONArray jsonArray=jsonObject.optJSONArray("user");
+
+                    faculty_list=baseRequest.getDataListreverse(jsonArray,Faculty.class);
+                    dept_name=faculty_list.get(0).getFaculty_department_name();
+                    dept_id=faculty_list.get(0).getFaculty_department_id();
+                    course_id=faculty_list.get(0).getFaculty_course_id();
+                    fac_director_id=faculty_list.get(0).getFaculty_director_id();
+                    fac_hod_id=faculty_list.get(0).getFaculty_hod_id();
+                    sessionParam.dept_id(context,dept_id);
+                    sessionParam.course_id(context,course_id);
+                    sessionParam.director_id(context,fac_director_id);
+                    sessionParam.hod_id(context,fac_hod_id);
+                    tv_course.setText(dept_name);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(int requestCode, String errorCode, String message) {
+
+            }
+            @Override
+            public void onNetworkFailure(int requestCode, String message) {
+
+            }
+        });
+        String remainingUrl2="/Kampus/Api2.php?apicall=faculty_list&organization_id="+sessionParam.org_id+"&user_id="+sessionParam.userId;
+        baseRequest.callAPIGETData(1, remainingUrl2);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

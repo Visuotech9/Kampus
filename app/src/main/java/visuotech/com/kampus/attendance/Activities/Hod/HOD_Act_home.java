@@ -253,7 +253,7 @@ public class HOD_Act_home extends AppCompatActivity {
                     hod_director_id=hod_list.get(0).getHod_director_id();
                     sessionParam.dept_id(context,dept_id);
                     sessionParam.course_id(context,course_id);
-                    sessionParam.hod_director_id(context,hod_director_id);
+                    sessionParam.director_id(context,hod_director_id);
                     tv_dept.setText(dept_name);
 
                 } catch (JSONException e) {

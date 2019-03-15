@@ -26,7 +26,7 @@ public class SessionParam {
     public String mob_no,id,logo, email,address,designation,longitude,date, officeId, departmentId, orgId, office, department, token, organisation_logo, role;
     public String companyList = "";
     public String companyOrgId = "";
-    public String userId = "",login="",dept_id,course_id,deviceId="",hod_director_id,org_logo,buy,mobile, login_name,org_name,logged_in="",data="",user_type="",org_id="",user_image="",website="";
+    public String userId = "",login="",dept_id,course_id,deviceId="",hod_id,director_id,org_logo,buy,mobile, login_name,org_name,logged_in="",data="",user_type="",org_id="",user_image="",website="";
 
 
     public SessionParam(Context context, String signupStage) {
@@ -97,7 +97,8 @@ public class SessionParam {
         this.email = sharedPreferences.getString("email", "");
         this.course_id = sharedPreferences.getString("course_id", "");
         this.dept_id = sharedPreferences.getString("dept_id", "");
-        this.hod_director_id = sharedPreferences.getString("hod_director_id", "");
+        this.director_id = sharedPreferences.getString("director_id", "");
+        this.hod_id = sharedPreferences.getString("hod_id", "");
 
     }
 
@@ -108,12 +109,19 @@ public class SessionParam {
         prefsEditor.putString("org_name", org_name);
         prefsEditor.commit();
     }
-    public void hod_director_id(Context context, String hod_director_id) {
+    public void director_id(Context context, String director_id) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
-        prefsEditor.putString("hod_director_id", hod_director_id);
+        prefsEditor.putString("director_id", director_id);
         prefsEditor.commit();
     }
+    public void hod_id(Context context, String hod_id) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
+        prefsEditor.putString("hod_id", hod_id);
+        prefsEditor.commit();
+    }
+
     public void course_id(Context context, String course_id) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor prefsEditor = sharedPreferences.edit();

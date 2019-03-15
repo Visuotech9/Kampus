@@ -35,8 +35,10 @@ import org.json.JSONObject;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import visuotech.com.kampus.attendance.MarshMallowPermission;
 import visuotech.com.kampus.attendance.Model.Faculty;
@@ -103,19 +105,19 @@ public class Act_add_timetable extends AppCompatActivity implements AdapterView.
 //    ArrayList<String>facId=new ArrayList<>();
 //    ArrayList<String>subId=new ArrayList<>();
 
-    String[] starthrs;
-    String[] endhrs;
-    String[] startmin;
-    String[] endmin;
-    String[] facId;
-    String[] subId;
+//    String[] starthrs;
+//    String[] endhrs;
+//    String[] startmin;
+//    String[] endmin;
+//    String[] facId;
+//    String[] subId;
 
-//    String[] starthrs = { "11", "11", "11"};
-//    String[] endhrs = { "11", "11", "11"};
-//    String[] startmin = { "11", "11", "11"};
-//    String[] endmin = { "11", "11", "11"};
-//    String[] facId = { "11", "11", "11"};
-//    String[] subId = { "11", "11", "11"};
+    String[] starthrs = { "11","13"};
+    String[] endhrs = { "12","11"};
+    String[] startmin = { "00","11"};
+    String[] endmin = { "15","11"};
+    String[] facId = { "24","11"};
+    String[] subId = { "25","12"};
 
 
 
@@ -206,6 +208,10 @@ public class Act_add_timetable extends AppCompatActivity implements AdapterView.
                 cardNo=cardNo+1;
                 Toast.makeText(getApplicationContext(),String.valueOf(cardNo),Toast.LENGTH_SHORT).show();
                 onAddField(v);
+                tv_starthrs.setText("");
+                tv_endhrs.setText("");
+                tv_startmin.setText("");
+                tv_endmin.setText("");
 
 
 
@@ -264,7 +270,7 @@ public class Act_add_timetable extends AppCompatActivity implements AdapterView.
     }
     public void onAddField(View v) {
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View rowView = inflater.inflate(R.layout.test1, null);
+        final View rowView = inflater.inflate(R.layout.add_field, null);
 //        final TextView et_starthrs1 = (TextView)rowView.findViewById(R.id.et_starthrs1);
 //        final TextView et_endhrs1 = (TextView)rowView.findViewById(R.id.et_endhrs1);
 //        final TextView et_startmin1 = (TextView)rowView.findViewById(R.id.et_startmin1);
@@ -604,6 +610,7 @@ public class Act_add_timetable extends AppCompatActivity implements AdapterView.
                 @Part List<MultipartBody.Part> files  // <-- multiple photos here
 );*/
 
+
         RequestBody semId_ = RequestBody.create(MediaType.parse("text/plain"), semId);
         RequestBody sectionId_ = RequestBody.create(MediaType.parse("text/plain"), sectionId);
         RequestBody day_ = RequestBody.create(MediaType.parse("text/plain"), day);
@@ -611,7 +618,7 @@ public class Act_add_timetable extends AppCompatActivity implements AdapterView.
         RequestBody course_id_ = RequestBody.create(MediaType.parse("text/plain"), sessionParam.course_id);
         RequestBody dept_id_ = RequestBody.create(MediaType.parse("text/plain"), sessionParam.dept_id);
         RequestBody userId_ = RequestBody.create(MediaType.parse("text/plain"), sessionParam.userId);
-        RequestBody hod_director_id_ = RequestBody.create(MediaType.parse("text/plain"), sessionParam.hod_director_id);
+        RequestBody hod_director_id_ = RequestBody.create(MediaType.parse("text/plain"), sessionParam.director_id);
 
 
 

@@ -170,37 +170,13 @@ public class Act_add_director extends AppCompatActivity implements AdapterView.O
         iv_cal_dob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calendar = Calendar.getInstance();
-                year = calendar.get(Calendar.YEAR);
-                month = calendar.get(Calendar.MONTH);
-                dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-                datePickerDialog = new DatePickerDialog(Act_add_director.this,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                                tv_dob.setText(day + "-" + (month + 1) + "-" + year);
-                            }
-                        }, year, month, dayOfMonth);
-//                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis()-1000);
-                datePickerDialog.show();
+                getDate(tv_dob);
             }
         });
         iv_cal_doj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calendar = Calendar.getInstance();
-                year = calendar.get(Calendar.YEAR);
-                month = calendar.get(Calendar.MONTH);
-                dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-                datePickerDialog = new DatePickerDialog(Act_add_director.this,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                                tv_doj.setText(day + "-" + (month + 1) + "-" + year);
-                            }
-                        }, year, month, dayOfMonth);
-//                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis()-1000);
-                datePickerDialog.show();
+                getDate(tv_doj);
             }
         });
 
@@ -385,9 +361,6 @@ public class Act_add_director extends AppCompatActivity implements AdapterView.O
         });
 
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-//        RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
-
-
         body =MultipartBody.Part.createFormData("file", file.getName(), requestFile);
 
         RequestBody name_ = RequestBody.create(MediaType.parse("text/plain"), name);
@@ -617,6 +590,26 @@ public class Act_add_director extends AppCompatActivity implements AdapterView.O
         bmpFactoryOptions.inJustDecodeBounds = false;
         bitmap = BitmapFactory.decodeFile(file, bmpFactoryOptions);
         return bitmap;
+    }
+
+    public  void getDate(final TextView tv){
+        DatePickerDialog datePickerDialog;
+        int year;
+        int month;
+        int dayOfMonth;
+        calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        datePickerDialog = new DatePickerDialog(Act_add_director.this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        tv.setText(day + "-" + (month + 1) + "-" + year);
+                    }
+                }, year, month, dayOfMonth);
+//                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis()-1000);
+        datePickerDialog.show();
     }
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent i = new Intent(Act_add_director.this, Act_director_list.class);

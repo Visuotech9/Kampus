@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
@@ -179,6 +180,25 @@ public interface ApiInterface {
                                   @Part("director_gender") RequestBody gender_);
 
     @Multipart
+    @POST("Kampus/Api2.php?apicall=add_assignment")
+    Call<JsonElement> addAssignment(@Part List<MultipartBody.Part> files,
+                                  @Part("title") RequestBody title_,
+                                  @Part("description") RequestBody description_,
+                                  @Part("start_time") RequestBody starttime_,
+                                  @Part("end_time") RequestBody endtime_,
+                                  @Part("start_date") RequestBody startdate_,
+                                    @Part("end_date") RequestBody enddate_,
+                                    @Part("department_id") RequestBody dept_id_,
+                                    @Part("course_id") RequestBody course_id_,
+                                    @Part("faculty_id") RequestBody userId_,
+                                    @Part("hod_id") RequestBody hod_id_,
+                                    @Part("director_id") RequestBody director_id_,
+                                    @Part("organization_id") RequestBody org_id_,
+                                  @Part("sem_id") RequestBody semId_,
+                                    @Part("subject_id") RequestBody subId_,
+                                    @Part("section_id") RequestBody sectionId_);
+
+    @Multipart
     @POST("Kampus/Api2.php?apicall=add_timetable")//body,name_,email_,mobile_no_,address_,dob_,doj_,dir_id_,dept_id_,organization_id_,gender_
     Call<JsonElement> addTimeTable(
                                   @Part("sem_id") RequestBody semId_,
@@ -195,6 +215,16 @@ public interface ApiInterface {
                                   @Part("ending_min[]") String[] endmin,
                                   @Part("faculty_id[]") String[] facId,
                                   @Part("subject_id[]") String[] subId);
+
+    @Multipart
+    @POST("./")
+    Call<JsonElement> addSubEvent(@Part("") RequestBody useCase,
+                                  @Query("event_id[]") ArrayList<String> event_id,
+                                  @Query("user_id[]") ArrayList<String> user_id,
+                                  @Query("name[]") ArrayList<String> name,
+                                  @Query("date_time[]") ArrayList<String> date_time,
+                                  @Part("token") RequestBody token,
+                                  @Part MultipartBody.Part... profilePic);
 
 //semId_,sectionId_,day_,org_id_,course_id_,dept_id_,userId_,hod_director_id_,starthrs,endhrs,startmin,endmin,facId,subId
     @Multipart

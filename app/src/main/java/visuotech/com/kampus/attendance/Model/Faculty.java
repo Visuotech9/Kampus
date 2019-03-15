@@ -1,9 +1,61 @@
 package visuotech.com.kampus.attendance.Model;
 
 public class Faculty {
-    String faculty_username,faculty_name,faculty_pic,faculty_department_name,faculty_id,designation,faculty_clg_id,f_mobile_no
-            ,f_email_id,f_address,f_gender,f_dob,f_date_of_joining,experience,faculty_course_name,faculty_hod_name
-            ,faculty_director_name,faculty_organization_name;
+    String faculty_username;
+    String faculty_name;
+    String faculty_pic;
+    String faculty_department_name;
+    String faculty_id;
+    String designation;
+    String faculty_clg_id;
+    String f_mobile_no;
+    String f_email_id;
+    String f_address;
+    String f_gender;
+    String f_dob;
+    String f_date_of_joining;
+    String experience;
+    String faculty_course_name;
+    String faculty_hod_name;
+
+    public String getFaculty_course_id() {
+        return faculty_course_id;
+    }
+
+    public void setFaculty_course_id(String faculty_course_id) {
+        this.faculty_course_id = faculty_course_id;
+    }
+
+    public String getFaculty_department_id() {
+        return faculty_department_id;
+    }
+
+    public void setFaculty_department_id(String faculty_department_id) {
+        this.faculty_department_id = faculty_department_id;
+    }
+
+    public String getFaculty_hod_id() {
+        return faculty_hod_id;
+    }
+
+    public void setFaculty_hod_id(String faculty_hod_id) {
+        this.faculty_hod_id = faculty_hod_id;
+    }
+
+    public String getFaculty_director_id() {
+        return faculty_director_id;
+    }
+
+    public void setFaculty_director_id(String faculty_director_id) {
+        this.faculty_director_id = faculty_director_id;
+    }
+
+    String faculty_director_name;
+    String faculty_organization_name;
+    String faculty_course_id;
+    String faculty_department_id;
+    String faculty_hod_id;
+    String faculty_director_id;
     public Faculty() {
     }
     public String getFaculty_id() {

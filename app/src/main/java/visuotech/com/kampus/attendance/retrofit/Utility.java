@@ -13,6 +13,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.text.Html;
 import android.util.Base64;
@@ -42,10 +43,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import id.zelory.compressor.Compressor;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import visuotech.com.kampus.attendance.R;
 
 
@@ -422,10 +427,12 @@ public class Utility {
 
     }*/
 
-    public String getRealPathFromURI(Uri uri) {
+
+
+    public static String getRealPathFromURI(Context context,Uri uri) {
         String path = "";
-        if (activity.getContentResolver() != null) {
-            Cursor cursor = activity.getContentResolver().query(uri, null, null, null, null);
+        if (context.getContentResolver() != null) {
+            Cursor cursor = context.getContentResolver().query(uri, null, null, null, null);
             if (cursor != null) {
                 cursor.moveToFirst();
                 int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
@@ -519,7 +526,7 @@ public class Utility {
     }
     //-----------Get image path------------
 
-    public String getPath(Uri uri, Context context) {
+    public static String getPath(Uri uri, Context context) {
         String[] projection = {MediaStore.Images.Media.DATA};
         Cursor cursor = context.getContentResolver().query(uri, projection, null, null, null);
         if (cursor == null) return null;
@@ -751,6 +758,24 @@ public class Utility {
         return res;
     }
 
-
+    @NonNull
+    private RequestBody createPartFromString(String descriptionString) {
+        return RequestBody.create(
+                okhttp3.MultipartBody.FORM, descriptionString);
+    }
+    @NonNull
+    private MultipartBody.Part prepareFilePart(String partName, Uri fileUri,Context context) {
+        // https://github.com/iPaulPro/aFileChooser/blob/master/aFileChooser/src/com/ipaulpro/afilechooser/utils/FileUtils.java
+        // use the FileUtils to get the actual file by uri
+        File file = FileUtils.getFile(context, fileUri);
+        // create RequestBody instance from file
+        RequestBody requestFile =
+                RequestBody.create(
+                        MediaType.parse(Objects.requireNonNull(context.getContentResolver().getType(fileUri))),
+                        file
+                );
+        // MultipartBody.Part is used to send also the actual file name
+        return MultipartBody.Part.createFormData(partName, file.getName(), requestFile);
+    }
 }
 

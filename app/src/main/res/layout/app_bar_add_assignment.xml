@@ -43,7 +43,7 @@
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main_add_director" />
+    <include layout="@layout/content_main_add_assignment" />
 
 
 

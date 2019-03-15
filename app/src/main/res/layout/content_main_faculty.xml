@@ -62,7 +62,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="3dp"
-                    android:text="Information and technology"
+                    android:text=""
                     android:textColor="@color/Wheat"/>
 
 
@@ -82,7 +82,7 @@
                         android:layout_marginTop="3dp"
                         android:textColor="@color/Wheat"
                         android:layout_weight=".5"
-                        android:text="3rd semister"/>
+                        android:text=""/>
 
                     <TextView
                         android:id="@+id/tv_full_profile"
@@ -197,7 +197,7 @@
                             xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:layout_marginTop="2.5dp"
                             android:layout_height="55dp"
-                            android:src="@drawable/faculty_icon"
+                            android:src="@drawable/assignment_icon"
                             app:civ_border_color="@color/Gray"
                             app:civ_border_width="0dp"
                             app:civ_shadow="true"
@@ -208,7 +208,7 @@
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:text="Faculties"
+                        android:text="Assignment"
                         android:layout_marginTop="5dp"
                         android:textColor="@color/Black"
                         android:textSize="15dp"
@@ -243,7 +243,7 @@
                             xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:layout_marginTop="2.5dp"
                             android:layout_height="55dp"
-                            android:src="@drawable/student_icon"
+                            android:src="@drawable/study_icon"
                             app:civ_border_color="@color/Gray"
                             app:civ_border_width="0dp"
                             app:civ_shadow="true"
@@ -254,7 +254,7 @@
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:text="Students"
+                        android:text="Study materials"
                         android:layout_marginTop="5dp"
                         android:textColor="@color/Black"
                         android:textSize="15dp"
