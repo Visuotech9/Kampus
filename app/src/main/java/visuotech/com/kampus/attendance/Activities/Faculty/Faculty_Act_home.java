@@ -212,9 +212,10 @@ public class Faculty_Act_home extends AppCompatActivity {
         lay1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent i = new Intent(Faculty_Act_home.this, Act_student_list4.class);
-//                startActivity(i);
-//                finish();
+                Intent i = new Intent(Faculty_Act_home.this, Act_student_list4.class);
+                i.putExtra("DEPT_NAME",dept_name);
+                startActivity(i);
+                finish();
 
             }
         });
@@ -223,8 +224,6 @@ public class Faculty_Act_home extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(Faculty_Act_home.this, Act_assignment_list.class);
                 startActivity(i);
-
-
                 finish();
             }
         });
@@ -242,25 +241,25 @@ public class Faculty_Act_home extends AppCompatActivity {
         lay4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Faculty_Act_home.this, Act_hod_list.class);
-                startActivity(i);
-                finish();
+//                Intent i = new Intent(Faculty_Act_home.this, Act_hod_list.class);
+//                startActivity(i);
+//                finish();
             }
         });
         lay5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Faculty_Act_home.this, Act_faculty_list.class);
-                startActivity(i);
-                finish();
+//                Intent i = new Intent(Faculty_Act_home.this, Act_faculty_list.class);
+//                startActivity(i);
+//                finish();
             }
         });
         lay6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Faculty_Act_home.this, Act_student_list.class);
-                startActivity(i);
-                finish();
+//                Intent i = new Intent(Faculty_Act_home.this, Act_student_list.class);
+//                startActivity(i);
+//                finish();
             }
         });
 

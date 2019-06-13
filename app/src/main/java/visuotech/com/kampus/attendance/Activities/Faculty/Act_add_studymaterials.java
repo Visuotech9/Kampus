@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -20,6 +21,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -134,28 +136,33 @@ public class Act_add_studymaterials extends AppCompatActivity implements Adapter
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_act_add_studymaterials);
+        setContentView(R.layout.act_main);
         //-------------------------toolbar------------------------------------------
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Add Study materials");
+        toolbar.setTitleTextColor((Color.parseColor("#FFFFFF")));
+        getSupportActionBar().setTitle("Add Study Materials");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-//-------------------------classes------------------------------------------
         context = this;
         activity = this;
         sessionParam = new SessionParam(getApplicationContext());
         marshMallowPermission = new MarshMallowPermission(activity);
 
-        gvGallery = findViewById(R.id.gv);
-        btn_add = findViewById(R.id.btn_add);
-        btn_attachment = findViewById(R.id.btn_attachment);
-        btn_cancel = findViewById(R.id.btn_cancel);
-        spinner_section = findViewById(R.id.spinner_section);
-        spinner_sem = findViewById(R.id.spinner_sem);
-        spinner_subject = findViewById(R.id.spinner_subject);
-        et_title = findViewById(R.id.et_title);
-        et_description = findViewById(R.id.et_description);
+        LinearLayout  container = (LinearLayout) findViewById(R.id.container);
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View rowView = inflater.inflate(R.layout.content_main_add_studymaterials, null);
+        container.addView(rowView, container.getChildCount());
+
+        gvGallery = rowView.findViewById(R.id.gv);
+        btn_add = rowView.findViewById(R.id.btn_add);
+        btn_attachment = rowView.findViewById(R.id.btn_attachment);
+        btn_cancel = rowView.findViewById(R.id.btn_cancel);
+        spinner_section = rowView.findViewById(R.id.spinner_section);
+        spinner_sem = rowView.findViewById(R.id.spinner_sem);
+        spinner_subject = rowView.findViewById(R.id.spinner_subject);
+        et_title = rowView.findViewById(R.id.et_title);
+        et_description = rowView.findViewById(R.id.et_description);
 
 
         spinner_section.setOnItemSelectedListener(this);

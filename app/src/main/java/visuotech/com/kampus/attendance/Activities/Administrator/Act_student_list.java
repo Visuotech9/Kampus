@@ -276,7 +276,7 @@ public class Act_student_list extends AppCompatActivity {
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=student_list&organization_id="+sessionParam.org_id+"&currentpage="+currentPage;
+        String remainingUrl2="/Kampus/Api2.php?apicall=student_list&organization_id="+sessionParam.org_id+"&currentpage="+currentPage+"&department_id="+sessionParam.dept_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
@@ -317,7 +317,7 @@ public class Act_student_list extends AppCompatActivity {
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=student_list&organization_id="+sessionParam.org_id+"&currentpage="+currentPage;
+        String remainingUrl2="/Kampus/Api2.php?apicall=student_list&organization_id="+sessionParam.org_id+"&currentpage="+currentPage+"&department_id="+sessionParam.dept_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
