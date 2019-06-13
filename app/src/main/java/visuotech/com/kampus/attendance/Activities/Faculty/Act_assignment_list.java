@@ -3,6 +3,7 @@ package visuotech.com.kampus.attendance.Activities.Faculty;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -11,10 +12,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 
@@ -57,29 +60,32 @@ public class Act_assignment_list extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_act_assignment_list);
+        setContentView(R.layout.act_main);
 
-        //-------------------------toolbar------------------------------------------
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor((Color.parseColor("#FFFFFF")));
         getSupportActionBar().setTitle("Assignment List");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-//-------------------------classes------------------------------------------
         context = this;
         activity = this;
         sessionParam = new SessionParam(getApplicationContext());
         marshMallowPermission = new MarshMallowPermission(activity);
 
-//-------------------------recyclerview------------------------------------------
-        rv_list=findViewById(R.id.rv_list);
-        progressbar=findViewById(R.id.progressbar);
+        LinearLayout container = (LinearLayout) findViewById(R.id.container);
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View rowView = inflater.inflate(R.layout.content_main_assignment_list, null);
+        container.addView(rowView, container.getChildCount());
+
+        rv_list=rowView.findViewById(R.id.rv_list);
+        progressbar=rowView.findViewById(R.id.progressbar);
         linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         rv_list.setLayoutManager(linearLayoutManager);
         rv_list.setItemAnimator(new DefaultItemAnimator());
 
-        inputSearch = (EditText) findViewById(R.id.inputSearch);
-        iv_add =  findViewById(R.id.iv_add);
+        inputSearch = (EditText) rowView.findViewById(R.id.inputSearch);
+        iv_add =  rowView.findViewById(R.id.iv_add);
 
         iv_add.setOnClickListener(new View.OnClickListener() {
             @Override

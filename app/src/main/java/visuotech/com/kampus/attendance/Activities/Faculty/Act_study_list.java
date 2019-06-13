@@ -3,6 +3,7 @@ package visuotech.com.kampus.attendance.Activities.Faculty;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -11,10 +12,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 
@@ -54,20 +57,24 @@ public class Act_study_list extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_act_study_list);
-        //-------------------------toolbar------------------------------------------
+        setContentView(R.layout.act_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Study materials List");
+        toolbar.setTitleTextColor((Color.parseColor("#FFFFFF")));
+        getSupportActionBar().setTitle("Study List");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-//-------------------------classes------------------------------------------
         context = this;
         activity = this;
         sessionParam = new SessionParam(getApplicationContext());
         marshMallowPermission = new MarshMallowPermission(activity);
 
-//-------------------------recyclerview------------------------------------------
+        LinearLayout container = (LinearLayout) findViewById(R.id.container);
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View rowView = inflater.inflate(R.layout.content_main_study_list, null);
+        container.addView(rowView, container.getChildCount());
+
         rv_list=findViewById(R.id.rv_list);
         progressbar=findViewById(R.id.progressbar);
         linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
