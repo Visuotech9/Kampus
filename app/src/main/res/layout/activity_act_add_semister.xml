@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".Activities.Administrator.Act_add_semister">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp"
+        android:paddingLeft="5dp"
+        android:text="Select Course"
+        android:textColor="@color/Black" />
+
+
+    <TextView
+        android:id="@+id/tv_course"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/background_border"
+        android:clickable="true"
+        android:drawableRight="@drawable/drop_down"
+        android:gravity="center_vertical"
+        android:hint="Course"
+        android:paddingLeft="15dp"
+        android:paddingTop="10dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="10dp"
+        android:textColor="@color/Black"
+        android:textSize="12dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp"
+        android:paddingLeft="5dp"
+        android:text="Select Semister"
+        android:textColor="@color/Black" />
+
+
+    <TextView
+        android:id="@+id/tv_sem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/background_border"
+        android:clickable="true"
+        android:drawableRight="@drawable/drop_down"
+        android:gravity="center_vertical"
+        android:hint="Semister"
+        android:paddingLeft="15dp"
+        android:paddingTop="10dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="10dp"
+        android:textColor="@color/Black"
+        android:textSize="12dp" />
+
+    <LinearLayout
+        android:id="@+id/lay_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/btn_view"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight=".5"
+            android:background="@drawable/background_border1"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:text="Add"
+            android:textColor="@color/White"
+            android:textSize="12dp"
+            tools:ignore="Suspicious0dp" />
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

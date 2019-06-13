@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="350dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center_vertical"
+        android:weightSum="1">
+
+        <!--<ImageView-->
+        <!--android:id="@+id/iv_back"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight=".1"-->
+        <!--android:padding="8dp"/>-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="10dp"
+            android:text="ADD DEPARTMENT"
+            android:gravity="center_horizontal"
+            android:textColor="@color/White"
+            android:textSize="18dp"/>
+        <ImageView
+            android:id="@+id/iv_cancel_dialog"
+            android:layout_width="50dp"
+            android:paddingRight="20dp"
+            android:src="@drawable/cancel2"
+            android:layout_gravity="right"
+            android:layout_height="match_parent"
+            android:layout_weight=".1" />
+
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/colorPrimary"></View>
+    <!--separater_color-->
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:text="Select Course :"
+            android:paddingLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/Black"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:background="@drawable/background_border"
+            android:paddingBottom="8dp"
+            android:orientation="horizontal">
+
+
+            <Spinner
+                android:id="@+id/spinner_course"
+                android:paddingLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+            <!--android:entries="@array/user_type"-->
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_sem"
+            android:layout_width="match_parent"
+            android:text="Add Department :"
+            android:paddingLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/Black"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:id="@+id/lay2"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:paddingBottom="12dp"
+                android:background="@drawable/background_border"
+                android:paddingLeft="20dp"
+                android:paddingRight="10dp"
+                android:hint="Department name"
+                android:layout_weight=".75"
+                android:paddingTop="12dp"
+                android:textColor="@color/Black"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textSize="15dp"
+                android:textStyle="normal"
+                tools:ignore="Suspicious0dp" />
+            <!--android:entries="@array/user_type"-->
+
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/tv_alert"
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:visibility="gone"
+            android:textColor="@color/Green"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content" />
+
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="70dp"
+            android:layout_marginLeft="70dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:layout_gravity="bottom"
+            android:textSize="17dp"
+            android:textColor="@color/White"
+            android:layout_weight="1"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/background_gradient"
+            android:text="Save" />
+
+
+
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
