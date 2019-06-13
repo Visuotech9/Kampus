@@ -3,6 +3,7 @@ package visuotech.com.kampus.attendance.Activities.Administrator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -12,13 +13,14 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
-import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -60,11 +62,11 @@ public class Act_student_list extends AppCompatActivity {
     private int currentPage=PAGE_START;
 
     Context context;
+    LinearLayout container;
     Activity activity;
     SessionParam sessionParam;
     MarshMallowPermission marshMallowPermission;
     private BaseRequest baseRequest;
-    private SearchableSpinner mSearchableSpinner;
     EditText inputSearch;
 
     ArrayList<Director> director_list;
@@ -76,31 +78,36 @@ public class Act_student_list extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_act_student_list);
+        setContentView(R.layout.act_main);
 
         //-------------------------toolbar------------------------------------------
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Student List");
+        toolbar.setTitleTextColor((Color.parseColor("#FFFFFF")));
+        getSupportActionBar().setTitle("Director List");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-//-------------------------classes------------------------------------------
         context = this;
         activity = this;
         sessionParam = new SessionParam(getApplicationContext());
         marshMallowPermission = new MarshMallowPermission(activity);
 
+        container = (LinearLayout) findViewById(R.id.container);
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View rowView = inflater.inflate(R.layout.content_main_student_list, null);
+        container.addView(rowView, container.getChildCount());
+
 //-------------------------recyclerview------------------------------------------
-        rv_list=findViewById(R.id.rv_list);
-        progressbar=findViewById(R.id.progressbar);
+        rv_list=rowView.findViewById(R.id.rv_list);
+        progressbar=rowView.findViewById(R.id.progressbar);
         linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         rv_list.setLayoutManager(linearLayoutManager);
         rv_list.setItemAnimator(new DefaultItemAnimator());
         students=new ArrayList<>();
         results=new ArrayList<>();
 
-        inputSearch = (EditText) findViewById(R.id.inputSearch);
-        iv_add =  findViewById(R.id.iv_add);
+        inputSearch = (EditText) rowView.findViewById(R.id.inputSearch);
+        iv_add =  rowView.findViewById(R.id.iv_add);
 
         iv_add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,6 +189,7 @@ public class Act_student_list extends AppCompatActivity {
 //                businessLogic(movies);
                 progressbar.setVisibility(View.GONE);
                 adapter.addAll(students);
+
                 int TOTAL_PAGES= Integer.parseInt(students.get(0).getTotal_pages());
 //                int current_page=response.body().getCurrent_page();
                 if (currentPage != TOTAL_PAGES)

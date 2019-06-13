@@ -41,7 +41,7 @@ import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 import visuotech.com.kampus.attendance.retrofit.Utility;
 
 public class Administrator_Act_home extends AppCompatActivity  {
-   LinearLayout lay1,lay2,lay3,lay4,lay5,lay6;
+   LinearLayout lay1,lay2,lay3,lay4,lay5,lay6,lay13,lay14,lay15;
    TextView tv_designation,tv_name;
    ImageView iv_image;
     Drawable d;
@@ -138,6 +138,9 @@ public class Administrator_Act_home extends AppCompatActivity  {
         lay4=findViewById(R.id.lay4);
         lay5=findViewById(R.id.lay5);
         lay6=findViewById(R.id.lay6);
+        lay13=findViewById(R.id.lay13);
+        lay14=findViewById(R.id.lay14);
+        lay15=findViewById(R.id.lay15);
         tv_designation=findViewById(R.id.tv_designation);
         tv_name=findViewById(R.id.tv_name);
         iv_image=findViewById(R.id.iv_image);
@@ -260,6 +263,30 @@ public class Administrator_Act_home extends AppCompatActivity  {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(Administrator_Act_home.this, Act_student_list.class);
+                startActivity(i);
+                finish();
+            }
+        });
+        lay13.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Administrator_Act_home.this, Act_semister_list.class);
+                startActivity(i);
+                finish();
+            }
+        });
+        lay14.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Administrator_Act_home.this, Act_student_list.class);
+                startActivity(i);
+                finish();
+            }
+        });
+        lay15.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Administrator_Act_home.this, Act_subject_list.class);
                 startActivity(i);
                 finish();
             }
@@ -407,7 +434,7 @@ public class Administrator_Act_home extends AppCompatActivity  {
         RequestBody organization_id_ = RequestBody.create(MediaType.parse("text/plain"), organization_id);
 
 
-        baseRequest.callAPILogout(1,"http://collectorexpress.in/",user_type_,device_id_,user_id_,organization_id_);
+        baseRequest.callAPILogout(1,"https://collectorexpress.in/",user_type_,device_id_,user_id_,organization_id_);
 
     }
 
@@ -445,7 +472,7 @@ public class Administrator_Act_home extends AppCompatActivity  {
         RequestBody organization_id_ = RequestBody.create(MediaType.parse("text/plain"), organization_id);
 
 
-        baseRequest.callAPIChangepswd(1,"http://collectorexpress.in/",user_type_,old_pswd_,new_pswd_,cnfirm_pswd_,user_id_,organization_id_);
+        baseRequest.callAPIChangepswd(1,"https://collectorexpress.in/",user_type_,old_pswd_,new_pswd_,cnfirm_pswd_,user_id_,organization_id_);
 
     }
 

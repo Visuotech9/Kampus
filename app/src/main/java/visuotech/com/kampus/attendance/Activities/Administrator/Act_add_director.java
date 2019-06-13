@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -17,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +28,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,6 +63,7 @@ import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
 
 public class Act_add_director extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
+    LinearLayout container;
     String course,gender;
     ImageView iv_profile_image,iv_cal_dob,iv_cal_doj;
     Button btn_add,btn_upload_image;
@@ -102,39 +106,44 @@ public class Act_add_director extends AppCompatActivity implements AdapterView.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_act_add_director);
+        setContentView(R.layout.act_main);
 
 //-------------------------toolbar------------------------------------------
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Add director");
+        toolbar.setTitleTextColor((Color.parseColor("#FFFFFF")));
+        getSupportActionBar().setTitle("Add Director");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-//-------------------------classes------------------------------------------
         context = this;
         activity = this;
         sessionParam = new SessionParam(getApplicationContext());
         marshMallowPermission = new MarshMallowPermission(activity);
 
+        container = (LinearLayout) findViewById(R.id.container);
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View rowView = inflater.inflate(R.layout.content_main_add_director, null);
+        container.addView(rowView, container.getChildCount());
+
         user_typee= sessionParam.user_type;
         user_id= sessionParam.userId;
         organization_id=sessionParam.org_id;
 
-        btn_add =  findViewById(R.id.btn_add);
-        btn_upload_image =  findViewById(R.id.btn_upload_image);
-        et_name =  findViewById(R.id.et_name);
-        et_email =  findViewById(R.id.et_email);
-        et_mobile =  findViewById(R.id.et_mobile);
-        tv_dob =  findViewById(R.id.tv_dob);
-        et_address =  findViewById(R.id.et_address);
-        et_dir_id =  findViewById(R.id.et_dir_id);
-        tv_doj =  findViewById(R.id.tv_doj);
-        iv_profile_image =  findViewById(R.id.iv_profile_image);
-        iv_cal_dob =  findViewById(R.id.iv_cal_dob);
-        iv_cal_doj =  findViewById(R.id.iv_cal_doj);
+        btn_add =  rowView.findViewById(R.id.btn_add);
+        btn_upload_image =  rowView.findViewById(R.id.btn_upload_image);
+        et_name =  rowView.findViewById(R.id.et_name);
+        et_email =  rowView.findViewById(R.id.et_email);
+        et_mobile =  rowView.findViewById(R.id.et_mobile);
+        tv_dob =  rowView.findViewById(R.id.tv_dob);
+        et_address =  rowView.findViewById(R.id.et_address);
+        et_dir_id =  rowView.findViewById(R.id.et_dir_id);
+        tv_doj =  rowView.findViewById(R.id.tv_doj);
+        iv_profile_image =  rowView.findViewById(R.id.iv_profile_image);
+        iv_cal_dob =  rowView.findViewById(R.id.iv_cal_dob);
+        iv_cal_doj =  rowView.findViewById(R.id.iv_cal_doj);
 
-         spin_course = findViewById(R.id.spinner_department);
-         spin_gender = findViewById(R.id.spinner_gender);
+         spin_course = rowView.findViewById(R.id.spinner_department);
+         spin_gender = rowView.findViewById(R.id.spinner_gender);
         spin_course.setOnItemSelectedListener(this);
         spin_gender.setOnItemSelectedListener(this);
         course_list1=new ArrayList<>();
@@ -144,7 +153,6 @@ public class Act_add_director extends AppCompatActivity implements AdapterView.O
 
         ArrayAdapter adapter_gender = new ArrayAdapter(this,android.R.layout.simple_spinner_item,gender_list);
         adapter_gender.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //Setting the ArrayAdapter data on the Spinner
         spin_gender.setAdapter(adapter_gender);
         spin_gender.setSelection(listsize);
 

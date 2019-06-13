@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -12,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -20,12 +22,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -59,7 +61,6 @@ public class Act_department_list extends AppCompatActivity implements AdapterVie
     SessionParam sessionParam;
     MarshMallowPermission marshMallowPermission;
     private BaseRequest baseRequest;
-    private SearchableSpinner mSearchableSpinner;
     EditText inputSearch;
 
     ArrayList<Department> department_list;
@@ -75,34 +76,37 @@ public class Act_department_list extends AppCompatActivity implements AdapterVie
     Dialog mDialog;
     TextView tv_alert;
     String dept_name,course,cour_id;
+    LinearLayout container;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_act_department_list);
+        setContentView(R.layout.act_main);
 
-        //-------------------------toolbar------------------------------------------
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Department List");
+        toolbar.setTitleTextColor((Color.parseColor("#FFFFFF")));
+        getSupportActionBar().setTitle("Director List");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-//-------------------------classes------------------------------------------
         context = this;
         activity = this;
         sessionParam = new SessionParam(getApplicationContext());
         marshMallowPermission = new MarshMallowPermission(activity);
-//        adapter2=new Ad_department(department_list,context);
 
+        container = (LinearLayout) findViewById(R.id.container);
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View rowView = inflater.inflate(R.layout.content_main_dept_list, null);
+        container.addView(rowView, container.getChildCount());
 //-------------------------recyclerview------------------------------------------
-        rv_list=findViewById(R.id.rv_list);
-        progressbar=findViewById(R.id.progressbar);
+        rv_list=rowView.findViewById(R.id.rv_list);
+        progressbar=rowView.findViewById(R.id.progressbar);
         linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         rv_list.setLayoutManager(linearLayoutManager);
         rv_list.setItemAnimator(new DefaultItemAnimator());
 
         adapter2=new Ad_department(department_list,context);
-        inputSearch = findViewById(R.id.inputSearch);
-        iv_add =  findViewById(R.id.iv_add);
+        inputSearch = rowView.findViewById(R.id.inputSearch);
+        iv_add =  rowView.findViewById(R.id.iv_add);
 
 
         iv_add.setOnClickListener(new View.OnClickListener() {
@@ -215,7 +219,7 @@ public class Act_department_list extends AppCompatActivity implements AdapterVie
         RequestBody cour_id_ = RequestBody.create(MediaType.parse("text/plain"), cour_id);
 
 
-        baseRequest.callAPIDept(1,"http://collectorexpress.in/",dept_name_,org_id_,cour_id_);
+        baseRequest.callAPIDept(1,"https://collectorexpress.in/",dept_name_,org_id_,cour_id_);
 
     }
 

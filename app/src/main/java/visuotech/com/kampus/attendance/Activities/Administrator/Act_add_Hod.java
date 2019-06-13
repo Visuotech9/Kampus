@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -20,6 +21,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Base64;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,6 +30,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -66,6 +69,7 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
     Spinner spinner_department,spinner_gender,spinner_director,spinner_course;
     ArrayList<Course>course_list1;
     ArrayList<Department>department_list1;
+    LinearLayout container;
 
 
     String department,gender,course,course_id;
@@ -119,20 +123,24 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_act__hod);
+        setContentView(R.layout.act_main);
 
         //-------------------------toolbar------------------------------------------
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Add Hod");
+        toolbar.setTitleTextColor((Color.parseColor("#FFFFFF")));
+        getSupportActionBar().setTitle("Add Director");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-//-------------------------classes------------------------------------------
         context = this;
         activity = this;
         sessionParam = new SessionParam(getApplicationContext());
         marshMallowPermission = new MarshMallowPermission(activity);
 
+        container = (LinearLayout) findViewById(R.id.container);
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View rowView = inflater.inflate(R.layout.content_main_add_hod, null);
+        container.addView(rowView, container.getChildCount());
 
         user_typee= sessionParam.user_type;
         user_id= sessionParam.userId;
@@ -549,7 +557,7 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
 
 
 
-        baseRequest.callAPIAddhod(1,"http://collectorexpress.in/",body,name_,email_,mobile_no_
+        baseRequest.callAPIAddhod(1,"https://collectorexpress.in/",body,name_,email_,mobile_no_
                 ,address_,dob_,doj_,hod_clg_id_,dept_id_,organization_id_,gender_,course_id_);
     }
 

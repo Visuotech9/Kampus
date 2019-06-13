@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -12,17 +13,18 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,13 +51,12 @@ public class Act_course_list extends AppCompatActivity {
     RecyclerView rv_list;
     LinearLayoutManager linearLayoutManager;
     ProgressBar progressbar;
-
+    LinearLayout container;
     Context context;
     Activity activity;
     SessionParam sessionParam;
     MarshMallowPermission marshMallowPermission;
     private BaseRequest baseRequest;
-    private SearchableSpinner mSearchableSpinner;
     EditText inputSearch;
 
     ArrayList<Course> course_list;
@@ -69,29 +70,33 @@ public class Act_course_list extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_act_course_list);
+        setContentView(R.layout.act_main);
 
         //-------------------------toolbar------------------------------------------
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Course List");
+        toolbar.setTitleTextColor((Color.parseColor("#FFFFFF")));
+        getSupportActionBar().setTitle("Director List");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-//-------------------------classes------------------------------------------
         context = this;
         activity = this;
         sessionParam = new SessionParam(getApplicationContext());
         marshMallowPermission = new MarshMallowPermission(activity);
 
+        container = (LinearLayout) findViewById(R.id.container);
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View rowView = inflater.inflate(R.layout.content_main_course_list, null);
+        container.addView(rowView, container.getChildCount());
 //-------------------------recyclerview------------------------------------------
-        rv_list=findViewById(R.id.rv_list);
-        progressbar=findViewById(R.id.progressbar);
+        rv_list=rowView.findViewById(R.id.rv_list);
+        progressbar=rowView.findViewById(R.id.progressbar);
         linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         rv_list.setLayoutManager(linearLayoutManager);
         rv_list.setItemAnimator(new DefaultItemAnimator());
 
-        inputSearch = (EditText) findViewById(R.id.inputSearch);
-        iv_add =  findViewById(R.id.iv_add);
+        inputSearch = (EditText) rowView.findViewById(R.id.inputSearch);
+        iv_add =  rowView.findViewById(R.id.iv_add);
 
         iv_add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -238,7 +243,7 @@ public class Act_course_list extends AppCompatActivity {
         RequestBody org_id_ = RequestBody.create(MediaType.parse("text/plain"), sessionParam.org_id);
 
 
-        baseRequest.callAPICourse(1,"http://collectorexpress.in/",courseName_,org_id_);
+        baseRequest.callAPICourse(1,"https://collectorexpress.in/",courseName_,org_id_);
 
     }
 
