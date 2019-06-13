@@ -10,6 +10,16 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/app_logo"
@@ -17,6 +27,7 @@
         android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Activities.Administrator.Act_add_semister"></activity>
         <activity
             android:name=".Activities.Act_splash"
             android:screenOrientation="portrait">
@@ -69,8 +80,20 @@
             android:name=".Activities.Administrator.Act_hod_list"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.Administrator.Act_faculty_list"
+            android:name=".Activities.Administrator.Act_subject_list"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".Activities.Administrator.Act_faculty_list"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
         <activity
             android:name=".Activities.Administrator.Act_Director_profile"
             android:screenOrientation="portrait" />
@@ -85,6 +108,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.Administrator.Act_department_list"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.Administrator.Act_semister_list"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.Director.Act_add_Hod2"
@@ -133,7 +159,17 @@
             android:screenOrientation="portrait" />
         <activity android:name=".Activities.Faculty.Act_add_studymaterials" />
         <activity android:name=".Activities.Faculty.Act_assignment_list" />
-        <activity android:name=".Activities.Faculty.Act_study_list"></activity>
+        <activity android:name=".Activities.Faculty.Act_study_list" />
+        <activity android:name=".Activities.Faculty.Act_studymat_detals" />
+        <activity android:name=".Activities.Faculty.Act_assignment_details" />
+        <activity android:name=".Activities.Faculty.Act_faculty_profile2" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDqj0qQP88KTHxxAzKiN34vZL6-aRCs6T4" />
     </application>
 
 </manifest>
