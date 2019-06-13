@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -21,6 +22,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -142,37 +144,42 @@ public class Act_add_assignment extends AppCompatActivity implements AdapterView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_act_add_assignment);
+        setContentView(R.layout.act_main);
 
         //-------------------------toolbar------------------------------------------
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor((Color.parseColor("#FFFFFF")));
         getSupportActionBar().setTitle("Add Assignment");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-//-------------------------classes------------------------------------------
         context = this;
         activity = this;
         sessionParam = new SessionParam(getApplicationContext());
         marshMallowPermission = new MarshMallowPermission(activity);
 
-        gvGallery = findViewById(R.id.gv);
-        btn_add = findViewById(R.id.btn_add);
-        btn_attachment = findViewById(R.id.btn_attachment);
-        btn_cancel = findViewById(R.id.btn_cancel);
-        spinner_section = findViewById(R.id.spinner_section);
-        spinner_sem = findViewById(R.id.spinner_sem);
-        spinner_subject = findViewById(R.id.spinner_subject);
-        lay_endtime = findViewById(R.id.lay_endtime);
-        lay_starttime = findViewById(R.id.lay_starttime);
-        lay_enddate = findViewById(R.id.lay_enddate);
-        lay_startdate = findViewById(R.id.lay_startdate);
-        tv_enddate = findViewById(R.id.tv_enddate);
-        tv_endtime = findViewById(R.id.tv_endtime);
-        tv_startdate = findViewById(R.id.tv_startdate);
-        tv_starttime = findViewById(R.id.tv_starttime);
-        et_title = findViewById(R.id.et_title);
-        et_description = findViewById(R.id.et_description);
+        LinearLayout  container = (LinearLayout) findViewById(R.id.container);
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View rowView = inflater.inflate(R.layout.content_main_add_assignment, null);
+        container.addView(rowView, container.getChildCount());
+
+        gvGallery = rowView.findViewById(R.id.gv);
+        btn_add = rowView.findViewById(R.id.btn_add);
+        btn_attachment = rowView.findViewById(R.id.btn_attachment);
+        btn_cancel = rowView.findViewById(R.id.btn_cancel);
+        spinner_section = rowView.findViewById(R.id.spinner_section);
+        spinner_sem = rowView.findViewById(R.id.spinner_sem);
+        spinner_subject = rowView.findViewById(R.id.spinner_subject);
+        lay_endtime = rowView.findViewById(R.id.lay_endtime);
+        lay_starttime = rowView.findViewById(R.id.lay_starttime);
+        lay_enddate = rowView.findViewById(R.id.lay_enddate);
+        lay_startdate = rowView.findViewById(R.id.lay_startdate);
+        tv_enddate = rowView.findViewById(R.id.tv_enddate);
+        tv_endtime = rowView.findViewById(R.id.tv_endtime);
+        tv_startdate = rowView.findViewById(R.id.tv_startdate);
+        tv_starttime = rowView.findViewById(R.id.tv_starttime);
+        et_title = rowView.findViewById(R.id.et_title);
+        et_description = rowView.findViewById(R.id.et_description);
 //        tv_starttime = findViewById(R.id.tv_starttime);
 //        tv_starttime = findViewById(R.id.tv_starttime);
 
