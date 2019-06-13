@@ -17,7 +17,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
-import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,7 +50,6 @@ public class Act_faculty_list2 extends AppCompatActivity {
     ArrayList<String>faculty_name_list=new ArrayList<>();
     ImageView iv_add;
     private BaseRequest baseRequest;
-    private SearchableSpinner mSearchableSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,7 +145,7 @@ public class Act_faculty_list2 extends AppCompatActivity {
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=faculty_list&organization_id="+sessionParam.org_id+"&course_id="+sessionParam.course_id;
+        String remainingUrl2="/Kampus/Api2.php?apicall=faculty_list&organization_id="+sessionParam.org_id+"&director_id="+sessionParam.userId;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
     private void filter(String text) {

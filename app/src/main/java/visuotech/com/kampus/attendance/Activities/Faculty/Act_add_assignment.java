@@ -89,7 +89,8 @@ public class Act_add_assignment extends AppCompatActivity implements AdapterView
      String semId,sectionId,subId,title,description,startdate,enddate,starttime,endtime,sem,subject,section;
      TextView tv_startdate,tv_enddate,tv_starttime,tv_endtime;
      LinearLayout lay_startdate,lay_enddate,lay_starttime,lay_endtime;
-     EditText et_title,et_description;
+//    @BindView(R.id.et_title)
+    EditText et_title,et_description;
 
     Context context;
     Activity activity;
@@ -268,7 +269,7 @@ public class Act_add_assignment extends AppCompatActivity implements AdapterView
 
                         if (mArrayUri!=null){
                             ApiPostAddAssignment();
-                            uploadImagesToServer();
+//                            uploadImagesToServer();
                         }else{
                             Toast.makeText(getApplicationContext(), "Please Select Any Image", Toast.LENGTH_SHORT).show();
                         }
@@ -301,73 +302,6 @@ public class Act_add_assignment extends AppCompatActivity implements AdapterView
 
     }
 
-    private void uploadImagesToServer() {
-        if (InternetConnection.checkConnection(Act_add_assignment.this)) {
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://collectorexpress.in/")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-
-
-
-            // create list of file parts (photo, video, ...)
-            List<MultipartBody.Part> parts = new ArrayList<>();
-            ApiService service = retrofit.create(ApiService.class);
-
-            if (mArrayUri != null) {
-                // create part for file (photo, video, ...)
-                for (int i = 0; i < mArrayUri.size(); i++) {
-                    parts.add(prepareFilePart("image"+i, mArrayUri.get(i)));
-                }
-            }
-            file= new File("/storage/emulated/0/Pictures/Screenshots/Screenshot_20190308-161354.png");
-            RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-            body =MultipartBody.Part.createFormData("file", file.getName(), requestFile);
-
-
-            RequestBody title_ = RequestBody.create(MediaType.parse("text/plain"), title);
-            RequestBody description_ = RequestBody.create(MediaType.parse("text/plain"), description);
-            RequestBody starttime_ = RequestBody.create(MediaType.parse("text/plain"), starttime);
-            RequestBody endtime_ = RequestBody.create(MediaType.parse("text/plain"), endtime);
-//        RequestBody cover_pic_ = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(mainBitmap));
-            RequestBody startdate_ = RequestBody.create(MediaType.parse("text/plain"), Utility.changeDateDMYtoYMD(startdate));
-            RequestBody enddate_ = RequestBody.create(MediaType.parse("text/plain"), Utility.changeDateDMYtoYMD(enddate));
-            RequestBody dept_id_ = RequestBody.create(MediaType.parse("text/plain"), sessionParam.dept_id);
-            RequestBody course_id_ = RequestBody.create(MediaType.parse("text/plain"), sessionParam.course_id);
-            RequestBody userId_ = RequestBody.create(MediaType.parse("text/plain"), sessionParam.userId);
-            RequestBody hod_id_ = RequestBody.create(MediaType.parse("text/plain"), sessionParam.hod_id);
-            RequestBody director_id_ = RequestBody.create(MediaType.parse("text/plain"), sessionParam.director_id);
-            RequestBody org_id_ = RequestBody.create(MediaType.parse("text/plain"), sessionParam.org_id);
-            RequestBody semId_ = RequestBody.create(MediaType.parse("text/plain"),semId);
-            RequestBody sectionId_ = RequestBody.create(MediaType.parse("text/plain"), sectionId);
-            RequestBody subId_ = RequestBody.create(MediaType.parse("text/plain"), subId);
-            // finally, execute the request
-            Call<ResponseBody> call = service.uploadMultiple(parts,title_,description_
-                    ,starttime_,endtime_,startdate_,enddate_,dept_id_,course_id_,userId_,hod_id_,director_id_,org_id_,
-                    semId_,sectionId_,subId_);
-
-            call.enqueue(new Callback<ResponseBody>() {
-                @Override
-                public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
-
-                    if(response.isSuccessful()) {
-                        Toast.makeText(Act_add_assignment.this,
-                                "Images successfully uploaded!", Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-
-                }
-            });
-
-        } else {
-
-            Toast.makeText(Act_add_assignment.this,
-                    R.string.string_internet_connection_not_available, Toast.LENGTH_SHORT).show();
-        }
-    }
 
 
 
@@ -402,7 +336,7 @@ public class Act_add_assignment extends AppCompatActivity implements AdapterView
     }
 
     private void ApigetSemister(){
-        baseRequest = new BaseRequest(context);
+        baseRequest = new BaseRequest();
         baseRequest.setBaseRequestListner(new RequestReciever() {
             @Override
             public void onSuccess(int requestCode, String Json, Object object) {
@@ -484,7 +418,7 @@ public class Act_add_assignment extends AppCompatActivity implements AdapterView
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
     private void ApigetSubject(){
-        baseRequest = new BaseRequest(context);
+        baseRequest = new BaseRequest();
         baseRequest.setBaseRequestListner(new RequestReciever() {
             @Override
             public void onSuccess(int requestCode, String Json, Object object) {
@@ -521,6 +455,75 @@ public class Act_add_assignment extends AppCompatActivity implements AdapterView
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
+    private void uploadImagesToServer() {
+        if (InternetConnection.checkConnection(Act_add_assignment.this)) {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("http://collectorexpress.in/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+
+
+            // create list of file parts (photo, video, ...)
+
+            ApiService service = retrofit.create(ApiService.class);
+
+            List<MultipartBody.Part> parts = new ArrayList<>();
+            if (mArrayUri != null) {
+                // create part for file (photo, video, ...)
+                for (int i = 0; i < mArrayUri.size(); i++) {
+                    parts.add(prepareFilePart("file", mArrayUri.get(i)));
+                }
+            }
+//            file= new File("/storage/emulated/0/Pictures/Screenshots/Screenshot_20190308-161354.png");
+//            RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+//            body =MultipartBody.Part.createFormData("file", file.getName(), requestFile);
+
+
+            RequestBody title_ = RequestBody.create(MediaType.parse("text/plain"), title);
+            RequestBody description_ = RequestBody.create(MediaType.parse("text/plain"), description);
+            RequestBody starttime_ = RequestBody.create(MediaType.parse("text/plain"), starttime);
+            RequestBody endtime_ = RequestBody.create(MediaType.parse("text/plain"), endtime);
+//        RequestBody cover_pic_ = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(mainBitmap));
+            RequestBody startdate_ = RequestBody.create(MediaType.parse("text/plain"), Utility.changeDateDMYtoYMD(startdate));
+            RequestBody enddate_ = RequestBody.create(MediaType.parse("text/plain"), Utility.changeDateDMYtoYMD(enddate));
+            RequestBody dept_id_ = RequestBody.create(MediaType.parse("text/plain"), sessionParam.dept_id);
+            RequestBody course_id_ = RequestBody.create(MediaType.parse("text/plain"), sessionParam.course_id);
+            RequestBody userId_ = RequestBody.create(MediaType.parse("text/plain"), sessionParam.userId);
+            RequestBody hod_id_ = RequestBody.create(MediaType.parse("text/plain"), sessionParam.hod_id);
+            RequestBody director_id_ = RequestBody.create(MediaType.parse("text/plain"), sessionParam.director_id);
+            RequestBody org_id_ = RequestBody.create(MediaType.parse("text/plain"), sessionParam.org_id);
+            RequestBody semId_ = RequestBody.create(MediaType.parse("text/plain"),semId);
+            RequestBody sectionId_ = RequestBody.create(MediaType.parse("text/plain"), sectionId);
+            RequestBody subId_ = RequestBody.create(MediaType.parse("text/plain"), subId);
+            // finally, execute the request
+            Call<ResponseBody> call = service.uploadMultiple(parts,title_,description_
+                    ,starttime_,endtime_,startdate_,enddate_,dept_id_,course_id_,userId_,hod_id_,director_id_,org_id_,
+                    semId_,sectionId_,subId_);
+
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+
+                    if(response.isSuccessful()) {
+                        Toast.makeText(Act_add_assignment.this,
+                                "Images successfully uploaded!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+
+                }
+            });
+
+        } else {
+
+            Toast.makeText(Act_add_assignment.this,
+                    R.string.string_internet_connection_not_available, Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 
     private void ApiPostAddAssignment() {
@@ -529,8 +532,17 @@ public class Act_add_assignment extends AppCompatActivity implements AdapterView
             @Override
             public void onSuccess(int requestCode, String Json, Object object) {
 
-                String sucessMessage="Assignment added sucessfully";
-                Utility.sucessDialog(sucessMessage,context);
+                try {
+                   JSONObject jsonObject = new JSONObject(object.toString());
+                    String message =jsonObject.optString("message");
+                    String sucessMessage="Time table added sucessfully";
+                    Utility.sucessDialog(message,context);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+//                String sucessMessage="Assignment added sucessfully";
+//                Utility.sucessDialog(sucessMessage,context);
 
             }
 
@@ -552,7 +564,7 @@ public class Act_add_assignment extends AppCompatActivity implements AdapterView
         if (mArrayUri != null) {
             // create part for file (photo, video, ...)
             for (int i = 0; i < mArrayUri.size(); i++) {
-                parts.add(prepareFilePart("image"+i, mArrayUri.get(i)));
+                parts.add(prepareFilePart("file", mArrayUri.get(i)));
             }
         }
         RequestBody title_ = RequestBody.create(MediaType.parse("text/plain"), title);
@@ -585,16 +597,9 @@ public class Act_add_assignment extends AppCompatActivity implements AdapterView
     }
     @NonNull
     private MultipartBody.Part prepareFilePart(String partName, Uri fileUri) {
-        // https://github.com/iPaulPro/aFileChooser/blob/master/aFileChooser/src/com/ipaulpro/afilechooser/utils/FileUtils.java
-        // use the FileUtils to get the actual file by uri
         File file = FileUtils.getFile(this, fileUri);
-        // create RequestBody instance from file
-        RequestBody requestFile =
-                RequestBody.create(
-                        MediaType.parse(Objects.requireNonNull(getContentResolver().getType(fileUri))),
-                        file
-                );
-        // MultipartBody.Part is used to send also the actual file name
+//        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        RequestBody requestFile = RequestBody.create(MediaType.parse(Objects.requireNonNull(getContentResolver().getType(fileUri))), file);
         return MultipartBody.Part.createFormData(partName, file.getName(), requestFile);
     }
 
@@ -928,7 +933,7 @@ public class Act_add_assignment extends AppCompatActivity implements AdapterView
 
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent i = new Intent(Act_add_assignment.this, Faculty_Act_home.class);
+        Intent i = new Intent(Act_add_assignment.this, Act_assignment_list.class);
         startActivity(i);
         finish();
         return true;
@@ -937,7 +942,7 @@ public class Act_add_assignment extends AppCompatActivity implements AdapterView
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i = new Intent(Act_add_assignment.this, Faculty_Act_home.class);
+        Intent i = new Intent(Act_add_assignment.this, Act_assignment_list.class);
         startActivity(i);
         finish();
     }

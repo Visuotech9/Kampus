@@ -207,7 +207,7 @@ public class Act_splash extends AppCompatActivity {
         RequestBody organization_id_ = RequestBody.create(MediaType.parse("text/plain"), organization_id);
 
 
-        baseRequest.callAPILoginStatus(1,"http://collectorexpress.in/",user_type_,device_id_,user_id_,organization_id_);
+        baseRequest.callAPILoginStatus(1,"https://collectorexpress.in/",user_type_,device_id_,user_id_,organization_id_);
 
     }
 

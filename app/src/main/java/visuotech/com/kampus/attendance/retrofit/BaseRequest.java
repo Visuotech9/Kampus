@@ -38,7 +38,7 @@ import visuotech.com.kampus.attendance.R;
 import visuotech.com.kampus.attendance.SessionParam;
 
 /**
- * Created by prashant m on 11/17/2016.
+ * Created by himanshu on 15/10/2018.
  */
 public class BaseRequest<T> extends BaseRequestParser {
     private Context mContext;
@@ -80,14 +80,13 @@ public class BaseRequest<T> extends BaseRequestParser {
 
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-        //dialog.setTitle("Fetching details...");
+//        dialog.setTitle("Fetching details...");
     }
 
 
     public BaseRequest(Context context, Fragment fm) {
         mContext = context;
-        apiInterface =
-                ApiClient.getClient().create(ApiInterface.class);
+        apiInterface = ApiClient.getClient().create(ApiInterface.class);
         dialog = getProgressesDialog(context);
     }
 
@@ -531,20 +530,46 @@ public class BaseRequest<T> extends BaseRequestParser {
         showLoader();
         //String baseURL = ApiClient.getClient().baseUrl().toString() + remainingURL;
 //        System.out.println("BaseReq INPUT URL : " + remainingURL);
+        logFullResponse(parts.toString(), "INPUT");
         ApiInterface apiInterface_ = ApiClient.getCustomClient(remainingUrl).create(ApiInterface.class);
         //Call<JsonElement> call = apiInterface_.formData(images,latitude,fcm_token,msg_detail,app_name,email_id_to,ssecrete,device_id,longitude,location_detail);
         Call<JsonElement> call = apiInterface_.addAssignment(parts,title_,description_,starttime_,endtime_,startdate_,enddate_,dept_id_,course_id_,userId_,hod_id_,director_id_,org_id_, semId_,sectionId_,subId_);
         call.enqueue(responseCallback);
     }
 
-
-
-    public void callAPIAddTimeTable(final int APINumber, String remainingUrl, RequestBody semId_, RequestBody sectionId_, RequestBody day_, RequestBody org_id_, RequestBody course_id_, RequestBody dept_id_, RequestBody userId_, RequestBody hod_director_id_, String[] starthrs, String[] endhrs, String[] startmin, String[] endmin, String[] facId, String[] subId) {
+    public void callAPIAddStudymate(final int APINumber, String remainingUrl, List<MultipartBody.Part> parts, RequestBody title_, RequestBody description_, RequestBody dept_id_, RequestBody course_id_, RequestBody userId_, RequestBody hod_id_, RequestBody director_id_, RequestBody org_id_, RequestBody semId_, RequestBody sectionId_, RequestBody subId_) {
         APINumber_ = APINumber;
         requestType = RequestType.Post;
         showLoader();
         //String baseURL = ApiClient.getClient().baseUrl().toString() + remainingURL;
 //        System.out.println("BaseReq INPUT URL : " + remainingURL);
+        ApiInterface apiInterface_ = ApiClient.getCustomClient(remainingUrl).create(ApiInterface.class);
+        //Call<JsonElement> call = apiInterface_.formData(images,latitude,fcm_token,msg_detail,app_name,email_id_to,ssecrete,device_id,longitude,location_detail);
+        Call<JsonElement> call = apiInterface_.addStudymat(parts,title_,description_,dept_id_,course_id_,userId_,hod_id_,director_id_,org_id_, semId_,sectionId_,subId_);
+        call.enqueue(responseCallback);
+    }
+
+
+
+    public void callAPIAddsemister(final int APINumber, String remainingUrl, RequestBody course_id_, RequestBody org_id_, ArrayList<String> sem_list_string) {
+        APINumber_ = APINumber;
+        requestType = RequestType.Post;
+        showLoader();
+        //String baseURL = ApiClient.getClient().baseUrl().toString() + remainingURL;
+//        System.out.println("BaseReq INPUT URL : " + endhrs);
+        ApiInterface apiInterface_ = ApiClient.getCustomClient(remainingUrl).create(ApiInterface.class);
+        //Call<JsonElement> call = apiInterface_.formData(images,latitude,fcm_token,msg_detail,app_name,email_id_to,ssecrete,device_id,longitude,location_detail);
+        Call<JsonElement> call = apiInterface_.addSemister(course_id_, org_id_,sem_list_string);
+        call.enqueue(responseCallback);
+    }
+
+    public void callAPIAddTimeTable(final int APINumber, String remainingUrl, RequestBody semId_, RequestBody sectionId_, RequestBody day_, RequestBody org_id_, RequestBody course_id_, RequestBody dept_id_, RequestBody userId_, RequestBody hod_director_id_, ArrayList<String> starthrs, ArrayList<String> endhrs, ArrayList<String> startmin, ArrayList<String> endmin, ArrayList<String> facId, ArrayList<String> subId) {
+        APINumber_ = APINumber;
+        requestType = RequestType.Post;
+        showLoader();
+        //String baseURL = ApiClient.getClient().baseUrl().toString() + remainingURL;
+//        System.out.println("BaseReq INPUT URL : " + endhrs);
+        logFullResponse(endhrs.toString(), "INPUT");
         ApiInterface apiInterface_ = ApiClient.getCustomClient(remainingUrl).create(ApiInterface.class);
         //Call<JsonElement> call = apiInterface_.formData(images,latitude,fcm_token,msg_detail,app_name,email_id_to,ssecrete,device_id,longitude,location_detail);
         Call<JsonElement> call = apiInterface_.addTimeTable(semId_,sectionId_,day_,org_id_,course_id_,dept_id_,userId_,hod_director_id_,starthrs,endhrs,startmin,endmin,facId,subId);

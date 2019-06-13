@@ -14,11 +14,12 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 
-import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,6 +36,8 @@ import visuotech.com.kampus.attendance.Adapter.Ad_student;
 import visuotech.com.kampus.attendance.MarshMallowPermission;
 import visuotech.com.kampus.attendance.Model.Director;
 import visuotech.com.kampus.attendance.Model.ModelResponse;
+import visuotech.com.kampus.attendance.Model.Section;
+import visuotech.com.kampus.attendance.Model.Semister;
 import visuotech.com.kampus.attendance.Model.Student;
 import visuotech.com.kampus.attendance.PaginationScrollListener;
 import visuotech.com.kampus.attendance.R;
@@ -44,8 +47,10 @@ import visuotech.com.kampus.attendance.retrofit.ApiInterface;
 import visuotech.com.kampus.attendance.retrofit.BaseRequest;
 import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 
-public class Act_student_list4 extends AppCompatActivity {
+public class Act_student_list4 extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     private static final String TAG ="UserListActivity";
+    Spinner spinner_sem,spinner_section,spinner_subject;
+
     private static final int PAGE_START = 1;
     Ad_student adapter;
     RecyclerView rv_list;
@@ -62,13 +67,14 @@ public class Act_student_list4 extends AppCompatActivity {
     ArrayList<String>director_name_list=new ArrayList<>();
     List<Student> students;
     List<Student>results;
+    ArrayList<Semister>sem_list1;
+    ArrayList<Section>section_list1;
     ImageView iv_add;
     private boolean isLoading;
     private boolean isLastPage = false;
     private int TOTAL_PAGES;
     private int currentPage=PAGE_START;
     private BaseRequest baseRequest;
-    private SearchableSpinner mSearchableSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +96,8 @@ public class Act_student_list4 extends AppCompatActivity {
 //-------------------------recyclerview------------------------------------------
         rv_list=findViewById(R.id.rv_list);
         progressbar=findViewById(R.id.progressbar);
+        spinner_section = findViewById(R.id.spinner_section);
+        spinner_sem = findViewById(R.id.spinner_sem);
         linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         rv_list.setLayoutManager(linearLayoutManager);
         rv_list.setItemAnimator(new DefaultItemAnimator());
@@ -99,6 +107,9 @@ public class Act_student_list4 extends AppCompatActivity {
         inputSearch = findViewById(R.id.inputSearch);
         iv_add =  findViewById(R.id.iv_add);
         iv_add.setVisibility(View.GONE);
+
+        spinner_section.setOnItemSelectedListener(this);
+        spinner_sem.setOnItemSelectedListener(this);
 
 
 
@@ -154,6 +165,16 @@ public class Act_student_list4 extends AppCompatActivity {
 //        ApigetStudent1();
 
 
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 
@@ -286,4 +307,6 @@ public class Act_student_list4 extends AppCompatActivity {
         startActivity(i);
         finish();
     }
+
+
 }

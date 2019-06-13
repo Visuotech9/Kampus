@@ -138,7 +138,6 @@ public class Act_add_Hod2 extends AppCompatActivity implements AdapterView.OnIte
 
 
         organization_id=sessionParam.org_id;
-
         btn_add =  findViewById(R.id.btn_add);
         btn_cancel =  findViewById(R.id.btn_cancel);
         btn_upload_image =  findViewById(R.id.btn_upload_image);
@@ -346,7 +345,7 @@ public class Act_add_Hod2 extends AppCompatActivity implements AdapterView.OnIte
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=department_list&organization_id="+organization_id+"&course_id="+sessionParam.course_id;
+        String remainingUrl2="/Kampus/Api2.php?apicall=department_list&organization_id="+organization_id+"&director_id="+sessionParam.userId;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
@@ -396,7 +395,7 @@ public class Act_add_Hod2 extends AppCompatActivity implements AdapterView.OnIte
 
 
 
-        baseRequest.callAPIAddhod(1,"http://collectorexpress.in/",body,name_,email_,mobile_no_
+        baseRequest.callAPIAddhod(1,"https://collectorexpress.in/",body,name_,email_,mobile_no_
                 ,address_,dob_,doj_,hod_clg_id_,dept_id_,organization_id_,gender_,course_id_);
     }
 

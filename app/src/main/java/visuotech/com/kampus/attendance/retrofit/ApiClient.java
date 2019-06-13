@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    public static final String ROOT_URL = "http://collectorexpress.in/";
+    public static final String ROOT_URL = "https://collectorexpress.in/";
 
     private static Retrofit retrofit = null;
 

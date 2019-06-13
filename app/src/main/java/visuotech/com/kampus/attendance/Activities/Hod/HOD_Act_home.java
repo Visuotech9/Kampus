@@ -12,6 +12,9 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -21,6 +24,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -42,7 +47,9 @@ import visuotech.com.kampus.attendance.Activities.Director.Act_director_profile2
 import visuotech.com.kampus.attendance.Activities.Director.Act_faculty_list2;
 import visuotech.com.kampus.attendance.Activities.Director.Act_hod_list2;
 import visuotech.com.kampus.attendance.Activities.Director.Director_Act_home;
+import visuotech.com.kampus.attendance.Activities.Student.Student_Act_home;
 import visuotech.com.kampus.attendance.Adapter.Ad_hod;
+import visuotech.com.kampus.attendance.MapFragment;
 import visuotech.com.kampus.attendance.MarshMallowPermission;
 import visuotech.com.kampus.attendance.Model.Director;
 import visuotech.com.kampus.attendance.Model.HOD;
@@ -60,7 +67,7 @@ public class HOD_Act_home extends AppCompatActivity {
     String old_pswd,new_pswd,cnfirm_pswd;
     TextView tv_alert;
     ArrayList<HOD> hod_list;
-
+    MapFragment mapFragment;
 
     Context context;
     Activity activity;
@@ -114,6 +121,8 @@ public class HOD_Act_home extends AppCompatActivity {
         tv_dept=findViewById(R.id.tv_dept);
         iv_image=findViewById(R.id.iv_image);
         hod_list=new ArrayList<>();
+         mapFragment = new MapFragment();
+
 
         ApigetHod();
         tv_name.setText(sessionParam.login_name);
@@ -238,7 +247,7 @@ public class HOD_Act_home extends AppCompatActivity {
     }
 
     private void ApigetHod(){
-        baseRequest = new BaseRequest(context);
+        baseRequest = new BaseRequest();
         baseRequest.setBaseRequestListner(new RequestReciever() {
             @Override
             public void onSuccess(int requestCode, String Json, Object object) {
@@ -293,11 +302,73 @@ public class HOD_Act_home extends AppCompatActivity {
                 break;
 
             case R.id.menu_rate:
-                Toast.makeText(this, "You clicked settings", Toast.LENGTH_SHORT).show();
+                addFragment(mapFragment, false, "one");
+
                 break;
 
             case R.id.menu_chng_pswd:
-                Toast.makeText(this, "You clicked logout", Toast.LENGTH_SHORT).show();
+                mDialog=new Dialog(context);
+                mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);  //without extar space of title
+                mDialog.setContentView(R.layout.change_password);
+                mDialog.setCanceledOnTouchOutside(false);
+                //dialog layout
+
+                ImageView iv_cancel_dialog;
+                Button btn_save_password;
+//                 TextView tv_alert;
+                final EditText et_old_password,et_new_password,et_cnfrm_password;
+//
+                iv_cancel_dialog=mDialog.findViewById(R.id.iv_cancel_dialog);
+                tv_alert=mDialog.findViewById(R.id.tv_alert);
+                et_old_password= mDialog.findViewById(R.id.et_old_password);
+                et_new_password= mDialog.findViewById(R.id.et_new_password);
+                et_cnfrm_password= mDialog.findViewById(R.id.et_cnfrm_password);
+                btn_save_password= mDialog.findViewById(R.id.btn_save_password);
+                iv_cancel_dialog.setOnClickListener(new View.OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View v) {
+                        mDialog.cancel();
+
+                    }
+                });
+                btn_save_password.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        if (et_old_password.getText().toString().isEmpty()) {
+                            Toast.makeText(getApplicationContext(), "Please enter old password", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        if (et_new_password.getText().toString().isEmpty()) {
+                            Toast.makeText(getApplicationContext(), "Please enter new password", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        if (et_cnfrm_password.getText().toString().isEmpty()) {
+                            Toast.makeText(getApplicationContext(), "Please re-enter password", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        if (!et_new_password.getText().toString().equals(et_cnfrm_password.getText().toString())){
+                            tv_alert.setVisibility(View.VISIBLE);
+                            tv_alert.setTextColor(getResources().getColor(R.color.DarkRed));
+                            tv_alert.setText("Password and confirm password doesn't match!!");
+                        }else{
+                            old_pswd=et_old_password.getText().toString();
+                            new_pswd=et_new_password.getText().toString();
+                            cnfirm_pswd=et_cnfrm_password.getText().toString();
+                            changePassword();
+
+
+                            et_old_password.setText("");
+                            et_new_password.setText("");
+                            et_cnfrm_password.setText("");
+                        }
+
+
+                    }
+                });
+                mDialog.show();
                 break;
 
             case R.id.menu_logout:
@@ -314,6 +385,18 @@ public class HOD_Act_home extends AppCompatActivity {
         }
         return true;
     }
+
+    public void addFragment(Fragment fragment, boolean addToBackStack, String tag) {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction ft = manager.beginTransaction();
+
+        if (addToBackStack) {
+            ft.addToBackStack(tag);
+        }
+        ft.replace(R.id.container_frame_back, fragment, tag);
+        ft.commitAllowingStateLoss();
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -351,7 +434,45 @@ public class HOD_Act_home extends AppCompatActivity {
         RequestBody organization_id_ = RequestBody.create(MediaType.parse("text/plain"), organization_id);
 
 
-        baseRequest.callAPILogout(1,"http://collectorexpress.in/",user_type_,device_id_,user_id_,organization_id_);
+        baseRequest.callAPILogout(1,"https://collectorexpress.in/",user_type_,device_id_,user_id_,organization_id_);
+
+    }
+
+    public void changePassword() {
+        baseRequest = new BaseRequest();
+        baseRequest.setBaseRequestListner(new RequestReciever() {
+            @Override
+            public void onSuccess(int requestCode, String Json, Object object) {
+//                mDialog.cancel();
+                tv_alert.setVisibility(View.VISIBLE);
+                tv_alert.setTextColor(getResources().getColor(R.color.Green));
+                tv_alert.setText("your password changed sucessfully!!");//                sessionParam.clearPreferences(context);
+//                Intent intent=new Intent(Administrator_Act_home.this,Act_College_list.class);
+//                startActivity(intent);
+//                finish();
+
+            }
+
+            @Override
+            public void onFailure(int requestCode, String errorCode, String message) {
+                Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNetworkFailure(int requestCode, String message) {
+                Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        RequestBody user_type_ = RequestBody.create(MediaType.parse("text/plain"), user_typee);
+        RequestBody old_pswd_ = RequestBody.create(MediaType.parse("text/plain"), old_pswd);
+        RequestBody new_pswd_ = RequestBody.create(MediaType.parse("text/plain"), new_pswd);
+        RequestBody cnfirm_pswd_ = RequestBody.create(MediaType.parse("text/plain"), cnfirm_pswd);
+        RequestBody user_id_ = RequestBody.create(MediaType.parse("text/plain"), user_id);
+        RequestBody organization_id_ = RequestBody.create(MediaType.parse("text/plain"), organization_id);
+
+
+        baseRequest.callAPIChangepswd(1,"https://collectorexpress.in/",user_type_,old_pswd_,new_pswd_,cnfirm_pswd_,user_id_,organization_id_);
 
     }
 

@@ -89,6 +89,7 @@
 
 
         <TextView
+            android:id="@+id/tv_sem"
             android:layout_width="match_parent"
             android:text="Add Department :"
             android:paddingLeft="5dp"
@@ -101,8 +102,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
+            android:id="@+id/lay2"
             android:layout_marginLeft="40dp"
-            android:layout_marginBottom="10dp"
             android:layout_marginRight="40dp"
             android:orientation="horizontal">
 

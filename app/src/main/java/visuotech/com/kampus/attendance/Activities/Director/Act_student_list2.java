@@ -19,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -70,7 +69,6 @@ public class Act_student_list2 extends AppCompatActivity {
     private int TOTAL_PAGES;
     private int currentPage=PAGE_START;
     private BaseRequest baseRequest;
-    private SearchableSpinner mSearchableSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -246,13 +244,13 @@ public class Act_student_list2 extends AppCompatActivity {
                     student_list=baseRequest.getDataList(jsonArray,Student.class);
                     adapter=new Ad_student(student_list,context);
                     rv_list.setAdapter(adapter);
-                    if (!mess.equals("No Recods Found")){
+                    if (!mess.equals("No Records Found")){
                         int TOTAL_PAGES= Integer.parseInt(student_list.get(0).getTotal_pages());
                         if (currentPage != TOTAL_PAGES)
                             adapter.addLoadingFooter();
                         else isLastPage = true;
                     }else{
-                        Toast.makeText(getApplicationContext(),"No Recods Found",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"No Records Found",Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -270,7 +268,7 @@ public class Act_student_list2 extends AppCompatActivity {
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=student_list&organization_id="+sessionParam.org_id+"&course_id="+sessionParam.course_id+"&currentpage="+currentPage;
+        String remainingUrl2="/Kampus/Api2.php?apicall=student_list&organization_id="+sessionParam.org_id+"&director_id="+sessionParam.userId+"&currentpage="+currentPage;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
@@ -311,7 +309,7 @@ public class Act_student_list2 extends AppCompatActivity {
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=student_list&organization_id="+sessionParam.org_id+"&course_id="+sessionParam.course_id+"&currentpage="+currentPage;
+        String remainingUrl2="/Kampus/Api2.php?apicall=student_list&organization_id="+sessionParam.org_id+"&director_id="+sessionParam.userId+"&currentpage="+currentPage;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 

@@ -24,6 +24,9 @@ import retrofit2.http.Streaming;
 import retrofit2.http.Url;
 import visuotech.com.kampus.attendance.Model.ModelResponse;
 
+/**
+ * Created by Himanshu choudhary on 15/10/2018
+ */
 
 public interface ApiInterface {
 
@@ -199,22 +202,77 @@ public interface ApiInterface {
                                     @Part("section_id") RequestBody sectionId_);
 
     @Multipart
+    @POST("Kampus/Api2.php?apicall=add_studymaterial")//parts,title_,description_,dept_id_,course_id_,
+        // userId_,hod_id_,director_id_,org_id_, semId_,sectionId_,subId_
+    Call<JsonElement> addStudymat(@Part List<MultipartBody.Part> files,
+                                    @Part("title") RequestBody title_,
+                                    @Part("description") RequestBody description_,
+                                    @Part("department_id") RequestBody dept_id_,
+                                    @Part("course_id") RequestBody course_id_,
+                                    @Part("faculty_id") RequestBody userId_,
+                                    @Part("hod_id") RequestBody hod_id_,
+                                    @Part("director_id") RequestBody director_id_,
+                                    @Part("organization_id") RequestBody org_id_,
+                                    @Part("sem_id") RequestBody semId_,
+                                    @Part("subject_id") RequestBody subId_,
+                                    @Part("section_id") RequestBody sectionId_);
+
+    @Multipart
     @POST("Kampus/Api2.php?apicall=add_timetable")//body,name_,email_,mobile_no_,address_,dob_,doj_,dir_id_,dept_id_,organization_id_,gender_
     Call<JsonElement> addTimeTable(
-                                  @Part("sem_id") RequestBody semId_,
-                                  @Part("section_id") RequestBody sectionId_,
-                                  @Part("day") RequestBody day_,
-                                  @Part("organization_id") RequestBody org_id_,
-                                  @Part("course_id") RequestBody course_id_,
-                                  @Part("department_id") RequestBody dept_id_,
-                                  @Part("hod_id") RequestBody userId_,
-                                  @Part("director_id") RequestBody hod_director_id_,
-                                  @Part("starting_hour[]") String[] starthrs,
-                                  @Part("ending_hour[]") String[] endhrs,
-                                  @Part("starting_min[]") String[] startmin,
-                                  @Part("ending_min[]") String[] endmin,
-                                  @Part("faculty_id[]") String[] facId,
-                                  @Part("subject_id[]") String[] subId);
+            @Part("sem_id") RequestBody semId_,
+            @Part("section_id") RequestBody sectionId_,
+            @Part("day") RequestBody day_,
+            @Part("organization_id") RequestBody org_id_,
+            @Part("course_id") RequestBody course_id_,
+            @Part("department_id") RequestBody dept_id_,
+            @Part("hod_id") RequestBody userId_,
+            @Part("director_id") RequestBody hod_director_id_,
+            @Part("starting_hour[]") ArrayList<String> starthrs,
+            @Part("ending_hour[]") ArrayList<String> endhrs,
+            @Part("starting_min[]") ArrayList<String> startmin,
+            @Part("ending_min[]") ArrayList<String> endmin,
+            @Part("faculty_id[]") ArrayList<String> facId,
+            @Part("subject_id[]") ArrayList<String> subId);
+
+
+    @Multipart//course_id_, org_id_,sem_list_string
+    @POST("Kampus/Api2.php?apicall=add_sem")//body,name_,email_,mobile_no_,address_,dob_,doj_,dir_id_,dept_id_,organization_id_,gender_
+    Call<JsonElement> addSemister(
+            @Part("course_id") RequestBody course_id_,
+            @Part("organization_id") RequestBody org_id_,
+            @Part("semester_id[]")ArrayList<String> sem_list_string );
+
+
+
+//    @Multipart
+//    @POST("Kampus/Api2.php?apicall=add_timetable")//body,name_,email_,mobile_no_,address_,dob_,doj_,dir_id_,dept_id_,organization_id_,gender_
+//    Call<JsonElement> addTimeTable(
+//            @Part("sem_id") RequestBody semId_,
+//            @Part("section_id") RequestBody sectionId_,
+//            @Part("day") RequestBody day_,
+//            @Part("organization_id") RequestBody org_id_,
+//            @Part("course_id") RequestBody course_id_,
+//            @Part("department_id") RequestBody dept_id_,
+//            @Part("hod_id") RequestBody userId_,
+//            @Part("director_id") RequestBody hod_director_id_,
+//            @Part List<MultipartBody.Part> starthrs,
+//            @Part List<MultipartBody.Part> endhrs,
+//            @Part List<MultipartBody.Part> startmin,
+//            @Part List<MultipartBody.Part> endmin,
+//            @Part List<MultipartBody.Part> facId,
+//            @Part List<MultipartBody.Part> subId);
+
+
+
+
+
+//    @Part("starting_hour[]") ArrayList<String> starthrs,
+//    @Part("ending_hour[]") ArrayList<String> endhrs,
+//    @Part("starting_min[]") ArrayList<String> startmin,
+//    @Part("ending_min[]") ArrayList<String> endmin,
+//    @Part("faculty_id[]") ArrayList<String> facId,
+//    @Part("subject_id[]") ArrayList<String> subId);
 
     @Multipart
     @POST("./")

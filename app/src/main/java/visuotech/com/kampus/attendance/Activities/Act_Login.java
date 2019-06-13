@@ -98,88 +98,40 @@ public class Act_Login extends AppCompatActivity implements AdapterView.OnItemSe
         //Setting the ArrayAdapter data on the Spinner
         spin.setAdapter(aa);
 
-        if (Utility.getAPIVerison()){
-            btn_login.setBackgroundResource(R.drawable.background_gradient);
-            et_password.setVisibility(View.VISIBLE);
-            et_password2.setVisibility(View.GONE);
-            btn_login.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (et_username.getText().toString().isEmpty()) {
-                        Toast.makeText(getApplicationContext(), "Please enter your email", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    if (et_password.getText().toString().isEmpty()) {
-                        Toast.makeText(getApplicationContext(), "Please enter Password", Toast.LENGTH_SHORT).show();
-                        return;
-
-                    } else {
-                        TelephonyManager TelephonyMgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-                        if (ActivityCompat.checkSelfPermission(Act_Login.this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-                            return;
-                        }
-                        device_id = TelephonyMgr.getDeviceId();
-
-
-
-                        username = et_username.getText().toString();
-                        password = et_password.getText().toString();
-                        if (NetworkConnection.checkNetworkStatus(context)==true){
-                            api_login();
-                            et_username.setText("");
-                            et_password.setText("");
-
-                        }else{
-                            Toast.makeText(getApplicationContext(),"Please check internet connection",Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (et_username.getText().toString().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Please enter your email", Toast.LENGTH_SHORT).show();
+                    return;
                 }
-            });
+                if (et_password.getText().toString().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Please enter Password", Toast.LENGTH_SHORT).show();
+                    return;
 
-        }else{
-            btn_login.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-            btn_login.setTextColor(getResources().getColor(R.color.White));
-            et_password.setVisibility(View.GONE);
-            et_password2.setVisibility(View.VISIBLE);
-            btn_login.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (et_username.getText().toString().isEmpty()) {
-                        Toast.makeText(getApplicationContext(), "Please enter your email", Toast.LENGTH_SHORT).show();
+                } else {
+                    TelephonyManager TelephonyMgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+                    if (ActivityCompat.checkSelfPermission(Act_Login.this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
                         return;
                     }
-                    if (et_password2.getText().toString().isEmpty()) {
-                        Toast.makeText(getApplicationContext(), "Please enter Password", Toast.LENGTH_SHORT).show();
-                        return;
-
-                    } else {
-                        TelephonyManager TelephonyMgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-                        if (ActivityCompat.checkSelfPermission(Act_Login.this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-
-                            return;
-                        }
-                        device_id = TelephonyMgr.getDeviceId();
+                    device_id = TelephonyMgr.getDeviceId();
 
 
 
-                        username = et_username.getText().toString();
-                        password = et_password2.getText().toString();
-                        if (NetworkConnection.checkNetworkStatus(context)==true){
-                            api_login();
-                            et_username.setText("");
-                            et_password2.setText("");
+                    username = et_username.getText().toString();
+                    password = et_password.getText().toString();
+                    if (NetworkConnection.checkNetworkStatus(context)==true){
+                        api_login();
+                        et_username.setText("");
+                        et_password.setText("");
 
-                        }else{
-                            Toast.makeText(getApplicationContext(),"Please check internet connection",Toast.LENGTH_SHORT).show();
-                        }
-
+                    }else{
+                        Toast.makeText(getApplicationContext(),"Please check internet connection",Toast.LENGTH_SHORT).show();
                     }
+
                 }
-            });
-
-
-        }
+            }
+        });
 
 
 
@@ -304,12 +256,11 @@ public class Act_Login extends AppCompatActivity implements AdapterView.OnItemSe
         btn_login=findViewById(R.id.btn_login);
         et_username=findViewById(R.id.et_username);
         et_password=findViewById(R.id.et_password);
-        et_password2=findViewById(R.id.et_password2);
         tv_org_name=findViewById(R.id.tv_org_name);
         iv_profile_image=findViewById(R.id.iv_profile_image);
 
 
-        }
+    }
 
     private void api_login() {
         baseRequest = new BaseRequest(context);
@@ -381,7 +332,7 @@ public class Act_Login extends AppCompatActivity implements AdapterView.OnItemSe
         RequestBody password_ = RequestBody.create(MediaType.parse("text/plain"), password);
         RequestBody org_id_ = RequestBody.create(MediaType.parse("text/plain"), org_id);
 
-        baseRequest.callAPILogin(1,"http://collectorexpress.in/",user_type_,device_id_,email_,password_,org_id_);
+        baseRequest.callAPILogin(1,"https://collectorexpress.in/",user_type_,device_id_,email_,password_,org_id_);
 
     }
 

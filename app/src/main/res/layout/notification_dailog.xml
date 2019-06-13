@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:text="Sharing of happiness"
+        android:text="K@mpus"
         android:gravity="center_horizontal"
         android:layout_marginTop="25dp"/>
 

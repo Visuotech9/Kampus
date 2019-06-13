@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -17,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -127,20 +129,26 @@ public class Act_add_faculty2 extends AppCompatActivity implements AdapterView.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R
-                .layout.activity_act_add_faculty2);
+        setContentView(R.layout.act_main);
 
         //-------------------------toolbar------------------------------------------
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Add Faculty");
+        toolbar.setTitleTextColor((Color.parseColor("#FFFFFF")));
+        getSupportActionBar().setTitle("Semister");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-//-------------------------classes------------------------------------------
         context = this;
         activity = this;
         sessionParam = new SessionParam(getApplicationContext());
         marshMallowPermission = new MarshMallowPermission(activity);
+
+      LinearLayout  container = (LinearLayout) findViewById(R.id.container);
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View rowView = inflater.inflate(R.layout.content_main_add_faculty2, null);
+        container.addView(rowView, container.getChildCount());
+
 
 
         user_typee= sessionParam.user_type;
@@ -148,26 +156,26 @@ public class Act_add_faculty2 extends AppCompatActivity implements AdapterView.O
         organization_id=sessionParam.org_id;
 
 
-        btn_add =  findViewById(R.id.btn_add);
-        btn_cancel =  findViewById(R.id.btn_cancel);
-        btn_upload_image =  findViewById(R.id.btn_upload_image);
-        et_name =  findViewById(R.id.et_name);
-        et_email =  findViewById(R.id.et_email);
-        et_mobile =  findViewById(R.id.et_mobile);
-        tv_dob =  findViewById(R.id.tv_dob);
-        et_address =  findViewById(R.id.et_address);
-        et_faculty_id =  findViewById(R.id.et_faculty_id);
-        tv_doj =  findViewById(R.id.tv_doj);
-        iv_profile_image =  findViewById(R.id.iv_profile_image);
-        iv_cal_dob =  findViewById(R.id.iv_cal_dob);
-        iv_cal_doj =  findViewById(R.id.iv_cal_doj);
-        et_experience =  findViewById(R.id.et_experience);
-        et_designation =  findViewById(R.id.et_designation);
+        btn_add =  rowView.findViewById(R.id.btn_add);
+        btn_cancel =  rowView.findViewById(R.id.btn_cancel);
+        btn_upload_image =  rowView.findViewById(R.id.btn_upload_image);
+        et_name =  rowView.findViewById(R.id.et_name);
+        et_email =  rowView.findViewById(R.id.et_email);
+        et_mobile =  rowView.findViewById(R.id.et_mobile);
+        tv_dob =  rowView.findViewById(R.id.tv_dob);
+        et_address =  rowView.findViewById(R.id.et_address);
+        et_faculty_id =  rowView.findViewById(R.id.et_faculty_id);
+        tv_doj =  rowView.findViewById(R.id.tv_doj);
+        iv_profile_image =  rowView.findViewById(R.id.iv_profile_image);
+        iv_cal_dob =  rowView.findViewById(R.id.iv_cal_dob);
+        iv_cal_doj =  rowView.findViewById(R.id.iv_cal_doj);
+        et_experience =  rowView.findViewById(R.id.et_experience);
+        et_designation =  rowView.findViewById(R.id.et_designation);
 
-        spinner_department = findViewById(R.id.spinner_department);
-        spinner_gender = findViewById(R.id.spinner_gender);
+        spinner_department = rowView.findViewById(R.id.spinner_department);
+        spinner_gender = rowView.findViewById(R.id.spinner_gender);
 //        spinner_prefix = (Spinner) findViewById(R.id.spinner_prefix);
-        spinner_hod = findViewById(R.id.spinner_hod);
+        spinner_hod = rowView.findViewById(R.id.spinner_hod);
 
         spinner_department.setOnItemSelectedListener(this);
         spinner_gender.setOnItemSelectedListener(this);
@@ -520,7 +528,7 @@ public class Act_add_faculty2 extends AppCompatActivity implements AdapterView.O
 
 
 
-        baseRequest.callAPIAddfaculty(1,"http://collectorexpress.in/",body,name_,email_,mobile_no_
+        baseRequest.callAPIAddfaculty(1,"https://collectorexpress.in/",body,name_,email_,mobile_no_
                 ,address_,dob_,doj_,faculty_clg_id_,dept_id_,organization_id_,gender_,courseId_,hodId__,experience_,designation_);
     }
 

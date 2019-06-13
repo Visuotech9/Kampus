@@ -17,7 +17,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
-import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,7 +50,6 @@ public class Act_faculty_list3 extends AppCompatActivity {
     ArrayList<String>faculty_name_list=new ArrayList<>();
     ImageView iv_add;
     private BaseRequest baseRequest;
-    private SearchableSpinner mSearchableSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

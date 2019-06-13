@@ -38,6 +38,9 @@
     <string name="app_banner_id">ca-app-pub-8496229786742892/3593043420</string>
     <string name="banner_home_footer">ca-app-pub-3940256099942544/6300978111</string>
     <string name="interstitial_full_screen">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="Internet_connection">We can not detect any internet connectivity. Please check your internet connection and try again.</string>
+    <string name="search_hint">Type and Search</string>
+
     <string name="rewarded_video"></string>
 
 
@@ -129,6 +132,19 @@
         <item>Faculty</item>
         <item>Student</item>
     </string-array>
+
+    <string-array name="sem">
+        <item>I</item>
+        <item>II</item>
+        <item>III</item>
+        <item>IV</item>
+        <item>V</item>
+        <item>VI</item>
+        <item>VII</item>
+        <item>VIII</item>
+
+    </string-array>
+
 
     <string-array name="colleges">
 

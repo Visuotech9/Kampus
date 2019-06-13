@@ -11,9 +11,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 
 /**
- * Created by Akshay Raj on 05/02/18.
- * akshay@snowcorp.org
- * www.snowcorp.org
+ * Created by Himanshu choudhary on 15/10/2018
  */
 
 public interface ApiService {

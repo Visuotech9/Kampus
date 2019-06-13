@@ -46,6 +46,8 @@ import visuotech.com.kampus.attendance.Activities.Administrator.Act_faculty_list
 import visuotech.com.kampus.attendance.Activities.Administrator.Act_hod_list;
 import visuotech.com.kampus.attendance.Activities.Administrator.Act_student_list;
 import visuotech.com.kampus.attendance.Activities.Administrator.Administrator_Act_home;
+import visuotech.com.kampus.attendance.Activities.Director.Act_director_profile2;
+import visuotech.com.kampus.attendance.Activities.Director.Director_Act_home;
 import visuotech.com.kampus.attendance.MainActivity;
 import visuotech.com.kampus.attendance.MarshMallowPermission;
 import visuotech.com.kampus.attendance.Model.Faculty;
@@ -57,7 +59,7 @@ import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 
 public class Faculty_Act_home extends AppCompatActivity {
     String user_typee,user_id,organization_id,device_id,dept_id,course_id,dept_name,fac_director_id,fac_hod_id;
-    LinearLayout lay1,lay2,lay3,lay4,lay5,lay6;
+    LinearLayout lay1,lay2,lay3,lay4,lay5,lay6,lay_full_prof;
     TextView tv_designation,tv_name,tv_course;
     ImageView iv_image;
     Dialog mDialog;
@@ -99,6 +101,7 @@ public class Faculty_Act_home extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         TextView tv_toolbar=findViewById(R.id.tv_toolbar);
         ImageView iv_toolbar=findViewById(R.id.iv_toolbar);
+        lay_full_prof=findViewById(R.id.lay_full_prof);
         tv_toolbar.setText(sessionParam.org_name);
         Picasso.get().load(sessionParam.org_logo).into(iv_toolbar);
 //        toolbar.setTitle(sessionParam.org_name);
@@ -197,6 +200,14 @@ public class Faculty_Act_home extends AppCompatActivity {
 
             }
         });
+        lay_full_prof.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(Faculty_Act_home.this,Act_faculty_profile2.class);
+                startActivity(intent);
+            }
+        });
+
 
         lay1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -210,7 +221,7 @@ public class Faculty_Act_home extends AppCompatActivity {
         lay2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Faculty_Act_home.this, Act_add_assignment.class);
+                Intent i = new Intent(Faculty_Act_home.this, Act_assignment_list.class);
                 startActivity(i);
 
 
@@ -221,7 +232,7 @@ public class Faculty_Act_home extends AppCompatActivity {
         lay3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Faculty_Act_home.this, MainActivity.class);
+                Intent i = new Intent(Faculty_Act_home.this, Act_study_list.class);
                 startActivity(i);
                 finish();
 
@@ -256,7 +267,7 @@ public class Faculty_Act_home extends AppCompatActivity {
     }
 
     private void ApigetFaculty(){
-        baseRequest = new BaseRequest(context);
+        baseRequest = new BaseRequest();
         baseRequest.setBaseRequestListner(new RequestReciever() {
             @Override
             public void onSuccess(int requestCode, String Json, Object object) {
@@ -432,7 +443,7 @@ public class Faculty_Act_home extends AppCompatActivity {
         RequestBody organization_id_ = RequestBody.create(MediaType.parse("text/plain"), organization_id);
 
 
-        baseRequest.callAPILogout(1,"http://collectorexpress.in/",user_type_,device_id_,user_id_,organization_id_);
+        baseRequest.callAPILogout(1,"https://collectorexpress.in/",user_type_,device_id_,user_id_,organization_id_);
 
     }
 
@@ -470,7 +481,7 @@ public class Faculty_Act_home extends AppCompatActivity {
         RequestBody organization_id_ = RequestBody.create(MediaType.parse("text/plain"), organization_id);
 
 
-        baseRequest.callAPIChangepswd(1,"http://collectorexpress.in/",user_type_,old_pswd_,new_pswd_,cnfirm_pswd_,user_id_,organization_id_);
+        baseRequest.callAPIChangepswd(1,"https://collectorexpress.in/",user_type_,old_pswd_,new_pswd_,cnfirm_pswd_,user_id_,organization_id_);
 
     }
 

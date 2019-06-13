@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -36,6 +37,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -49,6 +51,7 @@ import visuotech.com.kampus.attendance.Model.TimeTableData;
 import visuotech.com.kampus.attendance.R;
 import visuotech.com.kampus.attendance.SessionParam;
 import visuotech.com.kampus.attendance.retrofit.BaseRequest;
+import visuotech.com.kampus.attendance.retrofit.FileUtils;
 import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 import visuotech.com.kampus.attendance.retrofit.Utility;
 
@@ -98,12 +101,12 @@ public class Act_add_timetable extends AppCompatActivity implements AdapterView.
     ArrayList<String>  section_list= new ArrayList<String>();
     ArrayList<String> list = new ArrayList<String>();
 
-//    ArrayList<String>starthrs=new ArrayList<>();
-//    ArrayList<String>endhrs=new ArrayList<>();
-//    ArrayList<String>startmin=new ArrayList<>();
-//    ArrayList<String>endmin=new ArrayList<>();
-//    ArrayList<String>facId=new ArrayList<>();
-//    ArrayList<String>subId=new ArrayList<>();
+    ArrayList<String>starthrs=new ArrayList<>();
+    ArrayList<String>endhrs=new ArrayList<>();
+    ArrayList<String>startmin=new ArrayList<>();
+    ArrayList<String>endmin=new ArrayList<>();
+    ArrayList<String>facId=new ArrayList<>();
+    ArrayList<String>subId=new ArrayList<>();
 
 //    String[] starthrs;
 //    String[] endhrs;
@@ -112,13 +115,19 @@ public class Act_add_timetable extends AppCompatActivity implements AdapterView.
 //    String[] facId;
 //    String[] subId;
 
-    String[] starthrs = { "11","13"};
-    String[] endhrs = { "12","11"};
-    String[] startmin = { "00","11"};
-    String[] endmin = { "15","11"};
-    String[] facId = { "24","11"};
-    String[] subId = { "25","12"};
+//    String[] starthrs = {"41","53"};
+//    String[] endhrs = {"12","11"};
+//    String[] startmin = {"00","11"};
+//    String[] endmin = {"15","11"};
+//    String[] facId = {"24","11"};
+//    String[] subId = {"25","12"};
 
+//   String  starthrs1="41"+","+"62";
+//    String  endhrs1="41"+","+"62";
+//    String  startmin1="41"+","+"62";
+//    String  endmin1="41"+","+"62";
+//    String  facId1="41"+","+"62";
+//    String  subId1="41"+","+"62";
 
 
 
@@ -182,6 +191,7 @@ public class Act_add_timetable extends AppCompatActivity implements AdapterView.
         section_list1=new ArrayList<>();
         sem_list1=new ArrayList<>();
         timeTableData_list=new ArrayList<>();
+
 
 //        starthrs.clear();
 //        startmin.clear();
@@ -313,28 +323,29 @@ public class Act_add_timetable extends AppCompatActivity implements AdapterView.
 
         TimeTableData timeTableData=new TimeTableData();
 
-        starthrs = new String[cardNo];
-        endhrs = new String[cardNo];
-        startmin = new String[cardNo];
-        endmin = new String[cardNo];
-        subId = new String[cardNo];
-        facId = new String[cardNo];
+//        starthrs = new String[cardNo];
+//        endhrs = new String[cardNo];
+//        startmin = new String[cardNo];
+//        endmin = new String[cardNo];
+//        subId = new String[cardNo];
+//        facId = new String[cardNo];
 
         for (int i=0;i<cardNo;i++){
 
-            starthrs[i] = tv_starthrs.getText().toString();
-            endhrs[i] = tv_endhrs.getText().toString();
-            startmin[i] = tv_startmin.getText().toString();
-            endmin[i] = tv_endmin.getText().toString();
-            subId[i] = subject_id;
-            facId[i] = fac_id;
+//            starthrs[i] = tv_starthrs.getText().toString();
+//            endhrs[i] = tv_endhrs.getText().toString();
+//            startmin[i] = tv_startmin.getText().toString();
+//            endmin[i] = tv_endmin.getText().toString();
+//            subId[i] = subject_id;
+//            facId[i] = fac_id;
 
-//            starthrs.add(i,et_starthrs.getText().toString());
-//            endhrs.add(i,et_endhrs.getText().toString());
-//            startmin.add(i,et_startmin.getText().toString());
-//            endmin.add(i,et_endmin.getText().toString());
-//            facId.add(i,fac_id);
-//            subId.add(i,subject_id);
+            starthrs.add(tv_starthrs.getText().toString());
+            endhrs.add(tv_endhrs.getText().toString());
+            startmin.add(tv_startmin.getText().toString());
+            endmin.add(tv_endmin.getText().toString());
+            facId.add(fac_id);
+            subId.add(subject_id);
+
 
         }
         timeTableData.setStarthrs(starthrs);
@@ -579,8 +590,19 @@ public class Act_add_timetable extends AppCompatActivity implements AdapterView.
 //                et_title.setText("");
 //                et_description.setText("");
 ////                Toast.makeText(getApplicationContext(),"sucess",Toast.LENGTH_SHORT).show();
-                String sucessMessage="Time table added sucessfully";
-                Utility.sucessDialog(sucessMessage,context);
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(object.toString());
+                    String message =jsonObject.optString("message");
+                    String sucessMessage="Time table added sucessfully";
+                    Log.d("RESULT",message);
+                    Utility.sucessDialog(message,context);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+
 
             }
 
@@ -600,16 +622,51 @@ public class Act_add_timetable extends AppCompatActivity implements AdapterView.
 //        RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
 
 
-//        body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
-      /*  @PUT("/")
-        @Multipart
-        Call<ResponseBody> uploadPhotos(
-                @Part MultipartBody.Part placeId,
-                @Part MultipartBody.Part name,
-                @Part List<MultipartBody.Part> desclist, // <-- use such for list of same parameter
-                @Part List<MultipartBody.Part> files  // <-- multiple photos here
-);*/
 
+      /*  List<MultipartBody.Part> subId_ = new ArrayList<>();
+        if (subId != null) {
+            // create part for file (photo, video, ...)
+            for (int i = 0; i < subId.size(); i++) {
+                subId_.add(MultipartBody.Part.createFormData("subject_id[]",subId.get(i).toString()));
+            }
+        }
+        List<MultipartBody.Part> facId_ = new ArrayList<>();
+        if (facId != null) {
+            // create part for file (photo, video, ...)
+            for (int i = 0; i < facId.size(); i++) {
+                facId_.add(MultipartBody.Part.createFormData("subject_id[]",facId.get(i).toString()));
+            }
+        }
+        List<MultipartBody.Part> starthrs_ = new ArrayList<>();
+        if (starthrs != null) {
+            // create part for file (photo, video, ...)
+            for (int i = 0; i < starthrs.size(); i++) {
+                starthrs_.add(MultipartBody.Part.createFormData("starting_hour[]",starthrs.get(i).toString()));
+            }
+        }
+        List<MultipartBody.Part> endhrs_ = new ArrayList<>();
+        if (endhrs != null) {
+            // create part for file (photo, video, ...)
+            for (int i = 0; i < endhrs.size(); i++) {
+                endhrs_.add(MultipartBody.Part.createFormData("ending_hour[]",endhrs.get(i).toString()));
+            }
+        }
+        List<MultipartBody.Part> startmin_ = new ArrayList<>();
+        if (startmin != null) {
+            // create part for file (photo, video, ...)
+            for (int i = 0; i < startmin.size(); i++) {
+                startmin_.add(MultipartBody.Part.createFormData("starting_min[]",startmin.get(i).toString()));
+            }
+        }
+
+        List<MultipartBody.Part> endmin_ = new ArrayList<>();
+        if (endmin != null) {
+            // create part for file (photo, video, ...)
+            for (int i = 0; i < endmin.size(); i++) {
+                endmin_.add(MultipartBody.Part.createFormData("ending_min[]",endmin.get(i).toString()));
+            }
+        }
+*/
 
         RequestBody semId_ = RequestBody.create(MediaType.parse("text/plain"), semId);
         RequestBody sectionId_ = RequestBody.create(MediaType.parse("text/plain"), sectionId);
@@ -619,14 +676,42 @@ public class Act_add_timetable extends AppCompatActivity implements AdapterView.
         RequestBody dept_id_ = RequestBody.create(MediaType.parse("text/plain"), sessionParam.dept_id);
         RequestBody userId_ = RequestBody.create(MediaType.parse("text/plain"), sessionParam.userId);
         RequestBody hod_director_id_ = RequestBody.create(MediaType.parse("text/plain"), sessionParam.director_id);
+//        RequestBody starthrs1_ = RequestBody.create(MediaType.parse("text/plain"), starthrs1);
+//        RequestBody endhrs1_ = RequestBody.create(MediaType.parse("text/plain"), endhrs1);
+//        RequestBody startmin1_ = RequestBody.create(MediaType.parse("text/plain"), startmin1);
+//        RequestBody endmin1_ = RequestBody.create(MediaType.parse("text/plain"), endmin1);
+//        RequestBody subId1_ = RequestBody.create(MediaType.parse("text/plain"), subId1);
+//        RequestBody facId1_ = RequestBody.create(MediaType.parse("text/plain"), facId1);
 
 
 
-
-        baseRequest.callAPIAddTimeTable(1,"http://collectorexpress.in/",semId_,sectionId_,day_,org_id_
+        baseRequest.callAPIAddTimeTable(1,"https://collectorexpress.in/",semId_,sectionId_,day_,org_id_
                 ,course_id_,dept_id_,userId_,hod_director_id_,starthrs,endhrs,startmin,endmin,facId,subId);
-    }
 
+//        baseRequest.callAPIAddTimeTable(1,"http://collectorexpress.in/",semId_,sectionId_,day_,org_id_
+//                ,course_id_,dept_id_,userId_,hod_director_id_,starthrs_,endhrs_,startmin_,endmin_,facId_,subId_);
+//
+//        baseRequest.callAPIAddTimeTable(1,"http://collectorexpress.in/",semId_,sectionId_,day_,org_id_
+//                ,course_id_,dept_id_,userId_,hod_director_id_,endhrs1_,startmin1_,endmin1_,facId1_,subId1_,starthrs);
+    }
+    @NonNull
+    private RequestBody createPartFromString(String descriptionString) {
+        return RequestBody.create(okhttp3.MultipartBody.FORM, descriptionString);
+    }
+    @NonNull
+    private MultipartBody.Part prepareFilePart(String partName, Uri fileUri) {
+        // https://github.com/iPaulPro/aFileChooser/blob/master/aFileChooser/src/com/ipaulpro/afilechooser/utils/FileUtils.java
+        // use the FileUtils to get the actual file by uri
+        File file = FileUtils.getFile(this, fileUri);
+        // create RequestBody instance from file
+        RequestBody requestFile =
+                RequestBody.create(
+                        MediaType.parse(Objects.requireNonNull(getContentResolver().getType(fileUri))),
+                        file
+                );
+        // MultipartBody.Part is used to send also the actual file name
+        return MultipartBody.Part.createFormData(partName, file.getName(), requestFile);
+    }
 
 
 

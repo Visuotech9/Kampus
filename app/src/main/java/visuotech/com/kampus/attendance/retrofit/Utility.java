@@ -10,6 +10,8 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
@@ -34,6 +36,7 @@ import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.math.RoundingMode;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -43,14 +46,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import id.zelory.compressor.Compressor;
+//import id.zelory.compressor.Compressor;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import visuotech.com.kampus.attendance.NetworkConnection;
 import visuotech.com.kampus.attendance.R;
 
 
@@ -337,6 +343,7 @@ public class Utility {
 
     //----------- image_to_Base64------------
 
+/*
     public static String image_to_Base64(Context context, String filePath) {
         Bitmap bmp = null;
         ByteArrayOutputStream bos = null;
@@ -361,6 +368,7 @@ public class Utility {
         }
         return encodeString;
     }
+*/
 
     //----------- show Calender ------------
 
@@ -392,10 +400,10 @@ public class Utility {
         return startdate;
     }
 */
-   /* public String getAddressFromLatlong(Context context,double lat, double longi) {
+    public String getAddressFromLatlong(Context context,double lat, double longi) {
 
         Geocoder geocoder = new Geocoder(context, Locale.getDefault());
-        if (InternetDetect.isConnected(getApplicationContext())) {
+        if (NetworkConnection.checkNetworkStatus(context)==true) {
             //locationPresenter.runGeocodeAPI(latLng.latitude + "," + latLng.longitude, AppConstants.GEOCODE_API_KEY);
             List<Address> addresses = new ArrayList<>();
             try {
@@ -425,7 +433,7 @@ public class Utility {
         }
         return sb.toString();
 
-    }*/
+    }
 
 
 

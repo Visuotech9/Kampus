@@ -18,7 +18,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
-import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,7 +63,6 @@ public class Act_student_list3 extends AppCompatActivity {
     SessionParam sessionParam;
     MarshMallowPermission marshMallowPermission;
     private BaseRequest baseRequest;
-    private SearchableSpinner mSearchableSpinner;
     EditText inputSearch;
 
     ArrayList<Director> director_list;
