@@ -9,10 +9,12 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -47,13 +49,13 @@ public class Act_study_list extends AppCompatActivity {
     Activity activity;
     SessionParam sessionParam;
     MarshMallowPermission marshMallowPermission;
-    private BaseRequest baseRequest;
     EditText inputSearch;
-
-    ArrayList<StudyMaterial> studymaterial_list;
-    ArrayList<String>studymaterial_list_name=new ArrayList<>();
-
+    ArrayList<StudyMaterial> studymaterial_list = new ArrayList<>();
+    ArrayList<StudyMaterial> study_list2 = new ArrayList<>();
+    ArrayList<String> studymaterial_list_name = new ArrayList<>();
     ImageView iv_add;
+    private BaseRequest baseRequest;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,57 +77,31 @@ public class Act_study_list extends AppCompatActivity {
         final View rowView = inflater.inflate(R.layout.content_main_study_list, null);
         container.addView(rowView, container.getChildCount());
 
-        rv_list=findViewById(R.id.rv_list);
-        progressbar=findViewById(R.id.progressbar);
+        rv_list = findViewById(R.id.rv_list);
+        progressbar = findViewById(R.id.progressbar);
         linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         rv_list.setLayoutManager(linearLayoutManager);
         rv_list.setItemAnimator(new DefaultItemAnimator());
 
         inputSearch = (EditText) findViewById(R.id.inputSearch);
-        iv_add =  findViewById(R.id.iv_add);
+        iv_add = findViewById(R.id.iv_add);
 
-        iv_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(Act_study_list.this, Act_add_studymaterials.class);
-                startActivity(i);
-                finish();
-            }
-        });
-
-        inputSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                //after the change calling the method and passing the search input
-                filter(editable.toString());
-            }
-        });
 
         ApigetStudymat();
     }
 
-    private void ApigetStudymat(){
+    private void ApigetStudymat() {
         baseRequest = new BaseRequest();
         baseRequest.setBaseRequestListner(new RequestReciever() {
             @Override
             public void onSuccess(int requestCode, String Json, Object object) {
                 try {
                     JSONObject jsonObject = new JSONObject(Json);
-                    JSONArray jsonArray=jsonObject.optJSONArray("user");
+                    JSONArray jsonArray = jsonObject.optJSONArray("user");
 
-                    studymaterial_list=baseRequest.getDataListreverse(jsonArray,StudyMaterial.class);
+                    studymaterial_list = baseRequest.getDataListreverse(jsonArray, StudyMaterial.class);
 
-                    adapter=new Ad_study(studymaterial_list,context);
+                    adapter = new Ad_study(studymaterial_list, context);
                     rv_list.setAdapter(adapter);
 
 
@@ -140,41 +116,96 @@ public class Act_study_list extends AppCompatActivity {
             public void onFailure(int requestCode, String errorCode, String message) {
 
             }
+
             @Override
             public void onNetworkFailure(int requestCode, String message) {
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=studymaterial_list&organization_id="+sessionParam.org_id+"&faculty_id="+sessionParam.userId;
+        String remainingUrl2 = "/Kampus/Api2.php?apicall=studymaterial_list&organization_id=" + sessionParam.org_id + "&faculty_id=" + sessionParam.userId;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
-    private void filter(String text) {
-        //new array list that will hold the filtered data
-        ArrayList<StudyMaterial> study_list2 = new ArrayList<>();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search, menu);
 
-        //looping through existing elements
-        for (int i=0;i<studymaterial_list.size();i++){
-            if (studymaterial_list.get(i).getTitle().toLowerCase().contains(text.toLowerCase())){
-                StudyMaterial studyMaterial=new StudyMaterial();
-                studyMaterial.setTitle(studymaterial_list.get(i).getTitle());
-                studyMaterial.setStudyDepartmentName(studymaterial_list.get(i).getStudyDepartmentName());
-                studyMaterial.setStudySemester(studymaterial_list.get(i).getStudySemester());
-                studyMaterial.setStudySection(studymaterial_list.get(i).getStudySection());
-                study_list2.add(studyMaterial);
+        MenuItem search_item = menu.findItem(R.id.mi_search);
+
+        SearchView searchView = (SearchView) search_item.getActionView();
+
+
+        searchView.setFocusable(false);
+        searchView.setQueryHint("Search");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                study_list2.clear();
+
+                for (int i = 0; i < studymaterial_list.size(); i++) {
+                    if (studymaterial_list.get(i).getTitle().toLowerCase().contains(s.toLowerCase())) {
+                        StudyMaterial studyMaterial = new StudyMaterial();
+                        studyMaterial.setTitle(studymaterial_list.get(i).getTitle());
+                        studyMaterial.setStudyDepartmentName(studymaterial_list.get(i).getStudyDepartmentName());
+                        studyMaterial.setStudySemester(studymaterial_list.get(i).getStudySemester());
+                        studyMaterial.setStudySection(studymaterial_list.get(i).getStudySection());
+                        study_list2.add(studyMaterial);
+                    }
+                }
+                adapter = new Ad_study(study_list2, context);
+                rv_list.setAdapter(adapter);
+
+                return false;
             }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+
+                study_list2.clear();
+
+                for (int i = 0; i < studymaterial_list.size(); i++) {
+                    if (studymaterial_list.get(i).getTitle().toLowerCase().contains(s.toLowerCase())) {
+                        StudyMaterial studyMaterial = new StudyMaterial();
+                        studyMaterial.setTitle(studymaterial_list.get(i).getTitle());
+                        studyMaterial.setStudyDepartmentName(studymaterial_list.get(i).getStudyDepartmentName());
+                        studyMaterial.setStudySemester(studymaterial_list.get(i).getStudySemester());
+                        studyMaterial.setStudySection(studymaterial_list.get(i).getStudySection());
+                        study_list2.add(studyMaterial);
+                    }
+                }
+                adapter = new Ad_study(study_list2, context);
+                rv_list.setAdapter(adapter);
+
+                return false;
+            }
+        });
+
+
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent i = new Intent(Act_study_list.this, Faculty_Act_home.class);
+                startActivity(i);
+                finish();
+                break;
+
+            case R.id.add_user:
+                Intent i1 = new Intent(Act_study_list.this, Act_add_studymaterials.class);
+                startActivity(i1);
+                finish();
+                break;
         }
 
-        //calling a method of the adapter class and passing the filtered list
-        adapter.filterList(study_list2);
-    }
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Intent i = new Intent(Act_study_list.this, Faculty_Act_home.class);
-        startActivity(i);
-        finish();
         return true;
 
     }
+
 
     @Override
     public void onBackPressed() {

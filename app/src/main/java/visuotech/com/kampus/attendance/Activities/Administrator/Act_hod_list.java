@@ -54,9 +54,10 @@ public class Act_hod_list extends AppCompatActivity {
     private BaseRequest baseRequest;
     EditText inputSearch;
 
-    ArrayList<HOD> hod_list=new ArrayList<>();
+
     ArrayList<String>hod_list_name=new ArrayList<>();
     ArrayList<HOD> hod_list2 = new ArrayList<>();
+    ArrayList<HOD> hod_list=new ArrayList<>();
     ImageView iv_add;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

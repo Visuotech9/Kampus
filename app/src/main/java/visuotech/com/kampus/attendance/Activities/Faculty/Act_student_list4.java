@@ -11,10 +11,12 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -42,9 +44,12 @@ import visuotech.com.kampus.attendance.Activities.Hod.Act_student_list3;
 import visuotech.com.kampus.attendance.Activities.Hod.HOD_Act_home;
 import visuotech.com.kampus.attendance.Adapter.Ad_Section_list;
 import visuotech.com.kampus.attendance.Adapter.Ad_Semister_list;
+import visuotech.com.kampus.attendance.Adapter.Ad_hod;
 import visuotech.com.kampus.attendance.Adapter.Ad_student;
 import visuotech.com.kampus.attendance.MarshMallowPermission;
+import visuotech.com.kampus.attendance.Model.Assignment;
 import visuotech.com.kampus.attendance.Model.Director;
+import visuotech.com.kampus.attendance.Model.HOD;
 import visuotech.com.kampus.attendance.Model.ModelResponse;
 import visuotech.com.kampus.attendance.Model.Section;
 import visuotech.com.kampus.attendance.Model.Semister;
@@ -80,6 +85,8 @@ public class Act_student_list4 extends AppCompatActivity implements AdapterView.
     ArrayList<Director> director_list;
     ArrayList<Semister> sem_list = new ArrayList<>();
     ArrayList<Section> sec_list = new ArrayList<>();
+
+
     ArrayList<String>director_name_list=new ArrayList<>();
     List<Student> students;
     List<Student>results;
@@ -555,6 +562,8 @@ public class Act_student_list4 extends AppCompatActivity implements AdapterView.
 
 
     }
+
+
 
 
 
