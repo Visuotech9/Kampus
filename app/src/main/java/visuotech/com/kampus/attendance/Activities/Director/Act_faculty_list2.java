@@ -95,25 +95,6 @@ public class Act_faculty_list2 extends AppCompatActivity {
         inputSearch = rowView.findViewById(R.id.inputSearch);
         iv_add = rowView.findViewById(R.id.iv_add);
 
-
-        inputSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                //after the change calling the method and passing the search input
-                filter(editable.toString());
-            }
-        });
-
         ApigetFaculty();
 
     }
@@ -156,26 +137,6 @@ public class Act_faculty_list2 extends AppCompatActivity {
         });
         String remainingUrl2 = "/Kampus/Api2.php?apicall=faculty_list&organization_id=" + sessionParam.org_id + "&director_id=" + sessionParam.userId;
         baseRequest.callAPIGETData(1, remainingUrl2);
-    }
-
-    private void filter(String text) {
-        //new array list that will hold the filtered data
-        ArrayList<Faculty> faculty_list2 = new ArrayList<>();
-
-        //looping through existing elements
-        for (int i = 0; i < faculty_list.size(); i++) {
-            if (faculty_list.get(i).getFaculty_name().toLowerCase().contains(text.toLowerCase())) {
-                Faculty faculty = new Faculty();
-                faculty.setFaculty_name(faculty_list.get(i).getFaculty_name());
-                faculty.setFaculty_department_name(faculty_list.get(i).getFaculty_department_name());
-                faculty.setFaculty_username(faculty_list.get(i).getFaculty_username());
-                faculty.setFaculty_pic(faculty_list.get(i).getFaculty_pic());
-                faculty_list2.add(faculty);
-            }
-        }
-
-        //calling a method of the adapter class and passing the filtered list
-        adapter.filterList(faculty_list2);
     }
 
 
