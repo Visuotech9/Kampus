@@ -44,6 +44,7 @@ public class Act_hod_profile2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act_hod_profile2);
+
         context = this;
         activity = this;
         sessionParam = new SessionParam(getApplicationContext());

@@ -101,23 +101,6 @@ public class Act_hod_list2 extends AppCompatActivity {
             }
         });
 
-        inputSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                //after the change calling the method and passing the search input
-                filter(editable.toString());
-            }
-        });
 
         ApigetHod();
     }
@@ -161,25 +144,6 @@ public class Act_hod_list2 extends AppCompatActivity {
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
-    private void filter(String text) {
-        //new array list that will hold the filtered data
-        ArrayList<HOD> hod_list2 = new ArrayList<>();
-
-        //looping through existing elements
-        for (int i=0;i<hod_list.size();i++){
-            if (hod_list.get(i).getHod_name().toLowerCase().contains(text.toLowerCase())){
-                HOD hod=new HOD();
-                hod.setHod_name(hod_list.get(i).getHod_name());
-                hod.setHod_department_name(hod_list.get(i).getHod_department_name());
-                hod.setHod_username(hod_list.get(i).getHod_username());
-                hod.setHod_pic(hod_list.get(i).getHod_pic());
-                hod_list2.add(hod);
-            }
-        }
-
-        //calling a method of the adapter class and passing the filtered list
-        adapter.filterList(hod_list2);
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
