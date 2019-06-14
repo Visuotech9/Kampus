@@ -26,6 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
@@ -53,7 +54,6 @@ import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 
 public class Act_add_semister extends AppCompatActivity {
 
-    private BaseRequest baseRequest;
     SwipeRefreshLayout mSwipeRefreshLayout;
     Context context;
     Activity activity;
@@ -64,14 +64,15 @@ public class Act_add_semister extends AppCompatActivity {
     ArrayList<Course> course_list = new ArrayList<>();
     ArrayList<String> course_list1 = new ArrayList<>();
     ArrayList<String> sem_list_string = new ArrayList<>();
-    ArrayList<SemList>sem_list=new ArrayList<>();
+    ArrayList<SemList> sem_list = new ArrayList<>();
     LinearLayoutManager linearLayoutManager;
     RecyclerView rv;
     Ad_Semister_adapter adapter1;
     Ad_course adapter;
     Button btn_view;
-    String course_id,course_name;
-    int[] arr={1,2};
+    String course_id, course_name;
+    int[] arr = {1, 2};
+    private BaseRequest baseRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,49 +168,42 @@ public class Act_add_semister extends AppCompatActivity {
             }
         });
 
-//        JSONArray arr = new JSONArray();
-//        arr.put(sem_list_string.get(0));
-//        arr.put(sem_list_string.get(1));
+        JsonArray array = new JsonArray();
+        for (int i = 0; i < sem_list_string.size(); i++) {
+            array.add(sem_list_string.get(i));
+        }
+        JsonObject object = new JsonObject();
+        object.add("semester_id", array);
+        object.addProperty("course_id", course_id);
+        object.addProperty("organization_id", sessionParam.org_id);
 
-//        JsonObject object = Functions.getClient().getJsonMapObject("course_id", course_id,
-//                "organization_id",sessionParam.org_id,
-//                "semester_id",arr.toString()
-//
-//        );
-//
-//        baseRequest.callAPIPostCustomURL(1, object,"https://collectorexpress.in/Kampus/Api2.php?apicall=add_sem");
-
-        RequestBody course_id_ = RequestBody.create(MediaType.parse("text/plain"), course_id);
-        RequestBody org_id_ = RequestBody.create(MediaType.parse("text/plain"), sessionParam.org_id);
-        baseRequest.callAPIAddsemister(1, "https://collectorexpress.in/", course_id_, org_id_,sem_list_string);
+        baseRequest.callAPIPostCustomURL(1, object, "Kampus/Api2.php?apicall=add_sem");
 
     }
 
-
-
     private void addList() {
-        SemList semList=new SemList("I");
+        SemList semList = new SemList("I");
         sem_list.add(semList);
 
-         semList=new SemList("II");
+        semList = new SemList("II");
         sem_list.add(semList);
 
-         semList=new SemList("III");
+        semList = new SemList("III");
         sem_list.add(semList);
 
-         semList=new SemList("IV");
+        semList = new SemList("IV");
         sem_list.add(semList);
 
-         semList=new SemList("V");
+        semList = new SemList("V");
         sem_list.add(semList);
 
-         semList=new SemList("VI");
+        semList = new SemList("VI");
         sem_list.add(semList);
 
-         semList=new SemList("VII");
+        semList = new SemList("VII");
         sem_list.add(semList);
 
-         semList=new SemList("VIII");
+        semList = new SemList("VIII");
         sem_list.add(semList);
 
 
@@ -371,12 +365,12 @@ public class Act_add_semister extends AppCompatActivity {
 
                 }
 
-                try{
+                try {
                     for (int i = 0; i < list.size(); i++) {
                         arr[i] = Integer.parseInt(sem_list_string.get(i));
                     }
 
-                }catch(NumberFormatException ex){
+                } catch (NumberFormatException ex) {
 
                 }
                 System.out.println(Arrays.toString(arr));
@@ -394,8 +388,6 @@ public class Act_add_semister extends AppCompatActivity {
 
 
     }
-
-
 
 
     private void ApigetCourse() {

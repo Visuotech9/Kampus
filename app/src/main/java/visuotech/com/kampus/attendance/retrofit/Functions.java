@@ -74,6 +74,8 @@ public class Functions extends Application {
         return jsonObject;
     }
 
+
+
     public String getNextDayDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calendar = Calendar.getInstance();
