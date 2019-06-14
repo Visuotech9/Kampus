@@ -63,7 +63,7 @@ public class Act_faculty_list3 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_act_faculty_list);
+        setContentView(R.layout.act_main);
         //-------------------------toolbar------------------------------------------
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -79,7 +79,7 @@ public class Act_faculty_list3 extends AppCompatActivity {
 
         LinearLayout container = (LinearLayout) findViewById(R.id.container);
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View rowView = inflater.inflate(R.layout.content_main_student_list4, null);
+        final View rowView = inflater.inflate(R.layout.content_main_faculty_list, null);
         container.addView(rowView, container.getChildCount());
 
 //-------------------------recyclerview------------------------------------------
