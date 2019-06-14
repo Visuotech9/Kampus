@@ -491,7 +491,7 @@ public class Act_student_list4 extends AppCompatActivity implements AdapterView.
         TextView tv_title = mDialog.findViewById(R.id.tv_title);
         LinearLayout lay1 = mDialog.findViewById(R.id.lay1);
         lay1.setVisibility(View.GONE);
-        tv_title.setText("Select Semister");
+        tv_title.setText("Select Section");
         tv_retry.setText("OK");
         linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         rv.setLayoutManager(linearLayoutManager);
