@@ -3,6 +3,8 @@ package visuotech.com.kampus.attendance.retrofit;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +66,9 @@ public interface ApiInterface {
 
     @POST
     Call<JsonElement> postDataCustomURL(@Url String remainingURL, @Body JsonObject jsonObject);
+
+    @POST
+    Call<JsonElement> postDataCustomURL1(@Url String remainingURL, @Body JsonObject jsonObject);
 
     @GET
     Call<JsonElement> postDataGET(@Url String remainingURL, @QueryMap Map<String, String> map);
