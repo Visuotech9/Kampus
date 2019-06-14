@@ -164,6 +164,8 @@ public class Act_add_timetable extends AppCompatActivity implements AdapterView.
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Add Timetable");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         parentLinearLayout =  findViewById(R.id.parentLinearLayout);
         container = (LinearLayout)findViewById(R.id.container);
         btn_fab=findViewById(R.id.btn_fab);

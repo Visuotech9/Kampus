@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -44,6 +45,7 @@ public class Act_hod_profile2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act_hod_profile2);
+
         context = this;
         activity = this;
         sessionParam = new SessionParam(getApplicationContext());
@@ -60,7 +62,6 @@ public class Act_hod_profile2 extends AppCompatActivity {
         tv_doj=findViewById(R.id.tv_doj);
         tv_address=findViewById(R.id.tv_address);
         tv_id=findViewById(R.id.tv_id);
-
 
         ApigetHod();
 
@@ -96,7 +97,6 @@ public class Act_hod_profile2 extends AppCompatActivity {
                     mobile=hod_list.get(0).getHod_mobile_no();
                     department=hod_list.get(0).getHod_department_name();
                     pic=hod_list.get(0).getHod_pic();
-
 
                     tv_name.setText(name);
                     tv_email.setText(email);

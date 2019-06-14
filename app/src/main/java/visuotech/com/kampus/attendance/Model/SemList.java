@@ -18,6 +18,15 @@ public class SemList {
     }
 
     public boolean isSelected;
+    public boolean isSelected2;
+
+    public boolean isSelected2() {
+        return isSelected2;
+    }
+
+    public void setSelected2(boolean selected2) {
+        isSelected2 = selected2;
+    }
 
     public boolean isSelected() {
         return isSelected;

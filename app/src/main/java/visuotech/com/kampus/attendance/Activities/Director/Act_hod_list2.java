@@ -9,10 +9,12 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -29,8 +31,10 @@ import java.util.ArrayList;
 
 import visuotech.com.kampus.attendance.Activities.Administrator.Act_add_Hod;
 import visuotech.com.kampus.attendance.Activities.Administrator.Administrator_Act_home;
+import visuotech.com.kampus.attendance.Adapter.Ad_faculty;
 import visuotech.com.kampus.attendance.Adapter.Ad_hod;
 import visuotech.com.kampus.attendance.MarshMallowPermission;
+import visuotech.com.kampus.attendance.Model.Faculty;
 import visuotech.com.kampus.attendance.Model.HOD;
 import visuotech.com.kampus.attendance.R;
 import visuotech.com.kampus.attendance.SessionParam;
@@ -51,7 +55,8 @@ public class Act_hod_list2 extends AppCompatActivity {
     private BaseRequest baseRequest;
     EditText inputSearch;
 
-    ArrayList<HOD> hod_list;
+    ArrayList<HOD> hod_list=new ArrayList<>();
+    ArrayList<HOD> hod_list2=new ArrayList<>();
     ArrayList<String>hod_list_name=new ArrayList<>();
 
     ImageView iv_add;
@@ -96,23 +101,6 @@ public class Act_hod_list2 extends AppCompatActivity {
             }
         });
 
-        inputSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                //after the change calling the method and passing the search input
-                filter(editable.toString());
-            }
-        });
 
         ApigetHod();
     }
@@ -156,25 +144,66 @@ public class Act_hod_list2 extends AppCompatActivity {
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
-    private void filter(String text) {
-        //new array list that will hold the filtered data
-        ArrayList<HOD> hod_list2 = new ArrayList<>();
 
-        //looping through existing elements
-        for (int i=0;i<hod_list.size();i++){
-            if (hod_list.get(i).getHod_name().toLowerCase().contains(text.toLowerCase())){
-                HOD hod=new HOD();
-                hod.setHod_name(hod_list.get(i).getHod_name());
-                hod.setHod_department_name(hod_list.get(i).getHod_department_name());
-                hod.setHod_username(hod_list.get(i).getHod_username());
-                hod.setHod_pic(hod_list.get(i).getHod_pic());
-                hod_list2.add(hod);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search, menu);
+
+        MenuItem search_item = menu.findItem(R.id.mi_search);
+
+        SearchView searchView = (SearchView) search_item.getActionView();
+
+
+        searchView.setFocusable(false);
+        searchView.setQueryHint("Search");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                hod_list2.clear();
+
+                for (int i=0;i<hod_list.size();i++){
+                    if (hod_list.get(i).getHod_name().toLowerCase().contains(s.toLowerCase())){
+                        HOD hod=new HOD();
+                        hod.setHod_name(hod_list.get(i).getHod_name());
+                        hod.setHod_department_name(hod_list.get(i).getHod_department_name());
+                        hod.setHod_username(hod_list.get(i).getHod_username());
+                        hod.setHod_pic(hod_list.get(i).getHod_pic());
+                        hod_list2.add(hod);
+                    }
+                }
+                adapter = new Ad_hod(hod_list2, context);
+                rv_list.setAdapter(adapter);
+                return false;
             }
-        }
 
-        //calling a method of the adapter class and passing the filtered list
-        adapter.filterList(hod_list2);
+            @Override
+            public boolean onQueryTextChange(String s) {
+
+                hod_list2.clear();
+
+                for (int i=0;i<hod_list.size();i++){
+                    if (hod_list.get(i).getHod_name().toLowerCase().contains(s.toLowerCase())){
+                        HOD hod=new HOD();
+                        hod.setHod_name(hod_list.get(i).getHod_name());
+                        hod.setHod_department_name(hod_list.get(i).getHod_department_name());
+                        hod.setHod_username(hod_list.get(i).getHod_username());
+                        hod.setHod_pic(hod_list.get(i).getHod_pic());
+                        hod_list2.add(hod);
+                    }
+                }
+                adapter = new Ad_hod(hod_list2, context);
+                rv_list.setAdapter(adapter);
+
+                return false;
+            }
+        });
+
+
+        return true;
     }
+
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent i = new Intent(Act_hod_list2.this, Director_Act_home.class);
         startActivity(i);

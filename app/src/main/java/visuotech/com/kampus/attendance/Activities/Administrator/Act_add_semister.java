@@ -26,6 +26,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,6 +48,7 @@ import visuotech.com.kampus.attendance.R;
 import visuotech.com.kampus.attendance.RecyclerTouchListener;
 import visuotech.com.kampus.attendance.SessionParam;
 import visuotech.com.kampus.attendance.retrofit.BaseRequest;
+import visuotech.com.kampus.attendance.retrofit.Functions;
 import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 
 public class Act_add_semister extends AppCompatActivity {
@@ -144,7 +147,7 @@ public class Act_add_semister extends AppCompatActivity {
                 try {
 
                     JSONObject jsonObject = new JSONObject(Json);
-//                    JSONArray jsonArray = jsonObject.optJSONArray("data");
+                    JSONArray jsonArray = jsonObject.optJSONArray("data");
                     Toast.makeText(getApplicationContext(), "sucess", Toast.LENGTH_SHORT).show();
 
                 } catch (JSONException e) {
@@ -163,6 +166,18 @@ public class Act_add_semister extends AppCompatActivity {
 
             }
         });
+
+//        JSONArray arr = new JSONArray();
+//        arr.put(sem_list_string.get(0));
+//        arr.put(sem_list_string.get(1));
+
+//        JsonObject object = Functions.getClient().getJsonMapObject("course_id", course_id,
+//                "organization_id",sessionParam.org_id,
+//                "semester_id",arr.toString()
+//
+//        );
+//
+//        baseRequest.callAPIPostCustomURL(1, object,"https://collectorexpress.in/Kampus/Api2.php?apicall=add_sem");
 
         RequestBody course_id_ = RequestBody.create(MediaType.parse("text/plain"), course_id);
         RequestBody org_id_ = RequestBody.create(MediaType.parse("text/plain"), sessionParam.org_id);
@@ -283,7 +298,7 @@ public class Act_add_semister extends AppCompatActivity {
 
         final Dialog mDialog = new Dialog(context);
         mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        mDialog.setContentView(R.layout.search_layout_dialog);
+        mDialog.setContentView(R.layout.search_layout_dialog22);
         mDialog.setCanceledOnTouchOutside(true);
 
 

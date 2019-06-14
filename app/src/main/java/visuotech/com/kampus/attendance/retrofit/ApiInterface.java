@@ -241,7 +241,7 @@ public interface ApiInterface {
     Call<JsonElement> addSemister(
             @Part("course_id") RequestBody course_id_,
             @Part("organization_id") RequestBody org_id_,
-            @Part("semester_id[]")ArrayList<String> sem_list_string );
+            @Query("semester_id[]")ArrayList<String> sem_list_string );
 
 
 

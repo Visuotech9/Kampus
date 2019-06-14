@@ -27,7 +27,8 @@
         android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.Administrator.Act_add_semister"></activity>
+        <activity android:name=".BrandsFilterActivity"></activity>
+        <activity android:name=".Activities.Administrator.Act_add_semister" />
         <activity
             android:name=".Activities.Act_splash"
             android:screenOrientation="portrait">
@@ -82,7 +83,6 @@
         <activity
             android:name=".Activities.Administrator.Act_subject_list"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".Activities.Administrator.Act_faculty_list"
             android:screenOrientation="portrait">
@@ -157,18 +157,24 @@
         <activity
             android:name=".Activities.Faculty.Act_add_assignment"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activities.Faculty.Act_add_studymaterials"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.Faculty.Act_assignment_list"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.Faculty.Act_study_list"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.Faculty.Act_studymat_detals"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.Faculty.Act_assignment_details"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.Faculty.Act_faculty_profile2"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activities.Faculty.Act_add_studymaterials"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.Faculty.Act_assignment_list"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.Faculty.Act_study_list"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.Faculty.Act_studymat_detals"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.Faculty.Act_assignment_details"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.Faculty.Act_faculty_profile2"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.google.android.gms.version"

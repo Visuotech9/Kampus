@@ -14,7 +14,6 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -69,38 +68,43 @@ public class Ad_Semister_adapter extends RecyclerView.Adapter<Ad_Semister_adapte
         final SemList thana = list.get(i);
         holder.checkbox1.setOnCheckedChangeListener(null);
         checkbox_all.setOnCheckedChangeListener(null);
-
         holder.checkbox1.setChecked(thana.isSelected());
-        checkbox_all.setChecked(thana.isSelected());
+        checkbox_all.setChecked(thana.isSelected2());
         holder.tv_station.setText(list.get(i).getSem());
 
         holder.checkbox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                thana.setSelected(isChecked);
+
 
                 if (isChecked==true){
-                    SemList thana1 = new SemList();
-                    thana1.setSem(list.get(i).getSem());
-                    list11.add(thana1);
+                    thana.setSelected(isChecked);
+                    thana.setSem(list.get(i).getSem());
+                    holder.checkbox1.setChecked(true);
+                    list11.add(thana);
+                }else {
+                    thana.setSelected(isChecked);
+                    holder.checkbox1.setChecked(isChecked);
+                    list11.remove(i);
                 }
             }
         });
         checkbox_all.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                thana.setSelected(isChecked);
 
                 if (isChecked==false){
                     flagSelectAll = true;
                     diselectAllItem(false);
                     checkbox_all.setChecked(false);
+                    thana.setSelected2(false);
                     list11.clear();
 
 
                 }else {
                     selectAllItem(true);
                     checkbox_all.setChecked(true);
+                    thana.setSelected2(true);
                 }
 
             }
@@ -109,39 +113,40 @@ public class Ad_Semister_adapter extends RecyclerView.Adapter<Ad_Semister_adapte
         tv_select_all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 list11.clear();
-                if (list.get(i).isSelected()) {
-
+                if (thana.isSelected2) {
                     flagSelectAll = true;
                     diselectAllItem(false);
                     checkbox_all.setChecked(false);
+                    thana.setSelected2(false);
                     list11.clear();
 
                 } else {
-
                     selectAllItem(true);
                     checkbox_all.setChecked(true);
-
+                    thana.setSelected2(true);
                 }
 
             }
         });
 
 
+
         holder.tv_station.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SemList thana=new SemList();
-                if (list.get(i).isSelected()){
+                if (holder.checkbox1.isSelected()){
                     flagSelectAll = true;
                     list.get(i).setSelected(false);
                     holder.checkbox1.setChecked(false);
-                    list11.add(thana);
+                    holder.checkbox1.setSelected(false);
+                    list11.remove(i);
 
                 }else {
 
                     holder.checkbox1.setChecked(true);
+                    holder.checkbox1.setSelected(true);
                     list.get(i).setSelected(true);
                     thana.setSelected(true);
                     thana.setSem(list.get(i).getSem());
@@ -153,6 +158,7 @@ public class Ad_Semister_adapter extends RecyclerView.Adapter<Ad_Semister_adapte
 
             }
         });
+
     }
 
     public void selectAllItem(boolean isSelectedAll) {
