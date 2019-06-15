@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -69,14 +70,12 @@ public class Ad_Semister_adapter extends RecyclerView.Adapter<Ad_Semister_adapte
         holder.checkbox1.setOnCheckedChangeListener(null);
         checkbox_all.setOnCheckedChangeListener(null);
         holder.checkbox1.setChecked(thana.isSelected());
-        checkbox_all.setChecked(thana.isSelected2());
+        checkbox_all.setChecked(thana.isselectAll);
         holder.tv_station.setText(list.get(i).getSem());
 
-/*
         holder.checkbox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
 
                 if (isChecked==true){
                     thana.setSelected(isChecked);
@@ -90,7 +89,7 @@ public class Ad_Semister_adapter extends RecyclerView.Adapter<Ad_Semister_adapte
                 }
             }
         });
-*/
+
         checkbox_all.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -99,14 +98,14 @@ public class Ad_Semister_adapter extends RecyclerView.Adapter<Ad_Semister_adapte
                     flagSelectAll = true;
                     diselectAllItem(false,thana);
                     checkbox_all.setChecked(false);
-                    thana.setSelected2(false);
+                    thana.setIsselectAll(false);
                     list11.clear();
 
 
                 }else {
                     selectAllItem(true,thana);
                     checkbox_all.setChecked(true);
-                    thana.setSelected2(true);
+                    thana.setIsselectAll(true);
                 }
 
             }
@@ -116,17 +115,17 @@ public class Ad_Semister_adapter extends RecyclerView.Adapter<Ad_Semister_adapte
             @Override
             public void onClick(View view) {
                 list11.clear();
-                if (thana.isSelected2) {
+                if (thana.isselectAll) {
                     flagSelectAll = true;
                     diselectAllItem(false, thana);
                     checkbox_all.setChecked(false);
-                    thana.setSelected2(false);
+                    thana.setIsselectAll(false);
                     list11.clear();
 
                 } else {
                     selectAllItem(true, thana);
                     checkbox_all.setChecked(true);
-                    thana.setSelected2(true);
+                    thana.setIsselectAll(true);
                 }
 
             }
@@ -204,8 +203,9 @@ public class Ad_Semister_adapter extends RecyclerView.Adapter<Ad_Semister_adapte
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView tv_station;
+        TextView tv_station,tv_value;
         LinearLayout lay_linear;
+        ImageView iv_cb;
         CircleImageView iv_profile_image;
         LinearLayout lay_call, lay_message;
         CheckBox checkbox1;
@@ -216,6 +216,8 @@ public class Ad_Semister_adapter extends RecyclerView.Adapter<Ad_Semister_adapte
             tv_station = itemView.findViewById(R.id.tv_station);
             checkbox1 = itemView.findViewById(R.id.checkbox1);
             lay_linear = itemView.findViewById(R.id.lay_linear);
+            tv_value = itemView.findViewById(R.id.tv_value);
+            iv_cb = itemView.findViewById(R.id.iv_cb);
         }
     }
 }

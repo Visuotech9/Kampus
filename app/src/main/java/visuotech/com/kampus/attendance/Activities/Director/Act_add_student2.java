@@ -153,7 +153,7 @@ public class Act_add_student2 extends AppCompatActivity implements AdapterView.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_act_add_student2);
+        setContentView(R.layout.act_main);
         //-------------------------toolbar------------------------------------------
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
