@@ -17,15 +17,24 @@ public class SemList {
         this.sem = sem;
     }
 
-    public boolean isSelected;
-    public boolean isSelected2;
-
-    public boolean isSelected2() {
-        return isSelected2;
+    public Boolean getChecked() {
+        return isChecked;
     }
 
-    public void setSelected2(boolean selected2) {
-        isSelected2 = selected2;
+    public void setChecked(Boolean checked) {
+        isChecked = checked;
+    }
+
+    Boolean isChecked=false;
+    public boolean isSelected;
+    public boolean isselectAll=false;
+
+    public boolean isIsselectAll() {
+        return isselectAll;
+    }
+
+    public void setIsselectAll(boolean isselectAll) {
+        this.isselectAll = isselectAll;
     }
 
     public boolean isSelected() {

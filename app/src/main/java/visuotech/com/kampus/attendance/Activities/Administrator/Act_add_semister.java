@@ -40,6 +40,7 @@ import java.util.List;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import visuotech.com.kampus.attendance.Adapter.Ad_Semister_adapter;
+import visuotech.com.kampus.attendance.Adapter.Ad_ValueListNew;
 import visuotech.com.kampus.attendance.Adapter.Ad_course;
 import visuotech.com.kampus.attendance.MarshMallowPermission;
 import visuotech.com.kampus.attendance.Model.Course;
@@ -65,9 +66,10 @@ public class Act_add_semister extends AppCompatActivity {
     ArrayList<String> course_list1 = new ArrayList<>();
     ArrayList<String> sem_list_string = new ArrayList<>();
     ArrayList<SemList> sem_list = new ArrayList<>();
+    ArrayList<SemList> list=new ArrayList<>();
     LinearLayoutManager linearLayoutManager;
     RecyclerView rv;
-    Ad_Semister_adapter adapter1;
+    Ad_ValueListNew adapter1;
     Ad_course adapter;
     Button btn_view;
     String course_id, course_name;
@@ -299,6 +301,7 @@ public class Act_add_semister extends AppCompatActivity {
         TextView tv_retry, tv_select_all;
         EditText inputSearch;
         CheckBox checkbox_all;
+        LinearLayout lay;
         rv = mDialog.findViewById(R.id.rv_list);
         tv_retry = mDialog.findViewById(R.id.tv_retry);
         inputSearch = mDialog.findViewById(R.id.inputSearch);
@@ -306,6 +309,7 @@ public class Act_add_semister extends AppCompatActivity {
         tv_select_all = mDialog.findViewById(R.id.tv_select_all);
         checkbox_all = mDialog.findViewById(R.id.checkbox_all);
         LinearLayout lay1 = mDialog.findViewById(R.id.lay1);
+         lay = mDialog.findViewById(R.id.lay);
         lay1.setVisibility(View.GONE);
         tv_title.setText("Semister ");
         tv_retry.setText("OK");
@@ -314,7 +318,7 @@ public class Act_add_semister extends AppCompatActivity {
         rv.setLayoutManager(linearLayoutManager);
         rv.setItemAnimator(new DefaultItemAnimator());
         sem_list_string.clear();
-        adapter1 = new Ad_Semister_adapter(context, thana_list1, tv_station1, tv_select_all, checkbox_all, "DSR");
+        adapter1 = new Ad_ValueListNew(context, thana_list1, tv_station1, tv_select_all, checkbox_all,list,lay);
         rv.setAdapter(adapter1);
 
 
@@ -358,7 +362,7 @@ public class Act_add_semister extends AppCompatActivity {
 
                 String data = "";
 
-                List<SemList> list = adapter1.getList();
+                list = adapter1.getList();
 
                 for (int j = 0; j < list.size(); j++) {
                     sem_list_string.add(list.get(j).getSem());
