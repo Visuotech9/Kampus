@@ -101,15 +101,16 @@ public class BaseRequest<T> extends BaseRequestParser {
         APINumber_ = APINumber;
         showLoader();
 
-        if (jsonObject == null) {
-            jsonObject = new JsonObject();
-        }
+//        if (jsonObject == null) {
+//            jsonObject = new JsonObject();
+//        }
 
         //  String baseURL = ApiClient.getClient().baseUrl().toString() + remainingURL;
+
         Log.i("BaseReq",
                 "Url" + " : " + remainingURL);
         logFullResponse(jsonObject.toString(), "INPUT");
-        ApiInterface apiInterface_ = ApiClient.getCustomClient(remainingURL).create(ApiInterface.class);
+
         Call<JsonElement> call = apiInterface.postDataCustomURL(remainingURL, jsonObject);
 
         call.enqueue(responseCallback);

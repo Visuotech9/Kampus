@@ -34,6 +34,7 @@
     <color name="DeepPink">#FF1493</color>
     <color name="Fuchsia">#FF00FF</color>
     <color name="Magenta">#FF00FF</color>
+    <color name="border_color">#9a9a9a</color>
 
     <color name="colorPrimary">#067b93</color>
     <color name="colorPrimaryDark">#FF0C6173</color>

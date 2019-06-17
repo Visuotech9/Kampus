@@ -10,10 +10,12 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -59,7 +61,8 @@ public class Act_course_list extends AppCompatActivity {
     private BaseRequest baseRequest;
     EditText inputSearch;
 
-    ArrayList<Course> course_list;
+    ArrayList<Course> course_list=new ArrayList<>();
+    ArrayList<Course> course_list2=new ArrayList<>();
     ArrayList<String>course_name_list=new ArrayList<>();
 
     ImageView iv_add;
@@ -98,74 +101,6 @@ public class Act_course_list extends AppCompatActivity {
         inputSearch = (EditText) rowView.findViewById(R.id.inputSearch);
         iv_add =  rowView.findViewById(R.id.iv_add);
 
-        iv_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mDialog=new Dialog(context);
-                mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);  //without extar space of title
-                mDialog.setContentView(R.layout.add_course);
-                mDialog.setCanceledOnTouchOutside(false);
-                //dialog layout
-
-                ImageView iv_cancel_dialog;
-                Button btn_save;
-//                 TextView tv_alert;
-                final EditText et_name;
-//
-                iv_cancel_dialog=mDialog.findViewById(R.id.iv_cancel_dialog);
-                tv_alert=mDialog.findViewById(R.id.tv_alert);
-                et_name= mDialog.findViewById(R.id.et_name);
-                btn_save= mDialog.findViewById(R.id.btn_save);
-                iv_cancel_dialog.setOnClickListener(new View.OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View v) {
-                        mDialog.cancel();
-                        ApigetCourse();
-
-
-                    }
-                });
-                btn_save.setOnClickListener(new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        if (et_name.getText().toString().isEmpty()) {
-                            tv_alert.setVisibility(View.VISIBLE);
-                            tv_alert.setTextColor(getResources().getColor(R.color.DarkRed));
-                            tv_alert.setText("please enter course name!!");
-                        } else{
-                            courseName=et_name.getText().toString();
-                            apiAddCourse();
-                            et_name.setText("");
-                        }
-
-
-                    }
-                });
-                mDialog.show();
-            }
-        });
-
-
-        inputSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                //after the change calling the method and passing the search input
-                filter(editable.toString());
-            }
-        });
 
         ApigetCourse();
 
@@ -221,11 +156,6 @@ public class Act_course_list extends AppCompatActivity {
                 tv_alert.setTextColor(getResources().getColor(R.color.Green));
                 tv_alert.setText("course saved sucessfully!!");
 
-//                sessionParam.clearPreferences(context);
-//                Intent intent=new Intent(A.this,Act_College_list.class);
-//                startActivity(intent);
-//                finish();
-
             }
 
             @Override
@@ -248,29 +178,121 @@ public class Act_course_list extends AppCompatActivity {
     }
 
 
-    private void filter(String text) {
-        //new array list that will hold the filtered data
-        ArrayList<Course> course_list2 = new ArrayList<>();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search, menu);
 
-        //looping through existing elements
-        for (int i=0;i<course_list.size();i++){
-            if (course_list.get(i).getCourse_name().toLowerCase().contains(text.toLowerCase())){
-                Course course=new Course();
-                course.setCourse_name(course_list.get(i).getCourse_name());
-                course_list2.add(course);
+        MenuItem search_item = menu.findItem(R.id.mi_search);
+
+        SearchView searchView = (SearchView) search_item.getActionView();
+
+
+        searchView.setFocusable(false);
+        searchView.setQueryHint("Search");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+
+                course_list2.clear();
+
+//                keyword = s.toUpperCase();
+
+                for (int i=0;i<course_list.size();i++){
+                    if (course_list.get(i).getCourse_name().toLowerCase().contains(s.toLowerCase())){
+                        Course course=new Course();
+                        course.setCourse_name(course_list.get(i).getCourse_name());
+                        course_list2.add(course);
+                    }
+                }
+                adapter = new Ad_course(course_list2, context);
+                rv_list.setAdapter(adapter);
+                return false;
             }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+
+                course_list2.clear();
+
+                for (int i=0;i<course_list.size();i++){
+                    if (course_list.get(i).getCourse_name().toLowerCase().contains(s.toLowerCase())){
+                        Course course=new Course();
+                        course.setCourse_name(course_list.get(i).getCourse_name());
+                        course_list2.add(course);
+                    }
+                }
+                adapter = new Ad_course(course_list2, context);
+                rv_list.setAdapter(adapter);
+                return false;
+            }
+        });
+
+
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                Intent i = new Intent(Act_course_list.this, Administrator_Act_home.class);
+                startActivity(i);
+                finish();
+                break;
+
+            case R.id.add_user:
+                mDialog=new Dialog(context);
+                mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);  //without extar space of title
+                mDialog.setContentView(R.layout.add_course);
+                mDialog.setCanceledOnTouchOutside(false);
+                //dialog layout
+
+                ImageView iv_cancel_dialog;
+                Button btn_save;
+//                 TextView tv_alert;
+                final EditText et_name;
+//
+                iv_cancel_dialog=mDialog.findViewById(R.id.iv_cancel_dialog);
+                tv_alert=mDialog.findViewById(R.id.tv_alert);
+                et_name= mDialog.findViewById(R.id.et_name);
+                btn_save= mDialog.findViewById(R.id.btn_save);
+                iv_cancel_dialog.setOnClickListener(new View.OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View v) {
+                        mDialog.cancel();
+                        ApigetCourse();
+
+
+                    }
+                });
+                btn_save.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        if (et_name.getText().toString().isEmpty()) {
+                            tv_alert.setVisibility(View.VISIBLE);
+                            tv_alert.setTextColor(getResources().getColor(R.color.DarkRed));
+                            tv_alert.setText("please enter course name!!");
+                        } else{
+                            courseName=et_name.getText().toString();
+                            apiAddCourse();
+                            et_name.setText("");
+                        }
+
+
+                    }
+                });
+                mDialog.show();
+                break;
         }
 
-        //calling a method of the adapter class and passing the filtered list
-        adapter.filterList(course_list2);
-    }
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Intent i = new Intent(Act_course_list.this, Administrator_Act_home.class);
-        startActivity(i);
-        finish();
         return true;
 
     }
+
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

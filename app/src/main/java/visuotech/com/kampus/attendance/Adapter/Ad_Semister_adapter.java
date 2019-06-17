@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -69,13 +70,12 @@ public class Ad_Semister_adapter extends RecyclerView.Adapter<Ad_Semister_adapte
         holder.checkbox1.setOnCheckedChangeListener(null);
         checkbox_all.setOnCheckedChangeListener(null);
         holder.checkbox1.setChecked(thana.isSelected());
-        checkbox_all.setChecked(thana.isSelected2());
+        checkbox_all.setChecked(thana.isselectAll);
         holder.tv_station.setText(list.get(i).getSem());
 
         holder.checkbox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
 
                 if (isChecked==true){
                     thana.setSelected(isChecked);
@@ -89,22 +89,23 @@ public class Ad_Semister_adapter extends RecyclerView.Adapter<Ad_Semister_adapte
                 }
             }
         });
+
         checkbox_all.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 if (isChecked==false){
                     flagSelectAll = true;
-                    diselectAllItem(false);
+                    diselectAllItem(false,thana);
                     checkbox_all.setChecked(false);
-                    thana.setSelected2(false);
+                    thana.setIsselectAll(false);
                     list11.clear();
 
 
                 }else {
-                    selectAllItem(true);
+                    selectAllItem(true,thana);
                     checkbox_all.setChecked(true);
-                    thana.setSelected2(true);
+                    thana.setIsselectAll(true);
                 }
 
             }
@@ -114,17 +115,17 @@ public class Ad_Semister_adapter extends RecyclerView.Adapter<Ad_Semister_adapte
             @Override
             public void onClick(View view) {
                 list11.clear();
-                if (thana.isSelected2) {
+                if (thana.isselectAll) {
                     flagSelectAll = true;
-                    diselectAllItem(false);
+                    diselectAllItem(false, thana);
                     checkbox_all.setChecked(false);
-                    thana.setSelected2(false);
+                    thana.setIsselectAll(false);
                     list11.clear();
 
                 } else {
-                    selectAllItem(true);
+                    selectAllItem(true, thana);
                     checkbox_all.setChecked(true);
-                    thana.setSelected2(true);
+                    thana.setIsselectAll(true);
                 }
 
             }
@@ -135,12 +136,11 @@ public class Ad_Semister_adapter extends RecyclerView.Adapter<Ad_Semister_adapte
         holder.tv_station.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SemList thana=new SemList();
-                if (holder.checkbox1.isSelected()){
-                    flagSelectAll = true;
+               if (holder.checkbox1.isSelected()){
                     list.get(i).setSelected(false);
                     holder.checkbox1.setChecked(false);
                     holder.checkbox1.setSelected(false);
+                    list.get(i).setSelected(false);
                     list11.remove(i);
 
                 }else {
@@ -150,10 +150,10 @@ public class Ad_Semister_adapter extends RecyclerView.Adapter<Ad_Semister_adapte
                     list.get(i).setSelected(true);
                     thana.setSelected(true);
                     thana.setSem(list.get(i).getSem());
+                   list.get(i).setSelected(true);
                     list11.add(thana);
 
                 }
-
 
 
             }
@@ -161,15 +161,14 @@ public class Ad_Semister_adapter extends RecyclerView.Adapter<Ad_Semister_adapte
 
     }
 
-    public void selectAllItem(boolean isSelectedAll) {
+    public void selectAllItem(boolean isSelectedAll, SemList thana) {
         if (list != null) {
 
             list11.clear();
             for (int index = 0; index < list.size(); index++) {
-                SemList thana2 = new SemList();
                 list.get(index).setSelected(isSelectedAll);
-                thana2.setSem(list.get(index).getSem());
-                list11.add(thana2);
+                thana.setSem(list.get(index).getSem());
+                list11.add(thana);
             }
             Log.e("LIST222_LENGTH", String.valueOf(list11.size()));
             notifyDataSetChanged();
@@ -177,9 +176,8 @@ public class Ad_Semister_adapter extends RecyclerView.Adapter<Ad_Semister_adapte
 
     }
 
-    public void diselectAllItem(boolean isSelectedAll) {
+    public void diselectAllItem(boolean isSelectedAll, SemList thana) {
         if (list != null) {
-            SemList thana2 = new SemList();
             for (int index = 0; index < list.size(); index++) {
                 list.get(index).setSelected(isSelectedAll);
             }
@@ -205,8 +203,9 @@ public class Ad_Semister_adapter extends RecyclerView.Adapter<Ad_Semister_adapte
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView tv_station;
+        TextView tv_station,tv_value;
         LinearLayout lay_linear;
+        ImageView iv_cb;
         CircleImageView iv_profile_image;
         LinearLayout lay_call, lay_message;
         CheckBox checkbox1;
@@ -217,6 +216,8 @@ public class Ad_Semister_adapter extends RecyclerView.Adapter<Ad_Semister_adapte
             tv_station = itemView.findViewById(R.id.tv_station);
             checkbox1 = itemView.findViewById(R.id.checkbox1);
             lay_linear = itemView.findViewById(R.id.lay_linear);
+            tv_value = itemView.findViewById(R.id.tv_value);
+            iv_cb = itemView.findViewById(R.id.iv_cb);
         }
     }
 }
