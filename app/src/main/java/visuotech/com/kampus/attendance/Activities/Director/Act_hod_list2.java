@@ -68,7 +68,7 @@ public class Act_hod_list2 extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor((Color.parseColor("#FFFFFF")));
-        getSupportActionBar().setTitle("HOD List");
+        getSupportActionBar().setTitle("Head of departments");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         context = this;

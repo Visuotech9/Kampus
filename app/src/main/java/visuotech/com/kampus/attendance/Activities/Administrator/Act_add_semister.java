@@ -85,7 +85,7 @@ public class Act_add_semister extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor((Color.parseColor("#FFFFFF")));
-        getSupportActionBar().setTitle("Semister");
+        getSupportActionBar().setTitle("Add Semister");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         context = this;

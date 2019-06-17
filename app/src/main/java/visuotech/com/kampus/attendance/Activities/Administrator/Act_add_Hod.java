@@ -129,7 +129,7 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor((Color.parseColor("#FFFFFF")));
-        getSupportActionBar().setTitle("Add Director");
+        getSupportActionBar().setTitle("Add HOD");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         context = this;

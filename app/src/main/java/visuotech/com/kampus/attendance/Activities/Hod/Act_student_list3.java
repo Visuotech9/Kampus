@@ -10,10 +10,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -31,6 +33,9 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Response;
+import visuotech.com.kampus.attendance.Activities.Director.Act_add_student2;
+import visuotech.com.kampus.attendance.Activities.Director.Act_student_list2;
+import visuotech.com.kampus.attendance.Activities.Director.Director_Act_home;
 import visuotech.com.kampus.attendance.Adapter.Ad_student;
 import visuotech.com.kampus.attendance.MarshMallowPermission;
 import visuotech.com.kampus.attendance.Model.Director;
@@ -51,6 +56,8 @@ public class Act_student_list3 extends AppCompatActivity {
     LinearLayoutManager linearLayoutManager;
     ProgressBar progressbar;
     ArrayList<Student> student_list=new ArrayList<>();;
+    ArrayList<Student> student_list2=new ArrayList<>();;
+
 
 
     private boolean isLoading;
@@ -111,23 +118,6 @@ public class Act_student_list3 extends AppCompatActivity {
 
 
 
-        inputSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                //after the change calling the method and passing the search input
-//                filter(editable.toString());
-            }
-        });
 
         rv_list.addOnScrollListener(new PaginationScrollListener(linearLayoutManager) {
             @Override
@@ -165,67 +155,6 @@ public class Act_student_list3 extends AppCompatActivity {
 
 
     }
-
-/*
-
-    private void loadFirstPage(final int currentPage) {
-        Log.d(TAG, "loadFirstPage: ");
-
-        callTopRatedMoviesApi().enqueue(new Callback<ModelResponse>() {
-            @Override
-            public void onResponse(Call<ModelResponse> call, Response<ModelResponse> response) {
-
-                results = fetchResults(response);
-                students = (List<Student>) response.body().getmData();
-//                Toast.makeText(getApplicationContext(),response.body().getMessage(),Toast.LENGTH_SHORT).show();
-//                businessLogic(movies);
-                progressbar.setVisibility(View.GONE);
-                adapter.addAll(students);
-                int TOTAL_PAGES= Integer.parseInt(students.get(0).getTotal_pages());
-//                int current_page=response.body().getCurrent_page();
-                if (currentPage != TOTAL_PAGES)
-                    adapter.addLoadingFooter();
-                else isLastPage = true;
-            }
-
-            @Override
-            public void onFailure(Call<ModelResponse> call, Throwable t) {
-                t.printStackTrace();
-            }
-        });
-
-    }
-
-    private void loadNextPage(final int currentPage) {
-        Log.d(TAG, "loadNextPage: " + currentPage);
-
-        callTopRatedMoviesApi().enqueue(new Callback<ModelResponse>() {
-            @Override
-            public void onResponse(Call<ModelResponse> call, Response<ModelResponse> response) {
-                adapter.removeLoadingFooter();
-                isLoading = false;
-                results = fetchResults(response);
-                students = (List<Student>) response.body().getmData();
-//                businessLogic(movies);
-                int TOTAL_PAGES= Integer.parseInt(students.get(0).getTotal_pages());
-                adapter.addAll(students);
-
-
-                if (currentPage != TOTAL_PAGES)
-                    adapter.addLoadingFooter();
-                else isLastPage = true;
-            }
-
-            @Override
-            public void onFailure(Call<ModelResponse> call, Throwable t) {
-                t.printStackTrace();
-            }
-        });
-    }
-
-*/
-
-
 
     private List<Student> fetchResults(Response<ModelResponse> response) {
         ModelResponse topRatedMovies = response.body();
@@ -313,42 +242,97 @@ public class Act_student_list3 extends AppCompatActivity {
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search, menu);
+
+        MenuItem search_item = menu.findItem(R.id.mi_search);
+
+        SearchView searchView = (SearchView) search_item.getActionView();
 
 
-    private void filter(String text) {
-        //new array list that will hold the filtered data
-//        ArrayList<Student> student_list2 = new ArrayList<>();
-        ArrayList<Student>student_list2 = new ArrayList<>();
+        searchView.setFocusable(false);
+        searchView.setQueryHint("Search");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
 
-
-        //looping through existing elements
-        for (int i=0;i<student_list.size();i++){
-            if (student_list.get(i).getFull_name().toLowerCase().contains(text.toLowerCase())){
-                Student student=new Student();
-                student.setFull_name(student_list.get(i).getFull_name());
-                student.setStudent_department_name(student_list.get(i).getStudent_department_name());
-                student.setEnrollment_no(student_list.get(i).getEnrollment_no());
-                student.setStudent_pic(student_list.get(i).getStudent_pic());
-                student.setStudent_semester(student_list.get(i).getStudent_semester());
-                student.setStudent_section(student_list.get(i).getStudent_section());
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                student_list2.clear();
 
 
-                student_list2.add(student);
+                for (int i = 0; i < student_list.size(); i++) {
+                    if (student_list.get(i).getFull_name().toLowerCase().contains(s.toLowerCase())) {
+                        Student student = new Student();
+                        student.setFull_name(student_list.get(i).getFull_name());
+                        student.setStudent_department_name(student_list.get(i).getStudent_department_name());
+                        student.setEnrollment_no(student_list.get(i).getEnrollment_no());
+                        student.setStudent_pic(student_list.get(i).getStudent_pic());
+                        student.setStudent_semester(student_list.get(i).getStudent_semester());
+                        student.setStudent_section(student_list.get(i).getStudent_section());
+
+
+                        student_list2.add(student);
+                    }
+                }
+                adapter = new Ad_student(student_list2, context);
+                rv_list.setAdapter(adapter);
+                return false;
             }
-        }
 
-        //calling a method of the adapter class and passing the filtered list
-        adapter.filterList(student_list2);
+            @Override
+            public boolean onQueryTextChange(String s) {
+
+                student_list2.clear();
+
+
+                for (int i = 0; i < student_list.size(); i++) {
+                    if (student_list.get(i).getFull_name().toLowerCase().contains(s.toLowerCase())) {
+                        Student student = new Student();
+                        student.setFull_name(student_list.get(i).getFull_name());
+                        student.setStudent_department_name(student_list.get(i).getStudent_department_name());
+                        student.setEnrollment_no(student_list.get(i).getEnrollment_no());
+                        student.setStudent_pic(student_list.get(i).getStudent_pic());
+                        student.setStudent_semester(student_list.get(i).getStudent_semester());
+                        student.setStudent_section(student_list.get(i).getStudent_section());
+
+
+                        student_list2.add(student);
+                    }
+                }
+                adapter = new Ad_student(student_list2, context);
+                rv_list.setAdapter(adapter);
+
+                return false;
+            }
+        });
+
+
+        return true;
     }
 
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent i = new Intent(Act_student_list3.this, HOD_Act_home.class);
-        startActivity(i);
-        finish();
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent i = new Intent(Act_student_list3.this, HOD_Act_home.class);
+                startActivity(i);
+                finish();
+                break;
+
+            case R.id.add_user:
+//                Intent i1 = new Intent(Act_student_list3.this, Act_add_student3.class);
+//                startActivity(i1);
+//                finish();
+                break;
+        }
+
         return true;
 
     }
+
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

@@ -76,6 +76,7 @@ public class Act_student_list4 extends AppCompatActivity implements AdapterView.
     LinearLayoutManager linearLayoutManager;
     ProgressBar progressbar;
     ArrayList<Student> student_list=new ArrayList<>();
+    ArrayList<Student> student_list2=new ArrayList<>();
     ApiInterface apiInterface;
     Context context;
     Activity activity;
@@ -145,23 +146,6 @@ public class Act_student_list4 extends AppCompatActivity implements AdapterView.
 
 
 
-        inputSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                //after the change calling the method and passing the search input
-//                filter(editable.toString());
-            }
-        });
 
         rv_list.addOnScrollListener(new PaginationScrollListener(linearLayoutManager) {
             @Override
@@ -563,44 +547,96 @@ public class Act_student_list4 extends AppCompatActivity implements AdapterView.
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search, menu);
+
+        MenuItem search_item = menu.findItem(R.id.mi_search);
+
+        SearchView searchView = (SearchView) search_item.getActionView();
 
 
+        searchView.setFocusable(false);
+        searchView.setQueryHint("Search");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
 
-    private void filter(String text) {
-        //new array list that will hold the filtered data
-//        ArrayList<Student> student_list2 = new ArrayList<>();
-        ArrayList<Student>student_list2 = new ArrayList<>();
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                student_list2.clear();
 
 
-
-        //looping through existing elements
-        for (int i=0;i<student_list.size();i++){
-            if (student_list.get(i).getFull_name().toLowerCase().contains(text.toLowerCase())){
-                Student student=new Student();
-                student.setFull_name(student_list.get(i).getFull_name());
-                student.setStudent_department_name(student_list.get(i).getStudent_department_name());
-                student.setEnrollment_no(student_list.get(i).getEnrollment_no());
-                student.setStudent_pic(student_list.get(i).getStudent_pic());
-                student.setStudent_semester(student_list.get(i).getStudent_semester());
-                student.setStudent_section(student_list.get(i).getStudent_section());
+                for (int i = 0; i < student_list.size(); i++) {
+                    if (student_list.get(i).getFull_name().toLowerCase().contains(s.toLowerCase())) {
+                        Student student = new Student();
+                        student.setFull_name(student_list.get(i).getFull_name());
+                        student.setStudent_department_name(student_list.get(i).getStudent_department_name());
+                        student.setEnrollment_no(student_list.get(i).getEnrollment_no());
+                        student.setStudent_pic(student_list.get(i).getStudent_pic());
+                        student.setStudent_semester(student_list.get(i).getStudent_semester());
+                        student.setStudent_section(student_list.get(i).getStudent_section());
 
 
-                student_list2.add(student);
+                        student_list2.add(student);
+                    }
+                }
+                adapter = new Ad_student(student_list2, context);
+                rv_list.setAdapter(adapter);
+                return false;
             }
-        }
 
-        //calling a method of the adapter class and passing the filtered list
-        adapter.filterList(student_list2);
+            @Override
+            public boolean onQueryTextChange(String s) {
+
+                student_list2.clear();
+
+
+                for (int i = 0; i < student_list.size(); i++) {
+                    if (student_list.get(i).getFull_name().toLowerCase().contains(s.toLowerCase())) {
+                        Student student = new Student();
+                        student.setFull_name(student_list.get(i).getFull_name());
+                        student.setStudent_department_name(student_list.get(i).getStudent_department_name());
+                        student.setEnrollment_no(student_list.get(i).getEnrollment_no());
+                        student.setStudent_pic(student_list.get(i).getStudent_pic());
+                        student.setStudent_semester(student_list.get(i).getStudent_semester());
+                        student.setStudent_section(student_list.get(i).getStudent_section());
+
+
+                        student_list2.add(student);
+                    }
+                }
+                adapter = new Ad_student(student_list2, context);
+                rv_list.setAdapter(adapter);
+
+                return false;
+            }
+        });
+
+
+        return true;
     }
 
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent i = new Intent(Act_student_list4.this, Faculty_Act_home.class);
-        startActivity(i);
-        finish();
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent i = new Intent(Act_student_list4.this, Faculty_Act_home.class);
+                startActivity(i);
+                finish();
+                break;
+
+            case R.id.add_user:
+//                Intent i1 = new Intent(Act_student_list4.this, Act_add_student3.class);
+//                startActivity(i1);
+//                finish();
+                break;
+        }
+
         return true;
 
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

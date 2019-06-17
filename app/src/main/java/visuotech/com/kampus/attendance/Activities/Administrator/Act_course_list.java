@@ -79,7 +79,7 @@ public class Act_course_list extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor((Color.parseColor("#FFFFFF")));
-        getSupportActionBar().setTitle("Director List");
+        getSupportActionBar().setTitle("Courses");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         context = this;
