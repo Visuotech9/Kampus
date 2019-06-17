@@ -24,6 +24,7 @@
         android:id="@+id/profileCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         app:cardCornerRadius="4dp"
@@ -38,96 +39,141 @@
             android:paddingTop="10dp"
             android:layout_height="wrap_content">
 
-
-            <TextView
-                android:layout_width="match_parent"
-                android:text="Select Semister :"
-                android:paddingLeft="5dp"
-                android:textColor="@color/Black"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_height="wrap_content" />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="8dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/background_border"
-                android:paddingBottom="8dp"
-                android:orientation="horizontal">
+                android:weightSum="1"
+                android:layout_height="wrap_content">
 
-
-                <Spinner
-                    android:id="@+id/spinner_sem"
-                    android:paddingLeft="20dp"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".30"
+                    android:orientation="vertical"
                     android:layout_height="wrap_content"
-                    />
-                <!--android:entries="@array/user_type"-->
+                    tools:ignore="Suspicious0dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:text="Semister"
+                        android:textSize="13dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/background_border"
+                        android:paddingBottom="8dp"
+                        android:orientation="horizontal"
+                        tools:ignore="Suspicious0dp">
+
+
+                        <Spinner
+                            android:id="@+id/spinner_sem"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".30"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
+                    tools:ignore="Suspicious0dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:text="Section :"
+                        android:textSize="13dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/background_border"
+                        android:paddingBottom="8dp"
+                        android:orientation="horizontal"
+                        tools:ignore="Suspicious0dp">
+
+
+                        <Spinner
+                            android:id="@+id/spinner_section"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".4"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
+                    tools:ignore="Suspicious0dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:text="Day :"
+                        android:textSize="13dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/background_border"
+                        android:paddingBottom="8dp"
+                        android:orientation="horizontal"
+                        tools:ignore="Suspicious0dp">
+
+
+                        <Spinner
+                            android:id="@+id/spinner_day"
+                            android:autofillHints="hhdfhf"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
 
 
             </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:text="Select Section :"
-                android:paddingLeft="5dp"
-                android:textColor="@color/Black"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_height="wrap_content" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="8dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/background_border"
-                android:paddingBottom="8dp"
-                android:orientation="horizontal">
 
 
-                <Spinner
-                    android:id="@+id/spinner_section"
-                    android:paddingLeft="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:text="Select Day :"
-                android:paddingLeft="5dp"
-                android:textColor="@color/Black"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_height="wrap_content" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="8dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/background_border"
-                android:paddingBottom="8dp"
-                android:orientation="horizontal">
-
-
-                <Spinner
-                    android:id="@+id/spinner_day"
-                    android:paddingLeft="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-            </LinearLayout>
 
         </LinearLayout>
 
@@ -166,8 +212,9 @@
                     android:layout_width="match_parent"
                     android:text="Select Faculty :"
                     android:paddingLeft="5dp"
+                    android:textSize="13dp"
                     android:textColor="@color/colorPrimaryDark"
-
+                    android:textStyle="bold"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_height="wrap_content" />
@@ -209,7 +256,9 @@
                     android:layout_width="match_parent"
                     android:text="Select Subject :"
                     android:paddingLeft="5dp"
-                    android:textColor="@color/Black"
+                    android:textSize="13dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_height="wrap_content" />
@@ -257,8 +306,9 @@
                 android:layout_width="0dp"
                 android:layout_weight=".22"
                 android:text="Start time:"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textSize="13dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
                 android:gravity="center_vertical"
                 android:layout_height="match_parent"
                 tools:ignore="Suspicious0dp" />
@@ -337,8 +387,9 @@
                 android:layout_width="0dp"
                 android:layout_weight=".20"
                 android:text="End time:"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:textSize="13dp"
                 android:gravity="center_vertical"
                 android:layout_height="match_parent"
                 tools:ignore="Suspicious0dp" />
@@ -417,7 +468,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:weightSum="1"
-            android:background="@color/colorPrimary"
+            android:background="@color/LightCoral"
             android:layout_height="30dp">
 
             <TextView
@@ -427,7 +478,7 @@
                 android:gravity="center_horizontal"
                 android:layout_gravity="center_vertical"
                 android:layout_weight=".08"
-                android:textColor="@color/White"
+                android:textColor="@color/Black"
                 android:singleLine="true" />
             <TextView
                 android:layout_width="0dp"
@@ -436,7 +487,7 @@
                 android:gravity="center_horizontal"
                 android:layout_gravity="center_vertical"
                 android:layout_weight=".28"
-                android:textColor="@color/White"
+                android:textColor="@color/Black"
                 android:singleLine="true" />
             <TextView
                 android:layout_width="0dp"
@@ -445,7 +496,7 @@
                 android:gravity="center_horizontal"
                 android:layout_gravity="center_vertical"
                 android:layout_weight=".28"
-                android:textColor="@color/White"
+                android:textColor="@color/Black"
                 android:singleLine="true" />
             <TextView
                 android:layout_width="0dp"
@@ -454,7 +505,7 @@
                 android:gravity="center_horizontal"
                 android:layout_gravity="center_vertical"
                 android:layout_weight=".15"
-                android:textColor="@color/White"
+                android:textColor="@color/Black"
                 android:singleLine="true" />
             <TextView
                 android:layout_width="0dp"
@@ -463,7 +514,7 @@
                 android:gravity="center_horizontal"
                 android:layout_gravity="center_vertical"
                 android:layout_weight=".15"
-                android:textColor="@color/White"
+                android:textColor="@color/Black"
                 android:singleLine="true" />
 
         </LinearLayout>
@@ -508,20 +559,6 @@
 
 
 </LinearLayout>
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/btn_fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/rv_list"
-            android:layout_alignRight="@+id/rv_list"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom|end"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="@color/DarkRed"
-            android:src="@drawable/plus"
-            app:borderWidth="0dp"
-            app:elevation="2dp" />
 
 
     </FrameLayout>

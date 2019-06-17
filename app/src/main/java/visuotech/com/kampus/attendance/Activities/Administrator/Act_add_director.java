@@ -175,13 +175,13 @@ public class Act_add_director extends AppCompatActivity implements AdapterView.O
 
             }
         });
-        iv_cal_dob.setOnClickListener(new View.OnClickListener() {
+        tv_dob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getDate(tv_dob);
             }
         });
-        iv_cal_doj.setOnClickListener(new View.OnClickListener() {
+        tv_doj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getDate(tv_doj);
