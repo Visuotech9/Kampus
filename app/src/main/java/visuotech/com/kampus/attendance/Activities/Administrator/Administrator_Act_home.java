@@ -28,6 +28,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import okhttp3.MediaType;
@@ -71,7 +72,8 @@ public class Administrator_Act_home extends AppCompatActivity  {
         TextView tv_toolbar=findViewById(R.id.tv_toolbar);
         ImageView iv_toolbar=findViewById(R.id.iv_toolbar);
         tv_toolbar.setText(sessionParam.org_name);
-        Picasso.get().load(sessionParam.org_logo).into(iv_toolbar);
+        Picasso.get().load("http://collectorexpress.in/Kampus/College_logo/28-02-2019-1551331894-1.jpg").into(iv_toolbar);
+//        Glide.with(context).load(sessionParam.org_logo).into(iv_toolbar);
 //        toolbar.setTitle(sessionParam.org_name);
         setSupportActionBar(toolbar);
       /*
@@ -148,7 +150,7 @@ public class Administrator_Act_home extends AppCompatActivity  {
 
         tv_name.setText(sessionParam.login_name);
         tv_designation.setText("("+sessionParam.designation+")");
-        Picasso.get().load(sessionParam.user_image).into(iv_image);
+        Picasso.get().load("http://collectorexpress.in/Kampus/College_logo/28-02-2019-1551331894-1.jpg").into(iv_image);
 
         iv_image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -380,19 +382,15 @@ public class Administrator_Act_home extends AppCompatActivity  {
                     }
                 });
                 mDialog.show();
-
                 break;
 
             case R.id.menu_logout:
-
                 alertDialogLogout();
-
                 break;
 
             case R.id.menu_notification:
                 Toast.makeText(this, "You clicked about", Toast.LENGTH_SHORT).show();
                 break;
-
 
         }
         return true;

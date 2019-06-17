@@ -10,10 +10,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -31,9 +33,11 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Response;
+import visuotech.com.kampus.attendance.Adapter.Ad_faculty;
 import visuotech.com.kampus.attendance.Adapter.Ad_student;
 import visuotech.com.kampus.attendance.MarshMallowPermission;
 import visuotech.com.kampus.attendance.Model.Director;
+import visuotech.com.kampus.attendance.Model.Faculty;
 import visuotech.com.kampus.attendance.Model.ModelResponse;
 import visuotech.com.kampus.attendance.Model.Student;
 import visuotech.com.kampus.attendance.PaginationScrollListener;
@@ -51,6 +55,7 @@ public class Act_student_list extends AppCompatActivity {
     LinearLayoutManager linearLayoutManager;
     ProgressBar progressbar;
     ArrayList<Student>student_list=new ArrayList<>();;
+    ArrayList<Student>student_list2=new ArrayList<>();;
 
 
     private boolean isLoading;
@@ -349,6 +354,77 @@ public class Act_student_list extends AppCompatActivity {
 
         //calling a method of the adapter class and passing the filtered list
         adapter.filterList(student_list2);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search, menu);
+
+        MenuItem search_item = menu.findItem(R.id.mi_search);
+
+        SearchView searchView = (SearchView) search_item.getActionView();
+
+
+        searchView.setFocusable(false);
+        searchView.setQueryHint("Search");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                student_list2.clear();
+
+
+
+                for (int i=0;i<student_list.size();i++){
+                    if (student_list.get(i).getFull_name().toLowerCase().contains(s.toLowerCase())){
+                        Student student=new Student();
+                        student.setFull_name(student_list.get(i).getFull_name());
+                        student.setStudent_department_name(student_list.get(i).getStudent_department_name());
+                        student.setEnrollment_no(student_list.get(i).getEnrollment_no());
+                        student.setStudent_pic(student_list.get(i).getStudent_pic());
+                        student.setStudent_semester(student_list.get(i).getStudent_semester());
+                        student.setStudent_section(student_list.get(i).getStudent_section());
+
+
+                        student_list2.add(student);
+                    }
+                }
+                adapter = new Ad_student(student_list2, context);
+                rv_list.setAdapter(adapter);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+
+                student_list2.clear();
+
+
+
+                for (int i=0;i<student_list.size();i++){
+                    if (student_list.get(i).getFull_name().toLowerCase().contains(s.toLowerCase())){
+                        Student student=new Student();
+                        student.setFull_name(student_list.get(i).getFull_name());
+                        student.setStudent_department_name(student_list.get(i).getStudent_department_name());
+                        student.setEnrollment_no(student_list.get(i).getEnrollment_no());
+                        student.setStudent_pic(student_list.get(i).getStudent_pic());
+                        student.setStudent_semester(student_list.get(i).getStudent_semester());
+                        student.setStudent_section(student_list.get(i).getStudent_section());
+
+
+                        student_list2.add(student);
+                    }
+                }
+                adapter = new Ad_student(student_list2, context);
+                rv_list.setAdapter(adapter);
+
+                return false;
+            }
+        });
+
+
+        return true;
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
