@@ -89,7 +89,7 @@ public class Act_semister_list extends AppCompatActivity implements AdapterView.
 
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor((Color.parseColor("#FFFFFF")));
-        getSupportActionBar().setTitle("Semister");
+        getSupportActionBar().setTitle("Semisters");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         context = this;

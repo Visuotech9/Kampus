@@ -70,7 +70,7 @@ public class Act_director_list extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor((Color.parseColor("#FFFFFF")));
-        getSupportActionBar().setTitle("Director List");
+        getSupportActionBar().setTitle("Directors");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         context = this;

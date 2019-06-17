@@ -89,7 +89,7 @@ public class Act_student_list extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor((Color.parseColor("#FFFFFF")));
-        getSupportActionBar().setTitle("Director List");
+        getSupportActionBar().setTitle("Students");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         context = this;
@@ -114,14 +114,6 @@ public class Act_student_list extends AppCompatActivity {
         inputSearch = (EditText) rowView.findViewById(R.id.inputSearch);
         iv_add =  rowView.findViewById(R.id.iv_add);
 
-        iv_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(Act_student_list.this, Act_add_student.class);
-                startActivity(i);
-                finish();
-            }
-        });
 
 
         inputSearch.addTextChangedListener(new TextWatcher() {
@@ -426,14 +418,27 @@ public class Act_student_list extends AppCompatActivity {
 
         return true;
     }
-
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent i = new Intent(Act_student_list.this, Administrator_Act_home.class);
-      startActivity(i);
-          finish();
-         return true;
+
+        switch (item.getItemId()){
+            case android.R.id.home:
+                Intent i = new Intent(Act_student_list.this, Administrator_Act_home.class);
+                startActivity(i);
+                finish();
+                break;
+
+            case R.id.add_user:
+                Intent i1 = new Intent(Act_student_list.this, Act_add_student.class);
+                startActivity(i1);
+                finish();
+                break;
+        }
+
+        return true;
 
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

@@ -85,7 +85,7 @@ public class Act_department_list extends AppCompatActivity implements AdapterVie
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor((Color.parseColor("#FFFFFF")));
-        getSupportActionBar().setTitle("Director List");
+        getSupportActionBar().setTitle("Departments");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         context = this;

@@ -152,7 +152,7 @@ public class Act_add_student extends AppCompatActivity implements AdapterView.On
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor((Color.parseColor("#FFFFFF")));
-        getSupportActionBar().setTitle("Add Director");
+        getSupportActionBar().setTitle("Add Student");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         context = this;

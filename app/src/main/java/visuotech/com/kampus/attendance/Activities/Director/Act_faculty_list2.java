@@ -71,7 +71,7 @@ public class Act_faculty_list2 extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor((Color.parseColor("#FFFFFF")));
-        getSupportActionBar().setTitle("Faculty List");
+        getSupportActionBar().setTitle("Faculties");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         context = this;

@@ -23,6 +23,7 @@ public class Act_faculty_profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act_faculty_profile);
 
+
         iv_back=findViewById(R.id.iv_back);
         iv_profile_image=findViewById(R.id.iv_profile_image);
         tv_name=findViewById(R.id.tv_name);

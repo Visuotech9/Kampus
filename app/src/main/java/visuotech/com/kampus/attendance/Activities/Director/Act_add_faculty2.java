@@ -135,7 +135,7 @@ public class Act_add_faculty2 extends AppCompatActivity implements AdapterView.O
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor((Color.parseColor("#FFFFFF")));
-        getSupportActionBar().setTitle("aDD Faculty");
+        getSupportActionBar().setTitle("Add Faculty");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         context = this;
