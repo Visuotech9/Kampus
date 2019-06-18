@@ -5,101 +5,106 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fillViewport="true"
-    android:scrollbars="none"
+    android:orientation="vertical"
     android:scrollIndicators="none"
-    android:orientation="vertical" >
+    android:scrollbars="none">
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="1"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:background="@color/LightCoral"
-            >
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical"
+            card_view:cardElevation="5dp">
+
 
             <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="0dp"
-                android:layout_weight=".25"
-                android:gravity="center"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/iv_image"
-                    android:layout_width="70dp"
-
-                    android:layout_height="70dp"
-                    android:layout_centerInParent="true"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/img_logo_full"
-                    app:civ_border_color="@color/lightgrey"
-                    app:civ_border_width="1dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/lay_full_prof"
-                android:layout_width="0dp"
-                android:layout_weight=".6"
-                android:layout_gravity="center"
-                android:gravity="center_vertical"
+                android:id="@+id/lay"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:background="@color/LightCoral"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:weightSum="1">
 
-                <TextView
-                    android:id="@+id/tv_name"
-                    android:layout_width="wrap_content"
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".25"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/iv_image"
+                        android:layout_width="70dp"
+
+                        android:layout_height="70dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/img_logo_full"
+                        android:gravity="center_vertical"
+                        app:civ_border_color="@color/lightgrey"
+                        app:civ_border_width="1dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lay_full_prof"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="Stuti Tripathi"
-                    android:textStyle="bold"
-                    android:textColor="@color/Black"
-                    android:textSize="18dp"
-                    />
+                    android:layout_gravity="center"
+                    android:layout_weight=".6"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tv_course"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="3dp"
-                    android:text="Information and technology"
-                    android:textColor="@color/Black"/>
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="Stuti Tripathi"
+                        android:textColor="@color/Black"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_course"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="3dp"
+                        android:text="Information and technology"
+                        android:textColor="@color/Black" />
 
 
-                <TextView
-                    android:id="@+id/tv_designation"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="3dp"
-                    android:text="3rd semister "
-                    android:textColor="@color/colorPrimaryDark"/>
+                    <TextView
+                        android:id="@+id/tv_designation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="3dp"
+                        android:text="3rd semister "
+                        android:textColor="@color/colorPrimaryDark" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="90dp"
+                    android:layout_weight=".15"
+                    android:paddingTop="30dp"
+                    android:paddingBottom="30dp"
+                    android:src="@drawable/right_icon_black"
+                    tools:ignore="Suspicious0dp" />
+
 
             </LinearLayout>
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_weight=".15"
-                android:paddingTop="30dp"
-                android:paddingBottom="30dp"
-                android:src="@drawable/right_icon_black"
-                android:layout_height="90dp"
-                tools:ignore="Suspicious0dp" />
-
-
-
-        </LinearLayout>
-
+        </android.support.v7.widget.CardView>
 
 
         <!--
@@ -204,469 +209,418 @@
             android:layout_height="match_parent"
             android:background="@color/colorPrimarylight"
 
-            android:paddingTop="10dp"
-            android:orientation="vertical">
-
-
-
+            android:orientation="vertical"
+            android:paddingTop="10dp">
 
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="120dp"
                 android:orientation="horizontal"
-                android:weightSum="1"
-                android:layout_height="120dp">
+                android:weightSum="1">
 
                 <LinearLayout
-                    android:layout_width="0dp"
                     android:id="@+id/lay1"
-                    android:paddingTop="10dp"
-                    android:layout_weight=".33"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight=".33"
                     android:orientation="vertical"
+                    android:paddingTop="10dp"
                     tools:ignore="Suspicious0dp">
 
                     <LinearLayout
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:gravity="center_horizontal"
+                        android:layout_gravity="center_horizontal"
                         android:background="@drawable/bg_circular_imageview"
-                        android:layout_gravity="center_horizontal">
+                        android:gravity="center_horizontal">
 
-                        <com.mikhaellopez.circularimageview.CircularImageView
+                        <com.mikhaellopez.circularimageview.CircularImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:layout_width="55dp"
-                            xmlns:app="http://schemas.android.com/apk/res-auto"
-                            android:layout_marginTop="2.5dp"
                             android:layout_height="55dp"
+                            android:layout_marginTop="2.5dp"
                             android:src="@drawable/student_icon"
                             app:civ_border_color="@color/Gray"
                             app:civ_border_width="0dp"
                             app:civ_shadow="true"
-                            app:civ_shadow_radius="0"
-                            app:civ_shadow_color="@color/colorPrimary"/>
+                            app:civ_shadow_color="@color/colorPrimary"
+                            app:civ_shadow_radius="0" />
 
                     </LinearLayout>
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:text="Students"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:textColor="@color/Black"
-                        android:textSize="15dp"
                         android:gravity="center_horizontal"
-                        android:layout_height="wrap_content" />
-
-
-
+                        android:text="Students"
+                        android:textColor="@color/Black"
+                        android:textSize="15dp" />
 
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="0dp"
                     android:id="@+id/lay2"
-                    android:paddingTop="10dp"
-                    android:layout_weight=".33"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight=".33"
                     android:orientation="vertical"
+                    android:paddingTop="10dp"
                     tools:ignore="Suspicious0dp">
 
                     <LinearLayout
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:gravity="center_horizontal"
+                        android:layout_gravity="center_horizontal"
                         android:background="@drawable/bg_circular_imageview"
-                        android:layout_gravity="center_horizontal">
+                        android:gravity="center_horizontal">
 
-                        <com.mikhaellopez.circularimageview.CircularImageView
+                        <com.mikhaellopez.circularimageview.CircularImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:layout_width="55dp"
-                            xmlns:app="http://schemas.android.com/apk/res-auto"
-                            android:layout_marginTop="2.5dp"
                             android:layout_height="55dp"
+                            android:layout_marginTop="2.5dp"
                             android:src="@drawable/assignment_icon"
                             app:civ_border_color="@color/Gray"
                             app:civ_border_width="0dp"
                             app:civ_shadow="true"
-                            app:civ_shadow_radius="0"
-                            app:civ_shadow_color="@color/colorPrimary"/>
+                            app:civ_shadow_color="@color/colorPrimary"
+                            app:civ_shadow_radius="0" />
 
                     </LinearLayout>
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:text="Assignment"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:textColor="@color/Black"
-                        android:textSize="15dp"
                         android:gravity="center_horizontal"
-                        android:layout_height="wrap_content" />
-
-
-
+                        android:text="Assignment"
+                        android:textColor="@color/Black"
+                        android:textSize="15dp" />
 
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="0dp"
                     android:id="@+id/lay3"
-                    android:paddingTop="10dp"
-                    android:layout_weight=".33"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight=".33"
                     android:orientation="vertical"
+                    android:paddingTop="10dp"
                     tools:ignore="Suspicious0dp">
 
                     <LinearLayout
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:gravity="center_horizontal"
+                        android:layout_gravity="center_horizontal"
                         android:background="@drawable/bg_circular_imageview"
-                        android:layout_gravity="center_horizontal">
+                        android:gravity="center_horizontal">
 
-                        <com.mikhaellopez.circularimageview.CircularImageView
+                        <com.mikhaellopez.circularimageview.CircularImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:layout_width="55dp"
-                            xmlns:app="http://schemas.android.com/apk/res-auto"
-                            android:layout_marginTop="2.5dp"
                             android:layout_height="55dp"
+                            android:layout_marginTop="2.5dp"
                             android:src="@drawable/study_icon"
                             app:civ_border_color="@color/Gray"
                             app:civ_border_width="0dp"
                             app:civ_shadow="true"
-                            app:civ_shadow_radius="0"
-                            app:civ_shadow_color="@color/colorPrimary"/>
+                            app:civ_shadow_color="@color/colorPrimary"
+                            app:civ_shadow_radius="0" />
 
                     </LinearLayout>
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:text="Study materials"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:textColor="@color/Black"
-                        android:textSize="15dp"
                         android:gravity="center_horizontal"
-                        android:layout_height="wrap_content" />
-
-
-
+                        android:text="Study materials"
+                        android:textColor="@color/Black"
+                        android:textSize="15dp" />
 
 
                 </LinearLayout>
-
-
-
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="120dp"
                 android:orientation="horizontal"
-                android:weightSum="1"
-                android:layout_height="120dp">
+                android:weightSum="1">
 
                 <LinearLayout
-                    android:layout_width="0dp"
                     android:id="@+id/lay4"
-                    android:paddingTop="10dp"
-                    android:layout_weight=".33"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight=".33"
                     android:orientation="vertical"
+                    android:paddingTop="10dp"
                     tools:ignore="Suspicious0dp">
 
                     <LinearLayout
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:gravity="center_horizontal"
+                        android:layout_gravity="center_horizontal"
                         android:background="@drawable/bg_circular_imageview"
-                        android:layout_gravity="center_horizontal">
+                        android:gravity="center_horizontal">
 
-                        <com.mikhaellopez.circularimageview.CircularImageView
+                        <com.mikhaellopez.circularimageview.CircularImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:layout_width="55dp"
-                            xmlns:app="http://schemas.android.com/apk/res-auto"
-                            android:layout_marginTop="2.5dp"
                             android:layout_height="55dp"
+                            android:layout_marginTop="2.5dp"
                             android:src="@drawable/attendence_icon"
                             app:civ_border_color="@color/Gray"
                             app:civ_border_width="0dp"
                             app:civ_shadow="true"
-                            app:civ_shadow_radius="0"
-                            app:civ_shadow_color="@color/colorPrimary"/>
+                            app:civ_shadow_color="@color/colorPrimary"
+                            app:civ_shadow_radius="0" />
 
                     </LinearLayout>
 
 
-
                     <TextView
                         android:layout_width="match_parent"
-                        android:text="Attendence"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:textColor="@color/Black"
-                        android:textSize="15dp"
                         android:gravity="center_horizontal"
-                        android:layout_height="wrap_content" />
-
-
+                        android:text="Attendence"
+                        android:textColor="@color/Black"
+                        android:textSize="15dp" />
 
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="0dp"
                     android:id="@+id/lay5"
-                    android:paddingTop="10dp"
-                    android:layout_weight=".33"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight=".33"
                     android:orientation="vertical"
+                    android:paddingTop="10dp"
                     tools:ignore="Suspicious0dp">
 
                     <LinearLayout
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:gravity="center_horizontal"
+                        android:layout_gravity="center_horizontal"
                         android:background="@drawable/bg_circular_imageview"
-                        android:layout_gravity="center_horizontal">
+                        android:gravity="center_horizontal">
 
-                        <com.mikhaellopez.circularimageview.CircularImageView
+                        <com.mikhaellopez.circularimageview.CircularImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:layout_width="55dp"
-                            xmlns:app="http://schemas.android.com/apk/res-auto"
-                            android:layout_marginTop="2.5dp"
                             android:layout_height="55dp"
+                            android:layout_marginTop="2.5dp"
                             android:src="@drawable/result_icon"
                             app:civ_border_color="@color/Gray"
                             app:civ_border_width="0dp"
                             app:civ_shadow="true"
-                            app:civ_shadow_radius="0"
-                            app:civ_shadow_color="@color/colorPrimary"/>
+                            app:civ_shadow_color="@color/colorPrimary"
+                            app:civ_shadow_radius="0" />
 
                     </LinearLayout>
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:text="Results"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:textColor="@color/Black"
-                        android:textSize="15dp"
                         android:gravity="center_horizontal"
-                        android:layout_height="wrap_content" />
-
-
-
+                        android:text="Results"
+                        android:textColor="@color/Black"
+                        android:textSize="15dp" />
 
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="0dp"
                     android:id="@+id/lay6"
-                    android:paddingTop="10dp"
-                    android:layout_weight=".33"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight=".33"
                     android:orientation="vertical"
+                    android:paddingTop="10dp"
                     tools:ignore="Suspicious0dp">
 
                     <LinearLayout
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:gravity="center_horizontal"
+                        android:layout_gravity="center_horizontal"
                         android:background="@drawable/bg_circular_imageview"
-                        android:layout_gravity="center_horizontal">
+                        android:gravity="center_horizontal">
 
-                        <com.mikhaellopez.circularimageview.CircularImageView
+                        <com.mikhaellopez.circularimageview.CircularImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:layout_width="55dp"
-                            xmlns:app="http://schemas.android.com/apk/res-auto"
-                            android:layout_marginTop="2.5dp"
                             android:layout_height="55dp"
+                            android:layout_marginTop="2.5dp"
                             android:src="@drawable/fee_icon"
                             app:civ_border_color="@color/Gray"
                             app:civ_border_width="0dp"
                             app:civ_shadow="true"
-                            app:civ_shadow_radius="0"
-                            app:civ_shadow_color="@color/colorPrimary"/>
+                            app:civ_shadow_color="@color/colorPrimary"
+                            app:civ_shadow_radius="0" />
 
                     </LinearLayout>
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:text="Fee structure"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:textColor="@color/Black"
-                        android:textSize="15dp"
                         android:gravity="center_horizontal"
-                        android:layout_height="wrap_content" />
-
-
-
+                        android:text="Fee structure"
+                        android:textColor="@color/Black"
+                        android:textSize="15dp" />
 
 
                 </LinearLayout>
-
-
-
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="120dp"
                 android:orientation="horizontal"
-                android:weightSum="1"
-                android:layout_height="120dp">
+                android:weightSum="1">
 
                 <LinearLayout
-                    android:layout_width="0dp"
                     android:id="@+id/lay7"
-                    android:paddingTop="10dp"
-                    android:layout_weight=".33"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight=".33"
                     android:orientation="vertical"
+                    android:paddingTop="10dp"
                     tools:ignore="Suspicious0dp">
 
                     <LinearLayout
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:gravity="center_horizontal"
+                        android:layout_gravity="center_horizontal"
                         android:background="@drawable/bg_circular_imageview"
-                        android:layout_gravity="center_horizontal">
+                        android:gravity="center_horizontal">
 
-                        <com.mikhaellopez.circularimageview.CircularImageView
+                        <com.mikhaellopez.circularimageview.CircularImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:layout_width="55dp"
-                            xmlns:app="http://schemas.android.com/apk/res-auto"
-                            android:layout_marginTop="2.5dp"
                             android:layout_height="55dp"
+                            android:layout_marginTop="2.5dp"
                             android:src="@drawable/timetable_icon"
                             app:civ_border_color="@color/Gray"
                             app:civ_border_width="0dp"
                             app:civ_shadow="true"
-                            app:civ_shadow_radius="0"
-                            app:civ_shadow_color="@color/colorPrimary"/>
+                            app:civ_shadow_color="@color/colorPrimary"
+                            app:civ_shadow_radius="0" />
 
                     </LinearLayout>
 
 
-
                     <TextView
                         android:layout_width="match_parent"
-                        android:text="Time table"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:textColor="@color/Black"
-                        android:textSize="15dp"
                         android:gravity="center_horizontal"
-                        android:layout_height="wrap_content" />
-
-
+                        android:text="Time table"
+                        android:textColor="@color/Black"
+                        android:textSize="15dp" />
 
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="0dp"
                     android:id="@+id/lay8"
-                    android:paddingTop="10dp"
-                    android:layout_weight=".33"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight=".33"
                     android:orientation="vertical"
+                    android:paddingTop="10dp"
                     tools:ignore="Suspicious0dp">
 
                     <LinearLayout
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:gravity="center_horizontal"
+                        android:layout_gravity="center_horizontal"
                         android:background="@drawable/bg_circular_imageview"
-                        android:layout_gravity="center_horizontal">
+                        android:gravity="center_horizontal">
 
-                        <com.mikhaellopez.circularimageview.CircularImageView
+                        <com.mikhaellopez.circularimageview.CircularImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:layout_width="55dp"
-                            xmlns:app="http://schemas.android.com/apk/res-auto"
-                            android:layout_marginTop="2.5dp"
                             android:layout_height="55dp"
+                            android:layout_marginTop="2.5dp"
                             android:src="@drawable/event_icon"
                             app:civ_border_color="@color/Gray"
                             app:civ_border_width="0dp"
                             app:civ_shadow="true"
-                            app:civ_shadow_radius="0"
-                            app:civ_shadow_color="@color/colorPrimary"/>
+                            app:civ_shadow_color="@color/colorPrimary"
+                            app:civ_shadow_radius="0" />
 
                     </LinearLayout>
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:text="Events"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:textColor="@color/Black"
-                        android:textSize="15dp"
                         android:gravity="center_horizontal"
-                        android:layout_height="wrap_content" />
-
-
-
+                        android:text="Events"
+                        android:textColor="@color/Black"
+                        android:textSize="15dp" />
 
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="0dp"
                     android:id="@+id/lay9"
-                    android:paddingTop="10dp"
-                    android:layout_weight=".33"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight=".33"
                     android:orientation="vertical"
+                    android:paddingTop="10dp"
                     tools:ignore="Suspicious0dp">
 
                     <LinearLayout
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:gravity="center_horizontal"
+                        android:layout_gravity="center_horizontal"
                         android:background="@drawable/bg_circular_imageview"
-                        android:layout_gravity="center_horizontal">
+                        android:gravity="center_horizontal">
 
-                        <com.mikhaellopez.circularimageview.CircularImageView
+                        <com.mikhaellopez.circularimageview.CircularImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:layout_width="55dp"
-                            xmlns:app="http://schemas.android.com/apk/res-auto"
-                            android:layout_marginTop="2.5dp"
                             android:layout_height="55dp"
+                            android:layout_marginTop="2.5dp"
                             android:src="@drawable/communication_icon"
                             app:civ_border_color="@color/Gray"
                             app:civ_border_width="0dp"
                             app:civ_shadow="true"
-                            app:civ_shadow_radius="0"
-                            app:civ_shadow_color="@color/colorPrimary"/>
+                            app:civ_shadow_color="@color/colorPrimary"
+                            app:civ_shadow_radius="0" />
 
                     </LinearLayout>
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:text="Send notification"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:textColor="@color/Black"
-                        android:textSize="15dp"
                         android:gravity="center_horizontal"
-                        android:layout_height="wrap_content" />
-
-
-
+                        android:text="Send notification"
+                        android:textColor="@color/Black"
+                        android:textSize="15dp" />
 
 
                 </LinearLayout>
-
-
-
 
 
             </LinearLayout>
 
         </LinearLayout>
-
-
-
 
 
     </LinearLayout>

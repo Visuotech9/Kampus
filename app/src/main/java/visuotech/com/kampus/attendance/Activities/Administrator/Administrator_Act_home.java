@@ -42,7 +42,7 @@ import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 import visuotech.com.kampus.attendance.retrofit.Utility;
 
 public class Administrator_Act_home extends AppCompatActivity  {
-   LinearLayout lay1,lay2,lay3,lay4,lay5,lay6,lay13,lay14,lay15;
+   LinearLayout lay1,lay2,lay3,lay4,lay5,lay6,lay13,lay14,lay15,lay;
    TextView tv_designation,tv_name;
    ImageView iv_image;
     Drawable d;
@@ -143,6 +143,7 @@ public class Administrator_Act_home extends AppCompatActivity  {
         lay13=findViewById(R.id.lay13);
         lay14=findViewById(R.id.lay14);
         lay15=findViewById(R.id.lay15);
+        lay=findViewById(R.id.lay);
         tv_designation=findViewById(R.id.tv_designation);
         tv_name=findViewById(R.id.tv_name);
         iv_image=findViewById(R.id.iv_image);
@@ -213,6 +214,15 @@ public class Administrator_Act_home extends AppCompatActivity  {
             }
         });
 
+        lay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Intent i = new Intent(Administrator_Act_home.this, Act_a.class);
+//                startActivity(i);
+//                finish();
+
+            }
+        });
 
 
         lay1.setOnClickListener(new View.OnClickListener() {

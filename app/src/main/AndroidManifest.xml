@@ -27,7 +27,8 @@
         android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BrandsFilterActivity"></activity>
+        <activity android:name=".Activities.Hod.Act_time_table"></activity>
+        <activity android:name=".BrandsFilterActivity" />
         <activity android:name=".Activities.Administrator.Act_add_semister" />
         <activity
             android:name=".Activities.Act_splash"
