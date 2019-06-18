@@ -318,36 +318,6 @@ public class Act_student_list extends AppCompatActivity {
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
-
-
-
-    private void filter(String text) {
-        //new array list that will hold the filtered data
-//        ArrayList<Student> student_list2 = new ArrayList<>();
-        ArrayList<Student>student_list2 = new ArrayList<>();
-
-
-
-        //looping through existing elements
-        for (int i=0;i<student_list.size();i++){
-            if (student_list.get(i).getFull_name().toLowerCase().contains(text.toLowerCase())){
-                Student student=new Student();
-                student.setFull_name(student_list.get(i).getFull_name());
-                student.setStudent_department_name(student_list.get(i).getStudent_department_name());
-                student.setEnrollment_no(student_list.get(i).getEnrollment_no());
-                student.setStudent_pic(student_list.get(i).getStudent_pic());
-                student.setStudent_semester(student_list.get(i).getStudent_semester());
-                student.setStudent_section(student_list.get(i).getStudent_section());
-
-
-                student_list2.add(student);
-            }
-        }
-
-        //calling a method of the adapter class and passing the filtered list
-        adapter.filterList(student_list2);
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search, menu);

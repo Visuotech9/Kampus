@@ -144,6 +144,7 @@ public class Administrator_Act_home extends AppCompatActivity  {
         lay14=findViewById(R.id.lay14);
         lay15=findViewById(R.id.lay15);
         lay=findViewById(R.id.lay);
+
         tv_designation=findViewById(R.id.tv_designation);
         tv_name=findViewById(R.id.tv_name);
         iv_image=findViewById(R.id.iv_image);

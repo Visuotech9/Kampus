@@ -181,8 +181,8 @@ public class Act_add_student extends AppCompatActivity implements AdapterView.On
         et_paddress = rowView.findViewById(R.id.et_paddress);
         et_taddress = rowView.findViewById(R.id.et_taddress);
         iv_profile_image = rowView.findViewById(R.id.iv_profile_image);
-        iv_cal_dob = rowView.findViewById(R.id.iv_cal_dob);
-        iv_cal_doj = rowView.findViewById(R.id.iv_cal_doj);
+//        iv_cal_dob = rowView.findViewById(R.id.iv_cal_dob);
+//        iv_cal_doj = rowView.findViewById(R.id.iv_cal_doj);
         et_enrol = rowView.findViewById(R.id.et_enrol);
         et_fat_name = rowView.findViewById(R.id.et_fat_name);
         et_mot_name = rowView.findViewById(R.id.et_mot_name);
@@ -267,7 +267,7 @@ public class Act_add_student extends AppCompatActivity implements AdapterView.On
 
             }
         });
-        iv_cal_dob.setOnClickListener(new View.OnClickListener() {
+        tv_dob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 calendar = Calendar.getInstance();
@@ -285,7 +285,7 @@ public class Act_add_student extends AppCompatActivity implements AdapterView.On
                 datePickerDialog.show();
             }
         });
-        iv_cal_doj.setOnClickListener(new View.OnClickListener() {
+        tv_doa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 calendar = Calendar.getInstance();

@@ -76,6 +76,7 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:text="Stuti Tripathi"
                 android:textSize="20dp"
+                android:textStyle="bold"
                 android:layout_height="wrap_content" />
 
             <TextView
@@ -105,25 +106,33 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="vertical"
-                android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="20dp"
-                    android:textSize="20dp"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:text="Details:"/>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@color/separater_color"></View>
+                    android:background="#c1bfbf"></View>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:background="@color/Gray_light"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Basic Details :"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    tools:ignore="Suspicious0dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#c1bfbf"></View>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
@@ -136,7 +145,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Gender :"
+                        android:text="Gender"
+                        android:textStyle="bold"
                         android:textSize="14dp" />
 
                     <TextView
@@ -163,7 +173,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Hod id :"
+                        android:text="Hod id"
+                        android:textStyle="bold"
                         android:textSize="14dp" />
 
                     <TextView
@@ -191,7 +202,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Mobile no :"
+                        android:text="Mobile no"
+                        android:textStyle="bold"
                         android:textSize="14dp" />
 
                     <TextView
@@ -218,7 +230,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Email id :"
+                        android:text="Email id"
+                        android:textStyle="bold"
                         android:textSize="14dp" />
 
                     <TextView
@@ -244,7 +257,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Date of birth :"
+                        android:text="Date of birth"
+                        android:textStyle="bold"
                         android:textSize="14dp" />
 
                     <TextView
@@ -270,7 +284,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Date of joining :"
+                        android:text="Date of joining"
+                        android:textStyle="bold"
                         android:textSize="14dp" />
 
                     <TextView
@@ -296,7 +311,8 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:text="Address :"
+                        android:text="Address"
+                        android:textStyle="bold"
                         android:textSize="14dp"
                         android:layout_height="wrap_content" />
 

@@ -29,6 +29,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/Gray_light"
                 android:orientation="vertical"
                 android:paddingTop="10dp">
 
@@ -40,7 +41,10 @@
                     android:layout_marginRight="10dp"
                     android:paddingLeft="5dp"
                     android:text="Select Course :"
-                    android:textColor="@color/Black" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15dp"
+                    android:textStyle="bold"  />
+
                 <LinearLayout
                     android:id="@+id/lay_course"
                     android:layout_width="match_parent"
@@ -73,7 +77,9 @@
                     android:layout_marginRight="10dp"
                     android:paddingLeft="5dp"
                     android:text="Select Department :"
-                    android:textColor="@color/Black" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15dp"
+                    android:textStyle="bold"  />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -105,7 +111,9 @@
                     android:layout_marginRight="10dp"
                     android:paddingLeft="5dp"
                     android:text="Select Hod :"
-                    android:textColor="@color/Black" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15dp"
+                    android:textStyle="bold"  />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -137,7 +145,9 @@
                     android:layout_marginRight="10dp"
                     android:paddingLeft="5dp"
                     android:text="Select Semister :"
-                    android:textColor="@color/Black" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15dp"
+                    android:textStyle="bold"  />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -169,7 +179,10 @@
                     android:layout_marginRight="10dp"
                     android:paddingLeft="5dp"
                     android:text="Select Section :"
-                    android:textColor="@color/Black" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15dp"
+                    android:textStyle="bold"  />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -241,6 +254,33 @@
 
 
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            android:background="#c1bfbf"></View>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Gray_light"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:text="Basic Details :"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            tools:ignore="Suspicious0dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c1bfbf"></View>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -257,8 +297,12 @@
                 android:layout_weight=".25"
                 android:gravity="center_vertical"
                 android:text="Enrolment no.:"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@drawable/background_border2"
+                android:paddingLeft="5dp"
+
+                android:textSize="11dp"
+                android:textStyle="bold"
                 tools:ignore="Suspicious0dp" />
 
 
@@ -267,6 +311,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".75"
+                android:layout_marginLeft="3dp"
                 android:background="@drawable/background_border"
                 android:hint="Enrolment no."
                 android:inputType="textPersonName"
@@ -277,7 +322,7 @@
                 android:scrollHorizontally="true"
                 android:singleLine="true"
                 android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textSize="13dp"
                 android:textStyle="normal"
                 tools:ignore="Suspicious0dp" />
 
@@ -300,8 +345,12 @@
                 android:layout_weight=".25"
                 android:gravity="center_vertical"
                 android:text="First name:"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@drawable/background_border2"
+                android:paddingLeft="5dp"
+
+                android:textSize="11dp"
+                android:textStyle="bold"
                 tools:ignore="Suspicious0dp" />
 
 
@@ -312,6 +361,8 @@
                 android:layout_weight=".75"
                 android:background="@drawable/background_border"
                 android:hint="first name"
+                android:layout_marginLeft="3dp"
+
                 android:inputType="textPersonName"
                 android:paddingBottom="12dp"
                 android:paddingLeft="10dp"
@@ -320,7 +371,7 @@
                 android:scrollHorizontally="true"
                 android:singleLine="true"
                 android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textSize="13dp"
                 android:textStyle="normal"
                 tools:ignore="Suspicious0dp" />
 
@@ -343,8 +394,12 @@
                 android:layout_weight=".25"
                 android:gravity="center_vertical"
                 android:text="Middle name:"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@drawable/background_border2"
+                android:paddingLeft="5dp"
+
+                android:textSize="11dp"
+                android:textStyle="bold"
                 tools:ignore="Suspicious0dp" />
 
 
@@ -355,6 +410,8 @@
                 android:layout_weight=".75"
                 android:background="@drawable/background_border"
                 android:hint="middle name"
+                android:layout_marginLeft="3dp"
+
                 android:inputType="textPersonName"
                 android:paddingBottom="12dp"
                 android:paddingLeft="10dp"
@@ -363,7 +420,7 @@
                 android:scrollHorizontally="true"
                 android:singleLine="true"
                 android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textSize="13dp"
                 android:textStyle="normal"
                 tools:ignore="Suspicious0dp" />
 
@@ -387,8 +444,12 @@
                 android:layout_weight=".25"
                 android:gravity="center_vertical"
                 android:text="Last name :"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@drawable/background_border2"
+                android:paddingLeft="5dp"
+
+                android:textSize="11dp"
+                android:textStyle="bold"
                 tools:ignore="Suspicious0dp" />
 
 
@@ -399,6 +460,8 @@
                 android:layout_weight=".75"
                 android:background="@drawable/background_border"
                 android:hint="last name"
+                android:layout_marginLeft="3dp"
+
                 android:inputType="textPersonName"
                 android:paddingBottom="12dp"
                 android:paddingLeft="10dp"
@@ -407,7 +470,7 @@
                 android:scrollHorizontally="true"
                 android:singleLine="true"
                 android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textSize="13dp"
                 android:textStyle="normal"
                 tools:ignore="Suspicious0dp" />
 
@@ -431,8 +494,12 @@
                 android:layout_weight=".25"
                 android:gravity="center_vertical"
                 android:text="Gender:"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@drawable/background_border2"
+                android:paddingLeft="5dp"
+
+                android:textSize="11dp"
+                android:textStyle="bold"
                 tools:ignore="Suspicious0dp" />
 
 
@@ -441,6 +508,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".75"
+                android:layout_marginLeft="3dp"
                 android:background="@drawable/background_border"
                 android:orientation="horizontal">
 
@@ -475,8 +543,12 @@
                 android:layout_weight=".25"
                 android:gravity="center_vertical"
                 android:text="Father's name:"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@drawable/background_border2"
+                android:paddingLeft="5dp"
+
+                android:textSize="11dp"
+                android:textStyle="bold"
                 tools:ignore="Suspicious0dp" />
 
 
@@ -485,6 +557,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".75"
+                android:layout_marginLeft="3dp"
+
                 android:background="@drawable/background_border"
                 android:hint="father's name"
                 android:inputType="text"
@@ -496,7 +570,7 @@
                 android:singleLine="true"
                 android:text=""
                 android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textSize="13dp"
                 android:textStyle="normal"
                 tools:ignore="Suspicious0dp" />
 
@@ -519,8 +593,12 @@
                 android:layout_weight=".25"
                 android:gravity="center_vertical"
                 android:text="Mother's name:"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@drawable/background_border2"
+                android:paddingLeft="5dp"
+
+                android:textSize="11dp"
+                android:textStyle="bold"
                 tools:ignore="Suspicious0dp" />
 
 
@@ -529,6 +607,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".75"
+                android:layout_marginLeft="3dp"
+
                 android:background="@drawable/background_border"
                 android:hint="mother's name"
                 android:inputType="text"
@@ -540,7 +620,7 @@
                 android:singleLine="true"
                 android:text=""
                 android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textSize="13dp"
                 android:textStyle="normal"
                 tools:ignore="Suspicious0dp" />
 
@@ -563,8 +643,12 @@
                 android:layout_weight=".25"
                 android:gravity="center_vertical"
                 android:text="Mobile no. :"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@drawable/background_border2"
+                android:paddingLeft="5dp"
+
+                android:textSize="11dp"
+                android:textStyle="bold"
                 tools:ignore="Suspicious0dp" />
 
 
@@ -575,6 +659,7 @@
                 android:layout_weight=".75"
                 android:background="@drawable/background_border"
                 android:hint="Mobile no."
+                android:layout_marginLeft="3dp"
 
                 android:inputType="number"
                 android:paddingBottom="12dp"
@@ -585,7 +670,7 @@
                 android:singleLine="true"
                 android:text=""
                 android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textSize="13dp"
                 android:textStyle="normal"
                 tools:ignore="Suspicious0dp" />
 
@@ -608,8 +693,12 @@
                 android:layout_weight=".25"
                 android:gravity="center_vertical"
                 android:text="Emergency contect no. :"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@drawable/background_border2"
+                android:paddingLeft="5dp"
+
+                android:textSize="11dp"
+                android:textStyle="bold"
                 tools:ignore="Suspicious0dp" />
 
 
@@ -620,6 +709,7 @@
                 android:layout_weight=".75"
                 android:background="@drawable/background_border"
                 android:hint="Emergency contact no."
+                android:layout_marginLeft="3dp"
 
                 android:inputType="number"
                 android:paddingBottom="12dp"
@@ -630,7 +720,7 @@
                 android:singleLine="true"
                 android:text=""
                 android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textSize="13dp"
                 android:textStyle="normal"
                 tools:ignore="Suspicious0dp" />
 
@@ -658,8 +748,12 @@
                 android:layout_weight=".25"
                 android:gravity="center_vertical"
                 android:text="Email :"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@drawable/background_border2"
+                android:paddingLeft="5dp"
+
+                android:textSize="11dp"
+                android:textStyle="bold"
                 tools:ignore="Suspicious0dp" />
 
 
@@ -672,6 +766,8 @@
                 android:background="@drawable/background_border"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
+                android:layout_marginLeft="3dp"
+
                 android:paddingBottom="12dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
@@ -680,7 +776,7 @@
                 android:singleLine="true"
                 android:text=""
                 android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textSize="13dp"
                 android:textStyle="normal" />
 
 
@@ -701,8 +797,12 @@
                 android:layout_weight=".25"
                 android:gravity="center_vertical"
                 android:text="City:"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@drawable/background_border2"
+                android:paddingLeft="5dp"
+
+                android:textSize="11dp"
+                android:textStyle="bold"
                 tools:ignore="Suspicious0dp" />
 
 
@@ -713,6 +813,7 @@
                 android:layout_weight=".75"
                 android:background="@drawable/background_border"
                 android:hint="city"
+                android:layout_marginLeft="3dp"
 
                 android:paddingBottom="12dp"
                 android:paddingLeft="10dp"
@@ -722,7 +823,7 @@
                 android:singleLine="true"
                 android:text=""
                 android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textSize="13dp"
                 android:textStyle="normal" />
 
 
@@ -742,8 +843,12 @@
                 android:layout_weight=".25"
                 android:gravity="center_vertical"
                 android:text="State:"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@drawable/background_border2"
+                android:paddingLeft="5dp"
+
+                android:textSize="11dp"
+                android:textStyle="bold"
                 tools:ignore="Suspicious0dp" />
 
 
@@ -754,6 +859,7 @@
                 android:layout_weight=".75"
                 android:background="@drawable/background_border"
                 android:hint="state"
+                android:layout_marginLeft="3dp"
 
                 android:paddingBottom="12dp"
                 android:paddingLeft="10dp"
@@ -763,7 +869,7 @@
                 android:singleLine="true"
                 android:text=""
                 android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textSize="13dp"
                 android:textStyle="normal" />
 
 
@@ -785,8 +891,12 @@
                 android:layout_weight=".25"
                 android:gravity="center_vertical"
                 android:text="Parmanent address:"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@drawable/background_border2"
+                android:paddingLeft="5dp"
+
+                android:textSize="11dp"
+                android:textStyle="bold"
                 tools:ignore="Suspicious0dp" />
 
             <EditText
@@ -795,6 +905,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".75"
                 android:background="@drawable/background_border"
+                android:layout_marginLeft="3dp"
+
                 android:hint="Parmanent address"
                 android:inputType="textPostalAddress|textMultiLine"
                 android:isScrollContainer="false"
@@ -808,7 +920,7 @@
                 android:singleLine="true"
                 android:text=""
                 android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textSize="13dp"
                 android:textStyle="normal" />
 
 
@@ -829,8 +941,12 @@
                 android:layout_weight=".25"
                 android:gravity="center_vertical"
                 android:text="Temprary address:"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@drawable/background_border2"
+                android:paddingLeft="5dp"
+
+                android:textSize="11dp"
+                android:textStyle="bold"
                 tools:ignore="Suspicious0dp" />
 
             <EditText
@@ -838,6 +954,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".75"
+                android:layout_marginLeft="3dp"
+
                 android:background="@drawable/background_border"
                 android:hint="Temprary address"
                 android:inputType="textPostalAddress|textMultiLine"
@@ -852,7 +970,7 @@
                 android:singleLine="true"
                 android:text=""
                 android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textSize="13dp"
                 android:textStyle="normal" />
 
 
@@ -874,8 +992,12 @@
                 android:layout_weight=".25"
                 android:gravity="center_vertical"
                 android:text="Blood group:"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@drawable/background_border2"
+                android:paddingLeft="5dp"
+
+                android:textSize="11dp"
+                android:textStyle="bold"
                 tools:ignore="Suspicious0dp" />
 
 
@@ -886,6 +1008,7 @@
                 android:layout_weight=".75"
                 android:background="@drawable/background_border"
                 android:hint="blood group"
+                android:layout_marginLeft="3dp"
 
                 android:paddingBottom="12dp"
                 android:paddingLeft="10dp"
@@ -895,7 +1018,7 @@
                 android:singleLine="true"
                 android:text=""
                 android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textSize="13dp"
                 android:textStyle="normal" />
 
 
@@ -916,8 +1039,12 @@
                 android:layout_weight=".25"
                 android:gravity="center_vertical"
                 android:text="Caste:"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@drawable/background_border2"
+                android:paddingLeft="5dp"
+
+                android:textSize="11dp"
+                android:textStyle="bold"
                 tools:ignore="Suspicious0dp" />
 
 
@@ -928,6 +1055,7 @@
                 android:layout_weight=".75"
                 android:background="@drawable/background_border"
                 android:hint="caste"
+                android:layout_marginLeft="3dp"
 
                 android:paddingBottom="12dp"
                 android:paddingLeft="10dp"
@@ -937,7 +1065,7 @@
                 android:singleLine="true"
                 android:text=""
                 android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textSize="13dp"
                 android:textStyle="normal" />
 
 
@@ -959,8 +1087,12 @@
                 android:layout_weight=".25"
                 android:gravity="center_vertical"
                 android:text="SSC %:"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@drawable/background_border2"
+                android:paddingLeft="5dp"
+
+                android:textSize="11dp"
+                android:textStyle="bold"
                 tools:ignore="Suspicious0dp" />
 
 
@@ -971,6 +1103,7 @@
                 android:layout_weight=".75"
                 android:background="@drawable/background_border"
                 android:hint="ssc %"
+                android:layout_marginLeft="3dp"
 
                 android:paddingBottom="12dp"
                 android:paddingLeft="10dp"
@@ -980,7 +1113,7 @@
                 android:singleLine="true"
                 android:text=""
                 android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textSize="13dp"
                 android:textStyle="normal" />
 
 
@@ -1001,8 +1134,12 @@
                 android:layout_weight=".25"
                 android:gravity="center_vertical"
                 android:text="HSC %:"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@drawable/background_border2"
+                android:paddingLeft="5dp"
+
+                android:textSize="11dp"
+                android:textStyle="bold"
                 tools:ignore="Suspicious0dp" />
 
 
@@ -1013,6 +1150,7 @@
                 android:layout_weight=".75"
                 android:background="@drawable/background_border"
                 android:hint="hsc %"
+                android:layout_marginLeft="3dp"
 
                 android:paddingBottom="12dp"
                 android:paddingLeft="10dp"
@@ -1022,7 +1160,7 @@
                 android:singleLine="true"
                 android:text=""
                 android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textSize="13dp"
                 android:textStyle="normal" />
 
 
@@ -1042,8 +1180,12 @@
                 android:layout_weight=".25"
                 android:gravity="center_vertical"
                 android:text="Diploma %:"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@drawable/background_border2"
+                android:paddingLeft="5dp"
+
+                android:textSize="11dp"
+                android:textStyle="bold"
                 tools:ignore="Suspicious0dp" />
 
 
@@ -1054,6 +1196,7 @@
                 android:layout_weight=".75"
                 android:background="@drawable/background_border"
                 android:hint="hsc %"
+                android:layout_marginLeft="3dp"
 
                 android:paddingBottom="12dp"
                 android:paddingLeft="10dp"
@@ -1063,7 +1206,7 @@
                 android:singleLine="true"
                 android:text=""
                 android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textSize="13dp"
                 android:textStyle="normal" />
 
 
@@ -1083,8 +1226,11 @@
                 android:layout_weight=".25"
                 android:gravity="center_vertical"
                 android:text="Scholarship:"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@drawable/background_border2"
+                android:paddingLeft="5dp"
+                android:textSize="11dp"
+                android:textStyle="bold"
                 tools:ignore="Suspicious0dp" />
 
 
@@ -1093,6 +1239,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".75"
+                android:layout_marginLeft="3dp"
                 android:background="@drawable/background_border"
                 android:orientation="horizontal">
 
@@ -1117,8 +1264,8 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
             android:orientation="horizontal"
             android:weightSum="1">
 
@@ -1126,41 +1273,29 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".25"
+                android:background="@drawable/background_border2"
                 android:gravity="center_vertical"
-                android:text="Date of birth:"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:paddingLeft="5dp"
+                android:text="Date of birth"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="11dp"
+                android:textStyle="bold"
                 tools:ignore="Suspicious0dp" />
 
             <TextView
                 android:id="@+id/tv_dob"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight=".65"
+                android:layout_marginLeft="3dp"
+                android:layout_weight=".75"
                 android:background="@drawable/background_border"
+                android:drawableRight="@drawable/calender"
                 android:gravity="center_vertical"
-                android:hint="Date of birth"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:scrollHorizontally="true"
-                android:singleLine="true"
+                android:paddingLeft="8dp"
                 android:text=""
                 android:textColor="@color/Black"
-                android:textSize="15dp"
-                android:textStyle="normal"
+                android:textSize="12dp"
                 tools:ignore="Suspicious0dp" />
-
-
-            <ImageView
-                android:id="@+id/iv_cal_dob"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".1"
-                android:paddingBottom="5dp"
-                android:paddingTop="5dp"
-                android:src="@drawable/calender"
-                tools:ignore="Suspicious0dp" />
-
 
 
         </LinearLayout>
@@ -1169,8 +1304,8 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
             android:orientation="horizontal"
             android:weightSum="1">
 
@@ -1178,44 +1313,73 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".25"
+                android:background="@drawable/background_border2"
                 android:gravity="center_vertical"
-                android:text="Date of admission:"
+                android:paddingLeft="5dp"
+                android:text="Date of joining"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="11dp"
+                android:textStyle="bold"
+                tools:ignore="Suspicious0dp" />
+
+            <TextView
+                android:id="@+id/tv_doj"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_weight=".75"
+                android:background="@drawable/background_border"
+                android:drawableRight="@drawable/calender"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:text=""
                 android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textSize="12dp"
+                tools:ignore="Suspicious0dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".25"
+                android:background="@drawable/background_border2"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dp"
+                android:text="Date of Admission"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="11dp"
+                android:textStyle="bold"
                 tools:ignore="Suspicious0dp" />
 
             <TextView
                 android:id="@+id/tv_doa"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight=".65"
+                android:layout_marginLeft="3dp"
+                android:layout_weight=".75"
                 android:background="@drawable/background_border"
+                android:drawableRight="@drawable/calender"
                 android:gravity="center_vertical"
-                android:hint="Date of admission"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:scrollHorizontally="true"
-                android:singleLine="true"
+                android:paddingLeft="8dp"
                 android:text=""
                 android:textColor="@color/Black"
-                android:textSize="15dp"
-                android:textStyle="normal"
+                android:textSize="12dp"
                 tools:ignore="Suspicious0dp" />
-
-
-            <ImageView
-                android:id="@+id/iv_cal_doj"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".1"
-                android:paddingBottom="5dp"
-                android:paddingTop="5dp"
-                android:src="@drawable/calender"
-                tools:ignore="Suspicious0dp" />
-
 
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -1229,20 +1393,26 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".25"
+                android:paddingLeft="5dp"
                 android:gravity="center_vertical"
                 android:text="Session :"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="11dp"
+                android:textStyle="bold"
+                android:background="@drawable/background_border2"
+
+
                 tools:ignore="Suspicious0dp" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".12"
-                android:gravity="center_vertical"
-                android:text="From :"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:gravity="center"
+                android:text="From"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="11dp"
+                android:textStyle="bold"
                 tools:ignore="Suspicious0dp" />
 
             <TextView
@@ -1252,11 +1422,11 @@
                 android:layout_weight=".28"
                 android:background="@drawable/background_border"
                 android:drawableRight="@drawable/calender"
-                android:gravity="center_vertical"
+                android:gravity="center"
                 android:paddingLeft="10dp"
                 android:text="2019"
                 android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textSize="13dp"
                 tools:ignore="Suspicious0dp" />
 
 
@@ -1264,11 +1434,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".10"
-                android:gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:text="To :"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:gravity="center"
+                android:text="To"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="11dp"
+                android:textStyle="bold"
                 tools:ignore="Suspicious0dp" />
 
             <TextView
@@ -1278,11 +1448,11 @@
                 android:layout_weight=".25"
                 android:background="@drawable/background_border"
                 android:drawableRight="@drawable/calender"
-                android:gravity="center_vertical"
+                android:gravity="center"
                 android:paddingLeft="10dp"
                 android:text="2019"
                 android:textColor="@color/Black"
-                android:textSize="15dp"
+                android:textSize="13dp"
                 tools:ignore="Suspicious0dp" />
 
 
@@ -1290,28 +1460,31 @@
 
 
 
-        <LinearLayout
+        <View
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            android:weightSum="1">
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            android:background="#c1bfbf"></View>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="Upload profile image :"
-                android:textColor="@color/Black"
-                android:textSize="15dp"
-                tools:ignore="Suspicious0dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Gray_light"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:text="Upload Image :"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            tools:ignore="Suspicious0dp" />
 
-
-
-
-        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c1bfbf"></View>
 
         <LinearLayout
             android:layout_width="match_parent"

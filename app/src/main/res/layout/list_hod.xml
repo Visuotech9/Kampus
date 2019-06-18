@@ -16,7 +16,7 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/iv_profile_image"
             android:layout_width="50dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="15dp"
             android:layout_gravity="center_vertical"
             android:background="@drawable/img_logo_full"
             android:layout_height="50dp"
@@ -29,16 +29,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:weightSum="1"
+            android:layout_gravity="center"
             android:orientation="horizontal"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:orientation="vertical"
                 android:paddingLeft="15dp"
-                android:layout_marginTop="12dp"
                 android:layout_weight=".8"
-                android:layout_marginBottom="10dp"
                 android:layout_height="wrap_content"
                 tools:ignore="Suspicious0dp">
 
@@ -48,7 +47,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="14dp"
+                    android:textSize="13dp"
+                    android:textStyle="bold"
                     android:text="" />
 
                 <TextView
@@ -76,12 +76,12 @@
             <ImageView
                 android:layout_width="0dp"
                 android:layout_weight=".2"
-                android:paddingTop="25dp"
-                android:paddingBottom="25dp"
                 android:paddingLeft="10dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
                 android:layout_gravity="right"
                 android:src="@drawable/right_icon"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 tools:ignore="Suspicious0dp" />
         </LinearLayout>
 
