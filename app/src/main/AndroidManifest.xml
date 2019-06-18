@@ -67,6 +67,10 @@
             android:name=".Activities.Administrator.Act_add_Hod"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".Activities.Administrator.Act_Student_profile"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".Activities.Administrator.Act_add_faculty"
             android:screenOrientation="portrait" />
         <activity
