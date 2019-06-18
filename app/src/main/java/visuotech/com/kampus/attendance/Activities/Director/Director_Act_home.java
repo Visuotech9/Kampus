@@ -48,7 +48,7 @@ import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 
 public class Director_Act_home extends AppCompatActivity {
     String user_typee,user_id,organization_id,device_id,org_name,course_id;
-    LinearLayout lay1,lay2,lay3,lay4,lay5,lay6,lay_full_prof;
+    LinearLayout lay1,lay2,lay3,lay4,lay5,lay6,lay_full_prof,lay;
     TextView tv_designation,tv_name,tv_course;
     ImageView iv_image;
     Dialog mDialog;
@@ -102,6 +102,7 @@ public class Director_Act_home extends AppCompatActivity {
         lay4=findViewById(R.id.lay4);
         lay5=findViewById(R.id.lay5);
         lay6=findViewById(R.id.lay6);
+        lay=findViewById(R.id.lay);
         tv_designation=findViewById(R.id.tv_designation);
         tv_name=findViewById(R.id.tv_name);
         lay_full_prof=findViewById(R.id.lay_full_prof);
@@ -175,13 +176,17 @@ public class Director_Act_home extends AppCompatActivity {
 
             }
         });
-        lay_full_prof.setOnClickListener(new View.OnClickListener() {
+
+        lay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(Director_Act_home.this,Act_director_profile2.class);
-                startActivity(intent);
+                Intent i = new Intent(Director_Act_home.this, Act_director_profile2.class);
+                startActivity(i);
+                finish();
+
             }
         });
+
         lay1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

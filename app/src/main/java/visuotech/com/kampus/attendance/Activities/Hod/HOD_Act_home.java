@@ -60,7 +60,7 @@ import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 
 public class HOD_Act_home extends AppCompatActivity {
     String user_typee,user_id,organization_id,device_id,org_name,dept_id,dept_name,course_id,hod_director_id;
-    LinearLayout lay1,lay2,lay3,lay4,lay5,lay6,lay_full_prof;
+    LinearLayout lay1,lay2,lay3,lay4,lay5,lay6,lay_full_prof,lay;
     TextView tv_designation,tv_name,tv_dept;
     ImageView iv_image;
     Dialog mDialog;
@@ -108,7 +108,7 @@ public class HOD_Act_home extends AppCompatActivity {
         user_typee= sessionParam.user_type;
         user_id= sessionParam.userId;
         organization_id=sessionParam.org_id;
-
+        lay=findViewById(R.id.lay);
         lay1=findViewById(R.id.lay1);
         lay2=findViewById(R.id.lay2);
         lay3=findViewById(R.id.lay3);
@@ -190,7 +190,7 @@ public class HOD_Act_home extends AppCompatActivity {
 
             }
         });
-        lay_full_prof.setOnClickListener(new View.OnClickListener() {
+        lay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(HOD_Act_home.this,Act_hod_profile2.class);

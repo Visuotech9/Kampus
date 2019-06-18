@@ -28,10 +28,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:weightSum="1"
+            android:id="@+id/lay"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:background="@color/Gray_light"
-            >
+            android:background="@color/Gray_light">
 
             <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -181,7 +181,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorPrimarylight"
-
             android:paddingTop="10dp"
             android:orientation="vertical">
 
