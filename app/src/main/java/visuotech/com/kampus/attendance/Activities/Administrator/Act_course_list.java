@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -42,6 +43,7 @@ import visuotech.com.kampus.attendance.Adapter.Ad_director;
 import visuotech.com.kampus.attendance.MarshMallowPermission;
 import visuotech.com.kampus.attendance.Model.Course;
 import visuotech.com.kampus.attendance.Model.Director;
+import visuotech.com.kampus.attendance.NetworkConnection;
 import visuotech.com.kampus.attendance.R;
 import visuotech.com.kampus.attendance.SessionParam;
 import visuotech.com.kampus.attendance.retrofit.BaseRequest;
@@ -60,6 +62,7 @@ public class Act_course_list extends AppCompatActivity {
     MarshMallowPermission marshMallowPermission;
     private BaseRequest baseRequest;
     EditText inputSearch;
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     ArrayList<Course> course_list=new ArrayList<>();
     ArrayList<Course> course_list2=new ArrayList<>();
@@ -102,9 +105,105 @@ public class Act_course_list extends AppCompatActivity {
         iv_add =  rowView.findViewById(R.id.iv_add);
 
 
-        ApigetCourse();
+        mSwipeRefreshLayout = rowView.findViewById(R.id.activity_main_swipe_refresh_layout);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                if (NetworkConnection.checkNetworkStatus(getApplicationContext()) == true) {
+                    callApi();
+                    mSwipeRefreshLayout.setRefreshing(false);
+                } else {
+                    sucessDialog(getResources().getString(R.string.Internet_connection), context);
+                }
+
+            }
+        });
+
+        callApi();
 
     }
+
+    private void callApi() {
+
+        if (NetworkConnection.checkNetworkStatus(getApplicationContext()) == true) {
+            ApigetCourse();
+        } else {
+            sucessDialog(getResources().getString(R.string.Internet_connection), context);
+        }
+    }
+
+    private void callApi2() {
+
+        if (NetworkConnection.checkNetworkStatus(getApplicationContext()) == true) {
+            apiAddCourse();
+        } else {
+            sucessDialog1(getResources().getString(R.string.Internet_connection), context);
+        }
+    }
+
+
+
+
+    public void sucessDialog(String message, Context context) {
+//        textView.setText(getResources().getString(R.string.txt_hello));
+
+        final Dialog mDialog = new Dialog(context);
+        mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);  //without extar space of title
+        mDialog.setContentView(R.layout.notification_dailog2);
+        mDialog.setCanceledOnTouchOutside(true);
+
+        Button btn_ok;
+        TextView tv_retry;
+        TextView tv_notification;
+        btn_ok = mDialog.findViewById(R.id.btn_ok);
+        tv_retry = mDialog.findViewById(R.id.tv_retry);
+        tv_notification = mDialog.findViewById(R.id.tv_notification);
+        tv_notification.setText(message);
+        tv_retry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDialog.cancel();
+                callApi();
+
+
+            }
+        });
+        mDialog.show();
+
+
+    }
+
+    public void sucessDialog1(String message, Context context) {
+//        textView.setText(getResources().getString(R.string.txt_hello));
+
+        final Dialog mDialog = new Dialog(context);
+        mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);  //without extar space of title
+        mDialog.setContentView(R.layout.notification_dailog2);
+        mDialog.setCanceledOnTouchOutside(true);
+
+        Button btn_ok;
+        TextView tv_retry;
+        TextView tv_notification;
+        btn_ok = mDialog.findViewById(R.id.btn_ok);
+        tv_retry = mDialog.findViewById(R.id.tv_retry);
+        tv_notification = mDialog.findViewById(R.id.tv_notification);
+        tv_notification.setText(message);
+        tv_retry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDialog.cancel();
+                callApi2();
+
+
+            }
+        });
+        mDialog.show();
+
+
+    }
+
+
 
     private void ApigetCourse(){
         baseRequest = new BaseRequest();
@@ -262,7 +361,7 @@ public class Act_course_list extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         mDialog.cancel();
-                        ApigetCourse();
+                        callApi2();
 
 
                     }
@@ -277,7 +376,12 @@ public class Act_course_list extends AppCompatActivity {
                             tv_alert.setText("please enter course name!!");
                         } else{
                             courseName=et_name.getText().toString();
-                            apiAddCourse();
+
+                            if (NetworkConnection.checkNetworkStatus(getApplicationContext()) == true) {
+                                apiAddCourse();
+                            } else {
+                                sucessDialog(getResources().getString(R.string.Internet_connection), context);
+                            }
                             et_name.setText("");
                         }
 

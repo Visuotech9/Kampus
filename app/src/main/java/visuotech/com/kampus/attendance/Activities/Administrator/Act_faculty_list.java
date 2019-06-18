@@ -1,10 +1,12 @@
 package visuotech.com.kampus.attendance.Activities.Administrator;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -17,12 +19,15 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 //import android.widget.SearchView;
 import android.support.v7.widget.SearchView;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,6 +40,7 @@ import visuotech.com.kampus.attendance.Adapter.Ad_faculty;
 import visuotech.com.kampus.attendance.MarshMallowPermission;
 import visuotech.com.kampus.attendance.Model.Director;
 import visuotech.com.kampus.attendance.Model.Faculty;
+import visuotech.com.kampus.attendance.NetworkConnection;
 import visuotech.com.kampus.attendance.R;
 import visuotech.com.kampus.attendance.SessionParam;
 import visuotech.com.kampus.attendance.retrofit.BaseRequest;
@@ -46,7 +52,7 @@ public class Act_faculty_list extends AppCompatActivity {
     LinearLayoutManager linearLayoutManager;
     ProgressBar progressbar;
     LinearLayout container;
-
+    SwipeRefreshLayout mSwipeRefreshLayout;
     Context context;
     Activity activity;
     SessionParam sessionParam;
@@ -121,9 +127,36 @@ public class Act_faculty_list extends AppCompatActivity {
             }
         });
 
-        ApigetFaculty();
+        mSwipeRefreshLayout = rowView.findViewById(R.id.activity_main_swipe_refresh_layout);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                if (NetworkConnection.checkNetworkStatus(getApplicationContext()) == true) {
+                    callApi();
+                    mSwipeRefreshLayout.setRefreshing(false);
+                } else {
+                    sucessDialog(getResources().getString(R.string.Internet_connection), context);
+                }
+
+            }
+        });
+        callApi();
+
+
+
 
     }
+
+    private void callApi() {
+
+        if (NetworkConnection.checkNetworkStatus(getApplicationContext()) == true) {
+            ApigetFaculty();
+        } else {
+            sucessDialog(getResources().getString(R.string.Internet_connection), context);
+        }
+    }
+
 
     private void ApigetFaculty() {
         baseRequest = new BaseRequest(context);
@@ -291,6 +324,36 @@ public class Act_faculty_list extends AppCompatActivity {
 
 //        return super.onOptionsItemSelected(item);
     }
+
+    public void sucessDialog(String message, Context context) {
+//        textView.setText(getResources().getString(R.string.txt_hello));
+
+        final Dialog mDialog = new Dialog(context);
+        mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);  //without extar space of title
+        mDialog.setContentView(R.layout.notification_dailog2);
+        mDialog.setCanceledOnTouchOutside(true);
+
+        Button btn_ok;
+        TextView tv_retry;
+        TextView tv_notification;
+        btn_ok = mDialog.findViewById(R.id.btn_ok);
+        tv_retry = mDialog.findViewById(R.id.tv_retry);
+        tv_notification = mDialog.findViewById(R.id.tv_notification);
+        tv_notification.setText(message);
+        tv_retry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDialog.cancel();
+                callApi();
+
+
+            }
+        });
+        mDialog.show();
+
+
+    }
+
 
 
     @Override

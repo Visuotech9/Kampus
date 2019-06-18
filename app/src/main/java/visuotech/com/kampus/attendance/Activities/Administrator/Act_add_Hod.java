@@ -160,8 +160,6 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
         et_hod_id =  findViewById(R.id.et_hod_id);
         tv_doj =  findViewById(R.id.tv_doj);
         iv_profile_image =  findViewById(R.id.iv_profile_image);
-        iv_cal_dob =  findViewById(R.id.iv_cal_dob);
-        iv_cal_doj =  findViewById(R.id.iv_cal_doj);
         tv_error1 =  findViewById(R.id.tv_error1);
         tv_error2 =  findViewById(R.id.tv_error2);
         tv_error3 =  findViewById(R.id.tv_error3);
@@ -220,7 +218,7 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
 
 
 
-        iv_cal_dob.setOnClickListener(new View.OnClickListener() {
+        tv_dob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 calendar = Calendar.getInstance();
@@ -238,7 +236,7 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
                 datePickerDialog.show();
             }
         });
-        iv_cal_doj.setOnClickListener(new View.OnClickListener() {
+        tv_doj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 calendar = Calendar.getInstance();

@@ -87,19 +87,9 @@ public class Act_add_director extends AppCompatActivity implements AdapterView.O
     Bitmap mainBitmap;
     Uri tempUri;
     private static final String IMAGE_DIRECTORY_NAME = "Directorregistrstion";
-
     ArrayList<String>  course_list= new ArrayList<String>();
-    ArrayList<String>  course_id= new ArrayList<String>();
-
-    //    String[] department_list = { "Administrator", "Director", "HOD", "Faculty", "Student"};
     String[] gender_list = { "male", "Female", "others","--Select gender--"};
     final int listsize = gender_list.length - 1;
-
-
-    DatePickerDialog datePickerDialog;
-    int year;
-    int month;
-    int dayOfMonth;
     Calendar calendar;
     MultipartBody.Part body;
 
@@ -267,6 +257,8 @@ public class Act_add_director extends AppCompatActivity implements AdapterView.O
 
             }
         });
+
+
 
 
 

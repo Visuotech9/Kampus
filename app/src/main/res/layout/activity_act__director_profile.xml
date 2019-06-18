@@ -19,27 +19,41 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             tools:context=".Activities.Student.Student_Act_profile">
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:background="@drawable/background_ed"
+                android:background="@drawable/bg_image"
                 android:layout_height="190dp">
 
             </LinearLayout>
 
+<!--
             <LinearLayout
-                android:layout_width="130dp"
-                android:layout_height="130dp"
+                android:layout_width="match_parent"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:background="@drawable/bg_image"
+                android:layout_height="200dp">
+
+
+
+
+            </LinearLayout>
+-->
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="140dp"
+                android:layout_marginRight="10dp"
                 android:gravity="center_horizontal"
-                android:background="@drawable/bg_circular_imageview"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="115dp">
+                android:background="@drawable/bg_circular_imageview">
 
                 <com.mikhaellopez.circularimageview.CircularImageView
-                    android:layout_width="110dp"
+                    android:layout_width="90dp"
                     android:id="@+id/iv_profile_image"
-                    android:layout_marginTop="10dp"
-                    android:layout_height="110dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="90dp"
                     android:src="@drawable/image_profil"
                     app:civ_border_color="@color/Gray"
                     app:civ_border_width="0dp"
@@ -48,6 +62,9 @@
                     app:civ_shadow_color="@color/colorPrimary"/>
 
             </LinearLayout>
+
+
+
 
 
             <!--<com.mikhaellopez.circularimageview.CircularImageView-->
@@ -63,6 +80,33 @@
                 <!--app:civ_shadow_radius="3"-->
                 <!--app:civ_shadow_color="@color/colorPrimary"/>-->
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="200dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/DarkRed"
+                    android:text="Stuti Tripathi"
+                    android:paddingLeft="20dp"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_course"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/Green"
+                    android:paddingLeft="20dp"
+                    android:text="Information and technology"
+                    android:textSize="14dp"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
 
 
             <ImageView
@@ -77,32 +121,6 @@
 
         </FrameLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="5dp"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="match_parent"
-                android:gravity="center_horizontal"
-                android:textColor="@color/colorPrimaryDark"
-                android:text="Stuti Tripathi"
-                android:textSize="20dp"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/tv_course"
-                android:layout_width="match_parent"
-                android:gravity="center_horizontal"
-                android:textColor="@color/Black"
-                android:text="Information and technology"
-                android:textSize="14dp"
-                android:layout_height="wrap_content" />
-
-
-        </LinearLayout>
 
 
 
@@ -110,7 +128,7 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             card_view:cardElevation="5dp"
@@ -119,25 +137,33 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="vertical"
-                android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="20dp"
-                    android:textSize="20dp"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:text="Details:"/>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@color/separater_color"></View>
+                    android:background="#c1bfbf"></View>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:background="@color/Gray_light"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Basic Details :"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    tools:ignore="Suspicious0dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#c1bfbf"></View>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
@@ -150,7 +176,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Gender :"
+                        android:text="Gender"
+                        android:textStyle="bold"
                         android:textSize="14dp" />
 
                     <TextView
@@ -177,7 +204,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Director id :"
+                        android:text="Director id"
+                        android:textStyle="bold"
                         android:textSize="14dp" />
 
                     <TextView
@@ -205,7 +233,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Mobile no :"
+                        android:text="Mobile no"
+                        android:textStyle="bold"
                         android:textSize="14dp" />
 
                     <TextView
@@ -232,7 +261,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Email id :"
+                        android:text="Email id"
+                        android:textStyle="bold"
                         android:textSize="14dp" />
 
                     <TextView
@@ -258,7 +288,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Date of birth :"
+                        android:text="Date of birth"
+                        android:textStyle="bold"
                         android:textSize="14dp" />
 
                     <TextView
@@ -284,7 +315,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Date of joining :"
+                        android:text="Date of joining"
+                        android:textStyle="bold"
                         android:textSize="14dp" />
 
                     <TextView
@@ -310,8 +342,9 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:text="Address :"
+                        android:text="Address"
                         android:textSize="14dp"
+                        android:textStyle="bold"
                         android:layout_height="wrap_content" />
 
                     <TextView
