@@ -73,7 +73,7 @@ public class Ad_student extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
         final Student student = list.get(position); // Movie
 
@@ -81,19 +81,49 @@ public class Ad_student extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             case ITEM:
                 final VH vh = (VH) holder;
 
-                vh.tv_name.setText(student.getFull_name());
-                vh.tv_dept.setText(student.getStudent_department_name());
-                vh.tv_enrolment.setText(student.getEnrollment_no());
-                vh.tv_section.setText(student.getStudent_section());
-                vh.tv_sem.setText(student.getStudent_semester());
-                Picasso.get().load(student.getStudent_pic()).into(vh.iv_profile_image);
+                vh.tv_name.setText(student.getFullName());
+                vh.tv_dept.setText(student.getStudentDepartmentName());
+                vh.tv_enrolment.setText(student.getEnrollmentNo());
+                vh.tv_section.setText(student.getStudentSection());
+                vh.tv_sem.setText(student.getStudentSemester());
+                Picasso.get().load(student.getStudentPic()).into(vh.iv_profile_image);
 
 
                 vh.lin_layout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         Intent intent = new Intent(context, Act_Student_profile.class);
-//                        intent.putExtra("ID",String.valueOf(dat.getId()));
+
+                        intent.putExtra("ssc", String.valueOf(list.get(position).getSscResult()));
+                        intent.putExtra("hsc", String.valueOf(list.get(position).getHscResult()));
+                        intent.putExtra("deploma", String.valueOf(list.get(position).getDiploma()));
+                        intent.putExtra("schlorship", String.valueOf(list.get(position).getScholarship()));
+
+                        intent.putExtra("fname", String.valueOf(list.get(position).getFathersName()));
+                        intent.putExtra("mname", String.valueOf(list.get(position).getMothersName()));
+                        intent.putExtra("parent_mobile", String.valueOf(list.get(position).getSEmergencyContactNo()));
+                        intent.putExtra("city", String.valueOf(list.get(position).getSCity()));
+                        intent.putExtra("state", String.valueOf(list.get(position).getSState()));
+                        intent.putExtra("enrol_no", String.valueOf(list.get(position).getEnrollmentNo()));
+                        intent.putExtra("session", String.valueOf(list.get(position).getSession()));
+
+
+                        intent.putExtra("Name", String.valueOf(list.get(position).getFullName()));
+                        intent.putExtra("Email", String.valueOf(list.get(position).getSEmailId()));
+                        intent.putExtra("Mobile", String.valueOf(list.get(position).getSMobileNo()));
+                        intent.putExtra("ClgId", String.valueOf(list.get(position).getStudentId()));
+                        intent.putExtra("Pic", String.valueOf(list.get(position).getStudentPic()));
+                        intent.putExtra("Dob", String.valueOf(list.get(position).getSDob()));
+                        intent.putExtra("Gender", String.valueOf(list.get(position).getSGender()));
+                        intent.putExtra("Course", String.valueOf(list.get(position).getStudentCourseName()));
+                        intent.putExtra("paddress", String.valueOf(list.get(position).getPermanentAddress()));
+                        intent.putExtra("taddress", String.valueOf(list.get(position).getTemporaryAddress()));
+                        intent.putExtra("Department", String.valueOf(list.get(position).getStudentDepartmentName()));
+                        intent.putExtra("doa", String.valueOf(list.get(position).getAdmissionDate()));
+                        intent.putExtra("bgroup", String.valueOf(list.get(position).getSBloodGroup()));
+                        intent.putExtra("caste", String.valueOf(list.get(position).getSCaste()));
+
                         context.startActivity(intent);
                     }
                 });

@@ -12,8 +12,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,9 +32,6 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Response;
-import visuotech.com.kampus.attendance.Activities.Administrator.Act_add_student;
-import visuotech.com.kampus.attendance.Activities.Administrator.Act_student_list;
-import visuotech.com.kampus.attendance.Activities.Administrator.Administrator_Act_home;
 import visuotech.com.kampus.attendance.Adapter.Ad_student;
 import visuotech.com.kampus.attendance.MarshMallowPermission;
 import visuotech.com.kampus.attendance.Model.Director;
@@ -85,7 +80,7 @@ public class Act_student_list2 extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor((Color.parseColor("#FFFFFF")));
-        getSupportActionBar().setTitle("Students");
+        getSupportActionBar().setTitle("Student");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         context = this;
@@ -168,7 +163,7 @@ public class Act_student_list2 extends AppCompatActivity {
                     adapter = new Ad_student(student_list, context);
                     rv_list.setAdapter(adapter);
                     if (!mess.equals("No Records Found")) {
-                        int TOTAL_PAGES = Integer.parseInt(student_list.get(0).getTotal_pages());
+                        int TOTAL_PAGES = Integer.parseInt(student_list.get(0).getmTotalPages());
                         if (currentPage != TOTAL_PAGES)
                             adapter.addLoadingFooter();
                         else isLastPage = true;
@@ -207,7 +202,7 @@ public class Act_student_list2 extends AppCompatActivity {
 
                     student_list = baseRequest.getDataList(jsonArray, Student.class);
                     adapter.addAll(student_list);
-                    int TOTAL_PAGES = Integer.parseInt(student_list.get(0).getTotal_pages());
+                    int TOTAL_PAGES = Integer.parseInt(student_list.get(0).getmTotalPages());
 
 
                     adapter.removeLoadingFooter();
@@ -260,14 +255,14 @@ public class Act_student_list2 extends AppCompatActivity {
 
 
                 for (int i = 0; i < student_list.size(); i++) {
-                    if (student_list.get(i).getFull_name().toLowerCase().contains(s.toLowerCase())) {
+                    if (student_list.get(i).getFullName().toLowerCase().contains(s.toLowerCase())) {
                         Student student = new Student();
-                        student.setFull_name(student_list.get(i).getFull_name());
-                        student.setStudent_department_name(student_list.get(i).getStudent_department_name());
-                        student.setEnrollment_no(student_list.get(i).getEnrollment_no());
-                        student.setStudent_pic(student_list.get(i).getStudent_pic());
-                        student.setStudent_semester(student_list.get(i).getStudent_semester());
-                        student.setStudent_section(student_list.get(i).getStudent_section());
+                        student.setFullName(student_list.get(i).getFullName());
+                        student.setStudentDepartmentName(student_list.get(i).getStudentDepartmentName());
+                        student.setEnrollmentNo(student_list.get(i).getEnrollmentNo());
+                        student.setStudentPic(student_list.get(i).getStudentPic());
+                        student.setStudentSemester(student_list.get(i).getStudentSemester());
+                        student.setStudentSection(student_list.get(i).getStudentSection());
 
 
                         student_list2.add(student);
@@ -285,14 +280,14 @@ public class Act_student_list2 extends AppCompatActivity {
 
 
                 for (int i = 0; i < student_list.size(); i++) {
-                    if (student_list.get(i).getFull_name().toLowerCase().contains(s.toLowerCase())) {
+                    if (student_list.get(i).getFullName().toLowerCase().contains(s.toLowerCase())) {
                         Student student = new Student();
-                        student.setFull_name(student_list.get(i).getFull_name());
-                        student.setStudent_department_name(student_list.get(i).getStudent_department_name());
-                        student.setEnrollment_no(student_list.get(i).getEnrollment_no());
-                        student.setStudent_pic(student_list.get(i).getStudent_pic());
-                        student.setStudent_semester(student_list.get(i).getStudent_semester());
-                        student.setStudent_section(student_list.get(i).getStudent_section());
+                        student.setFullName(student_list.get(i).getFullName());
+                        student.setStudentDepartmentName(student_list.get(i).getStudentDepartmentName());
+                        student.setEnrollmentNo(student_list.get(i).getEnrollmentNo());
+                        student.setStudentPic(student_list.get(i).getStudentPic());
+                        student.setStudentSemester(student_list.get(i).getStudentSemester());
+                        student.setStudentSection(student_list.get(i).getStudentSection());
 
 
                         student_list2.add(student);

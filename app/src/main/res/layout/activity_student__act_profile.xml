@@ -59,20 +59,33 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/tv_name"
                 android:layout_width="match_parent"
                 android:gravity="center_horizontal"
                 android:textColor="@color/colorPrimaryDark"
                 android:text="Stuti Tripathi"
                 android:textSize="20dp"
+                android:textStyle="bold"
                 android:layout_height="wrap_content" />
 
             <TextView
+                android:id="@+id/tv_course"
+                android:layout_width="match_parent"
+                android:gravity="center_horizontal"
+                android:textColor="@color/Black"
+                android:text="Bechlor's of engineering"
+                android:textSize="14dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_dept"
                 android:layout_width="match_parent"
                 android:gravity="center_horizontal"
                 android:textColor="@color/Black"
                 android:text="Information and technology"
-                android:textSize="12dp"
+                android:textSize="14dp"
                 android:layout_height="wrap_content" />
+
 
 
         </LinearLayout>
@@ -98,6 +111,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="20dp"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:text="Basic details:"/>
 
@@ -127,15 +142,16 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:textSize="12dp"
+                            android:textSize="14dp"
                             android:layout_height="wrap_content"
                             android:text="Date of birth :"/>
 
                         <TextView
+                            android:id="@+id/tv_dob"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingLeft="5dp"
-                            android:textSize="12dp"
+                            android:textSize="14dp"
                             android:textColor="@color/Black"
                             android:text="01 Jan 2000"/>
                     </LinearLayout>
@@ -151,18 +167,19 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:textSize="12dp"
+                            android:textSize="14dp"
                             android:layout_marginLeft="5dp"
                             android:layout_height="wrap_content"
                             android:text="Gender :"/>
 
                         <TextView
+                            android:id="@+id/tv_gender"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingLeft="5dp"
                             android:textColor="@color/Black"
 
-                            android:textSize="12dp"
+                            android:textSize="14dp"
                             android:text="female"/>
                     </LinearLayout>
 
@@ -190,16 +207,17 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:textSize="12dp"
+                            android:textSize="14dp"
                             android:layout_height="wrap_content"
                             android:text="Blood group :"/>
 
                         <TextView
+                            android:id="@+id/tv_bgroup"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingLeft="5dp"
                             android:textColor="@color/Black"
-                            android:textSize="12dp"
+                            android:textSize="14dp"
                             android:text="B+"/>
                     </LinearLayout>
 
@@ -214,17 +232,18 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:textSize="12dp"
+                            android:textSize="14dp"
                             android:layout_marginLeft="5dp"
                             android:layout_height="wrap_content"
                             android:text="Caste :"/>
 
                         <TextView
+                            android:id="@+id/tv_caste"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingLeft="5dp"
                             android:textColor="@color/Black"
-                            android:textSize="12dp"
+                            android:textSize="14dp"
                             android:text="xyz"/>
                     </LinearLayout>
 
@@ -244,15 +263,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="12dp"
+                        android:textSize="14dp"
                         android:text="Father's name :"/>
 
                     <TextView
+                        android:id="@+id/tv_fname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="5dp"
                         android:textColor="@color/Black"
-                        android:textSize="12dp"
+                        android:textSize="14dp"
                         android:text="Sanjeev Tripathi"/>
 
 
@@ -268,14 +288,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="12dp"
+                        android:textSize="14dp"
                         android:text="Mother's name :"/>
 
                     <TextView
+                        android:id="@+id/tv_mname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="5dp"
-                        android:textSize="12dp"
+                        android:textSize="14dp"
                         android:textColor="@color/Black"
                         android:text="Radha Tripathi"/>
 
@@ -317,6 +338,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="20dp"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:text="Contact details:"/>
 
@@ -341,15 +364,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Mobile no :"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
                     <TextView
+                        android:id="@+id/tv_mobile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="9812312345"
                         android:gravity="right"
                         android:textColor="@color/Black"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
 
                 </LinearLayout>
@@ -367,15 +391,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Parents mobile no :"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
                     <TextView
+                        android:id="@+id/tv_parent_mobile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="9812312345"
                         android:gravity="right"
                         android:textColor="@color/Black"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
 
                 </LinearLayout>
@@ -392,15 +417,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Email id :"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
                     <TextView
+                        android:id="@+id/tv_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="stuti@kampus.com"
                         android:gravity="right"
                         android:textColor="@color/Black"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
 
                 </LinearLayout>
@@ -417,15 +443,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="City :"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
                     <TextView
+                        android:id="@+id/tv_city"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Indore"
                         android:gravity="right"
                         android:textColor="@color/Black"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
 
                 </LinearLayout>
@@ -442,15 +469,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="State :"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
                     <TextView
+                        android:id="@+id/tv_state"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Madhya pradesh"
                         android:gravity="right"
                         android:textColor="@color/Black"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
 
                 </LinearLayout>
@@ -467,14 +495,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:text="Parmanent address :"
-                        android:textSize="12dp"
+                        android:textSize="14dp"
                         android:layout_height="wrap_content" />
 
                     <TextView
+                        android:id="@+id/tv_paddress"
                         android:layout_width="match_parent"
                         android:text="Main Gate Rd, IIT Area, Powai, Mumbai, Maharashtra 400076"
                         android:textColor="@color/Black"
-                        android:textSize="12dp"
+                        android:textSize="14dp"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
                         android:layout_height="wrap_content" />
@@ -494,14 +523,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:text="Temprary address :"
-                        android:textSize="12dp"
+                        android:textSize="14dp"
                         android:layout_height="wrap_content" />
 
                     <TextView
+                        android:id="@+id/tv_taddress"
                         android:layout_width="match_parent"
                         android:text=" Indian Institute of Technology Indore, Khandwa Road, Simrol, Indore 453552, Madhya pradesh"
                         android:textColor="@color/Black"
-                        android:textSize="12dp"
+                        android:textSize="14dp"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
                         android:layout_height="wrap_content" />
@@ -549,6 +579,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="20dp"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:text="Education details :"/>
 
@@ -560,57 +592,59 @@
                     android:layout_marginRight="20dp"
                     android:background="@color/separater_color"></View>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_height="20dp">
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:layout_marginLeft="20dp"-->
+                    <!--android:layout_marginRight="20dp"-->
+                    <!--android:layout_height="20dp">-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Department :"
-                        android:textSize="12dp" />
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Course :"-->
+                        <!--android:textSize="14dp" />-->
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="abcdefgfhi"
-                        android:gravity="right"
-                        android:textColor="@color/Black"
-                        android:textSize="12dp" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_height="20dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Branch :"
-                        android:textSize="12dp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Information and technology"
-                        android:gravity="right"
-                        android:textColor="@color/Black"
-                        android:textSize="12dp" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/tv_course"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="abcdefgfhi"-->
+                        <!--android:gravity="right"-->
+                        <!--android:textColor="@color/Black"-->
+                        <!--android:textSize="14dp" />-->
 
 
-                </LinearLayout>
+                <!--</LinearLayout>-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:layout_marginLeft="20dp"-->
+                    <!--android:layout_marginRight="20dp"-->
+                    <!--android:layout_height="20dp">-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Department :"-->
+                        <!--android:textSize="14dp" />-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/tv_dept"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Information and technology"-->
+                        <!--android:gravity="right"-->
+                        <!--android:textColor="@color/Black"-->
+                        <!--android:textSize="14dp" />-->
+
+
+                <!--</LinearLayout>-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
@@ -624,15 +658,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Enrolment no. :"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
                     <TextView
+                        android:id="@+id/tv_enrol_no"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="stuti@kampus.com"
                         android:gravity="right"
                         android:textColor="@color/Black"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
 
                 </LinearLayout>
@@ -649,15 +684,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Session :"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
                     <TextView
+                        android:id="@+id/tv_session"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="2014-2018"
                         android:gravity="right"
                         android:textColor="@color/Black"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
 
                 </LinearLayout>
@@ -674,15 +710,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Adimission date:"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
                     <TextView
+                        android:id="@+id/tv_doa"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="20 july 2014"
                         android:gravity="right"
                         android:textColor="@color/Black"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
 
                 </LinearLayout>
@@ -699,15 +736,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="10th/SSC marks (in %):"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
                     <TextView
+                        android:id="@+id/tv_ssc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="90"
                         android:gravity="right"
                         android:textColor="@color/Black"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
 
                 </LinearLayout>
@@ -724,15 +762,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="12th/HSC marks (in %):"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
                     <TextView
+                        android:id="@+id/tv_hsc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="85"
                         android:gravity="right"
                         android:textColor="@color/Black"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
 
                 </LinearLayout>
@@ -750,15 +789,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Diploma :"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
                     <TextView
+                        android:id="@+id/tv_deploma"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="abcd"
                         android:gravity="right"
                         android:textColor="@color/Black"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
 
                 </LinearLayout>
@@ -776,15 +816,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Scholarship :"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
                     <TextView
+                        android:id="@+id/tv_schlorship"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="No"
                         android:gravity="right"
                         android:textColor="@color/Black"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
 
 
                 </LinearLayout>

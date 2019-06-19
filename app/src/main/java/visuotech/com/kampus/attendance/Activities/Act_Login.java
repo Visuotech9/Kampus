@@ -49,24 +49,23 @@ import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 import visuotech.com.kampus.attendance.retrofit.Utility;
 
 public class Act_Login extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    final private int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
+    public boolean datafinish = false;
     Button btn_login, btn_reg;
     CircleImageView iv_profile_image;
     TextView tv_org_name;
     EditText et_username;
-    private String username, password,device_id;
-    public boolean datafinish = false;
-    final private int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
     Context context;
-    private BaseRequest baseRequest;
     SessionParam sessionParam;
     MarshMallowPermission marshMallowPermission;
     Activity activity;
-    String splash ="No";
-    String other_device_active,user_typee,organization_id,user_id,logo,org_id,org_name;
-
-    String[] user_type = { "Administrator", "Director", "HOD", "Faculty", "Student"};
+    String splash = "No";
+    String other_device_active, user_typee, organization_id, user_id, logo, org_id, org_name;
+    String[] user_type = {"Administrator", "Director", "HOD", "Faculty", "Student"};
     ShowHidePasswordEditText et_password;
     EditText et_password2;
+    private String username, password, device_id;
+    private BaseRequest baseRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,19 +80,18 @@ public class Act_Login extends AppCompatActivity implements AdapterView.OnItemSe
         permission();
 
 
-
         Spinner spin = (Spinner) findViewById(R.id.spinner1);
-        Intent intent=getIntent();
-        logo=intent.getStringExtra("COLLEGE LOGO");
+        Intent intent = getIntent();
+        logo = intent.getStringExtra("COLLEGE LOGO");
 
-        org_id=intent.getStringExtra("COLLEGE ID");
-        org_name=intent.getStringExtra("COLLEGE NAME");
+        org_id = intent.getStringExtra("COLLEGE ID");
+        org_name = intent.getStringExtra("COLLEGE NAME");
         Picasso.get().load(logo).into(iv_profile_image);
         tv_org_name.setText(org_name);
         spin.setOnItemSelectedListener(this);
 
         //Creating the ArrayAdapter instance having the country list
-        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,user_type);
+        ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, user_type);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
         spin.setAdapter(aa);
@@ -117,22 +115,20 @@ public class Act_Login extends AppCompatActivity implements AdapterView.OnItemSe
                     device_id = TelephonyMgr.getDeviceId();
 
 
-
                     username = et_username.getText().toString();
                     password = et_password.getText().toString();
-                    if (NetworkConnection.checkNetworkStatus(context)==true){
+                    if (NetworkConnection.checkNetworkStatus(context) == true) {
                         api_login();
                         et_username.setText("");
                         et_password.setText("");
 
-                    }else{
-                        Toast.makeText(getApplicationContext(),"Please check internet connection",Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Please check internet connection", Toast.LENGTH_SHORT).show();
                     }
 
                 }
             }
         });
-
 
 
     }
@@ -156,8 +152,6 @@ public class Act_Login extends AppCompatActivity implements AdapterView.OnItemSe
             permissionsNeeded.add("Write storage");
         if (!addPermission(permissionsList, Manifest.permission.READ_EXTERNAL_STORAGE))
             permissionsNeeded.add("Read storage");
-
-
 
 
         if (permissionsList.size() > 0) {
@@ -216,7 +210,7 @@ public class Act_Login extends AppCompatActivity implements AdapterView.OnItemSe
                         && perms.get(Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED
                         && perms.get(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
                         && perms.get(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-                        && perms.get(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED ){
+                        && perms.get(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
 
                     // All Permissions Granted
                     init();
@@ -253,11 +247,11 @@ public class Act_Login extends AppCompatActivity implements AdapterView.OnItemSe
 
 
     private void init() {
-        btn_login=findViewById(R.id.btn_login);
-        et_username=findViewById(R.id.et_username);
-        et_password=findViewById(R.id.et_password);
-        tv_org_name=findViewById(R.id.tv_org_name);
-        iv_profile_image=findViewById(R.id.iv_profile_image);
+        btn_login = findViewById(R.id.btn_login);
+        et_username = findViewById(R.id.et_username);
+        et_password = findViewById(R.id.et_password);
+        tv_org_name = findViewById(R.id.tv_org_name);
+        iv_profile_image = findViewById(R.id.iv_profile_image);
 
 
     }
@@ -271,40 +265,40 @@ public class Act_Login extends AppCompatActivity implements AdapterView.OnItemSe
 
                 try {
                     JSONObject jsonObject = new JSONObject(object.toString());
-                    JSONObject jsonObject1=jsonObject.getJSONObject("user");
-                    SessionParam sessionParam=new SessionParam(context,jsonObject1);
-                    user_typee=jsonObject1.getString("login_user_type");
+                    JSONObject jsonObject1 = jsonObject.getJSONObject("user");
+                    SessionParam sessionParam = new SessionParam(context, jsonObject1);
+                    user_typee = jsonObject1.getString("login_user_type");
                     user_id = String.valueOf(jsonObject1.optInt("user_id"));
                     organization_id = String.valueOf(jsonObject1.optInt("organization_id"));
 
                 } catch (JSONException e) {
 
 
-
-
-
-
                     e.printStackTrace();
                 }
 
-                Toast.makeText(getApplicationContext(),"Login sucessfully",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Login sucessfully", Toast.LENGTH_SHORT).show();
                 if (user_typee.equals("Administrator")) {
                     Intent i = new Intent(Act_Login.this, Administrator_Act_home.class);
                     startActivity(i);
                     finish();
-                } if (user_typee.equals("Director")) {
+                }
+                if (user_typee.equals("Director")) {
                     Intent i = new Intent(Act_Login.this, Director_Act_home.class);
                     startActivity(i);
                     finish();
-                } if (user_typee.equals("HOD")) {
+                }
+                if (user_typee.equals("HOD")) {
                     Intent i = new Intent(Act_Login.this, HOD_Act_home.class);
                     startActivity(i);
                     finish();
-                } if (user_typee.equals("Faculty")) {
+                }
+                if (user_typee.equals("Faculty")) {
                     Intent i = new Intent(Act_Login.this, Faculty_Act_home.class);
                     startActivity(i);
                     finish();
-                } if (user_typee.equals("Student")) {
+                }
+                if (user_typee.equals("Student")) {
                     Intent i = new Intent(Act_Login.this, Student_Act_home.class);
                     startActivity(i);
                     finish();
@@ -332,21 +326,20 @@ public class Act_Login extends AppCompatActivity implements AdapterView.OnItemSe
         RequestBody password_ = RequestBody.create(MediaType.parse("text/plain"), password);
         RequestBody org_id_ = RequestBody.create(MediaType.parse("text/plain"), org_id);
 
-        baseRequest.callAPILogin(1,"https://collectorexpress.in/",user_type_,device_id_,email_,password_,org_id_);
+        baseRequest.callAPILogin(1, "https://collectorexpress.in/", user_type_, device_id_, email_, password_, org_id_);
 
     }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 //        Toast.makeText(getApplicationContext(),user_type[i] , Toast.LENGTH_LONG).show();
-        user_typee=user_type[i];
+        user_typee = user_type[i];
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
-
 
 
 }

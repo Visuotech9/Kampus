@@ -72,9 +72,8 @@ public class Administrator_Act_home extends AppCompatActivity  {
         TextView tv_toolbar=findViewById(R.id.tv_toolbar);
         ImageView iv_toolbar=findViewById(R.id.iv_toolbar);
         tv_toolbar.setText(sessionParam.org_name);
-        Picasso.get().load("http://collectorexpress.in/Kampus/College_logo/28-02-2019-1551331894-1.jpg").into(iv_toolbar);
-//        Glide.with(context).load(sessionParam.org_logo).into(iv_toolbar);
-//        toolbar.setTitle(sessionParam.org_name);
+        String aUrl = sessionParam.org_logo.replace("http", "https");
+        Picasso.get().load(aUrl).into(iv_toolbar);
         setSupportActionBar(toolbar);
       /*
         if(getSupportActionBar()!=null){
@@ -152,7 +151,8 @@ public class Administrator_Act_home extends AppCompatActivity  {
 
         tv_name.setText(sessionParam.login_name);
         tv_designation.setText("("+sessionParam.designation+")");
-        Picasso.get().load("http://collectorexpress.in/Kampus/College_logo/28-02-2019-1551331894-1.jpg").into(iv_image);
+        String aUrl1 = sessionParam.user_image.replace("http", "https");
+        Picasso.get().load(aUrl1).into(iv_image);
 
         iv_image.setOnClickListener(new View.OnClickListener() {
             @Override
