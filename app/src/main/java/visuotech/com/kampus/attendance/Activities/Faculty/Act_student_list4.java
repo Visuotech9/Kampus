@@ -13,8 +13,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,7 +26,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import org.json.JSONArray;
@@ -40,16 +37,11 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Response;
-import visuotech.com.kampus.attendance.Activities.Hod.Act_student_list3;
-import visuotech.com.kampus.attendance.Activities.Hod.HOD_Act_home;
 import visuotech.com.kampus.attendance.Adapter.Ad_Section_list;
 import visuotech.com.kampus.attendance.Adapter.Ad_Semister_list;
-import visuotech.com.kampus.attendance.Adapter.Ad_hod;
 import visuotech.com.kampus.attendance.Adapter.Ad_student;
 import visuotech.com.kampus.attendance.MarshMallowPermission;
-import visuotech.com.kampus.attendance.Model.Assignment;
 import visuotech.com.kampus.attendance.Model.Director;
-import visuotech.com.kampus.attendance.Model.HOD;
 import visuotech.com.kampus.attendance.Model.ModelResponse;
 import visuotech.com.kampus.attendance.Model.Section;
 import visuotech.com.kampus.attendance.Model.Semister;
@@ -263,7 +255,7 @@ public class Act_student_list4 extends AppCompatActivity implements AdapterView.
                     adapter=new Ad_student(student_list,context);
                     rv_list.setAdapter(adapter);
 
-                    int TOTAL_PAGES= Integer.parseInt(student_list.get(0).getTotal_pages());
+                    int TOTAL_PAGES= Integer.parseInt(student_list.get(0).getmTotalPages());
                     if (currentPage != TOTAL_PAGES)
                         adapter.addLoadingFooter();
                     else isLastPage = true;
@@ -297,7 +289,7 @@ public class Act_student_list4 extends AppCompatActivity implements AdapterView.
 
                     student_list=baseRequest.getDataListreverse(jsonArray,Student.class);
                     adapter.addAll(student_list);
-                    int TOTAL_PAGES= Integer.parseInt(student_list.get(0).getTotal_pages());
+                    int TOTAL_PAGES= Integer.parseInt(student_list.get(0).getmTotalPages());
 
 
                     adapter.removeLoadingFooter();
@@ -567,14 +559,14 @@ public class Act_student_list4 extends AppCompatActivity implements AdapterView.
 
 
                 for (int i = 0; i < student_list.size(); i++) {
-                    if (student_list.get(i).getFull_name().toLowerCase().contains(s.toLowerCase())) {
+                    if (student_list.get(i).getFullName().toLowerCase().contains(s.toLowerCase())) {
                         Student student = new Student();
-                        student.setFull_name(student_list.get(i).getFull_name());
-                        student.setStudent_department_name(student_list.get(i).getStudent_department_name());
-                        student.setEnrollment_no(student_list.get(i).getEnrollment_no());
-                        student.setStudent_pic(student_list.get(i).getStudent_pic());
-                        student.setStudent_semester(student_list.get(i).getStudent_semester());
-                        student.setStudent_section(student_list.get(i).getStudent_section());
+                        student.setFullName(student_list.get(i).getFullName());
+                        student.setStudentDepartmentName(student_list.get(i).getStudentDepartmentName());
+                        student.setEnrollmentNo(student_list.get(i).getEnrollmentNo());
+                        student.setStudentPic(student_list.get(i).getStudentPic());
+                        student.setStudentSemester(student_list.get(i).getStudentSemester());
+                        student.setStudentSection(student_list.get(i).getStudentSection());
 
 
                         student_list2.add(student);
@@ -592,14 +584,14 @@ public class Act_student_list4 extends AppCompatActivity implements AdapterView.
 
 
                 for (int i = 0; i < student_list.size(); i++) {
-                    if (student_list.get(i).getFull_name().toLowerCase().contains(s.toLowerCase())) {
+                    if (student_list.get(i).getFullName().toLowerCase().contains(s.toLowerCase())) {
                         Student student = new Student();
-                        student.setFull_name(student_list.get(i).getFull_name());
-                        student.setStudent_department_name(student_list.get(i).getStudent_department_name());
-                        student.setEnrollment_no(student_list.get(i).getEnrollment_no());
-                        student.setStudent_pic(student_list.get(i).getStudent_pic());
-                        student.setStudent_semester(student_list.get(i).getStudent_semester());
-                        student.setStudent_section(student_list.get(i).getStudent_section());
+                        student.setFullName(student_list.get(i).getFullName());
+                        student.setStudentDepartmentName(student_list.get(i).getStudentDepartmentName());
+                        student.setEnrollmentNo(student_list.get(i).getEnrollmentNo());
+                        student.setStudentPic(student_list.get(i).getStudentPic());
+                        student.setStudentSemester(student_list.get(i).getStudentSemester());
+                        student.setStudentSection(student_list.get(i).getStudentSection());
 
 
                         student_list2.add(student);
