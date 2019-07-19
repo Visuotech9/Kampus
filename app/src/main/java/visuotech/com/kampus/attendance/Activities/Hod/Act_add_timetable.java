@@ -278,16 +278,14 @@ public class Act_add_timetable extends AppCompatActivity implements AdapterView.
 
         TimeTableData timeTableData = new TimeTableData();
         for (int i = 0; i < cardNo; i++) {
-
             starthrs.add(tv_starthrs.getText().toString());
             endhrs.add(tv_endhrs.getText().toString());
             startmin.add(tv_startmin.getText().toString());
             endmin.add(tv_endmin.getText().toString());
             facId.add(fac_id);
             subId.add(subject_id);
-
-
         }
+
         timeTableData.setStarthrs(starthrs);
         timeTableData.setEndhrs(endhrs);
         timeTableData.setStartmin(startmin);
@@ -356,9 +354,11 @@ public class Act_add_timetable extends AppCompatActivity implements AdapterView.
                     sem_list1 = baseRequest.getDataList(jsonArray, Semister.class);
 
                     for (int i = 0; i < sem_list1.size(); i++) {
+
                         sem_list.add(sem_list1.get(i).getSem());
 
                     }
+
                     adapter_sem = new ArrayAdapter(context, android.R.layout.simple_spinner_item, sem_list);
                     adapter_sem.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinner_sem.setAdapter(adapter_sem);

@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -21,6 +22,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -42,7 +44,7 @@ import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 import visuotech.com.kampus.attendance.retrofit.Utility;
 
 public class Administrator_Act_home extends AppCompatActivity  {
-   LinearLayout lay1,lay2,lay3,lay4,lay5,lay6,lay13,lay14,lay15,lay;
+   LinearLayout lay1,lay2,lay3,lay4,lay5,lay6,lay7,lay13,lay14,lay15,lay;
    TextView tv_designation,tv_name;
    ImageView iv_image;
     Drawable d;
@@ -139,6 +141,7 @@ public class Administrator_Act_home extends AppCompatActivity  {
         lay4=findViewById(R.id.lay4);
         lay5=findViewById(R.id.lay5);
         lay6=findViewById(R.id.lay6);
+        lay7=findViewById(R.id.lay7);
         lay13=findViewById(R.id.lay13);
         lay14=findViewById(R.id.lay14);
         lay15=findViewById(R.id.lay15);
@@ -280,6 +283,15 @@ public class Administrator_Act_home extends AppCompatActivity  {
                 finish();
             }
         });
+        lay7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Administrator_Act_home.this, Act_attendence.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
         lay13.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -524,6 +536,45 @@ public class Administrator_Act_home extends AppCompatActivity  {
                 .show();
 
     }
+
+    public void logoutDialog() {
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_logout);
+        dialog.setCanceledOnTouchOutside(true);
+        TextView tv_cancel = dialog.findViewById(R.id.tv_cancel);
+        TextView tv_logout = dialog.findViewById(R.id.tv_logout);
+        tv_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        tv_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logout();
+//                sessionParam.clearPreferences(context);
+//                m.getItem(5).setIcon(ContextCompat.getDrawable(context, R.drawable.ic_login));
+//                m.getItem(5).setTitle("लॉग इन");
+//                fragment = new Home_fragment();
+//                fragmentManager = getSupportFragmentManager();
+//                fragmentManager.beginTransaction().replace(R.id.lyt_defult, fragment).commit();
+                Toast.makeText(context, "आप सफलतापूर्वक लोग आउट कर चुके है", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+                //api_logout();
+            }
+        });
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        Window window = dialog.getWindow();
+        lp.copyFrom(window.getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        window.setAttributes(lp);
+        dialog.show();
+    }
+
 
 
 }

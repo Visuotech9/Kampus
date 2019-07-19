@@ -90,10 +90,8 @@ public class Act_Login extends AppCompatActivity implements AdapterView.OnItemSe
         tv_org_name.setText(org_name);
         spin.setOnItemSelectedListener(this);
 
-        //Creating the ArrayAdapter instance having the country list
         ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, user_type);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //Setting the ArrayAdapter data on the Spinner
         spin.setAdapter(aa);
 
         btn_login.setOnClickListener(new View.OnClickListener() {
