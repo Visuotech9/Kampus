@@ -86,6 +86,7 @@ public class Act_add_student extends AppCompatActivity implements AdapterView.On
     Activity activity;
     SessionParam sessionParam;
     MarshMallowPermission marshMallowPermission;
+    private BaseRequest baseRequest;
     String other_device_active, user_typee, organization_id, user_id;
     Button btn_add, btn_upload_image;
     EditText et_fname, et_lname, et_mname, et_email, et_mobile, et_address, et_enrol, et_fat_name, et_mot_name,
@@ -117,7 +118,7 @@ public class Act_add_student extends AppCompatActivity implements AdapterView.On
     Calendar calendar;
     ArrayAdapter adapter_director, adapter_department, adapter_hod, adapter_course, adapter_sem, adapter_section;
     int year1 = Calendar.getInstance().get(Calendar.YEAR);
-    private BaseRequest baseRequest;
+
 
     private static File getOutputMediaFile(int type) {
         // External sdcard location

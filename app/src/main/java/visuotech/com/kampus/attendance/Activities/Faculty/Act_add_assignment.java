@@ -482,9 +482,7 @@ public class Act_add_assignment extends AppCompatActivity implements AdapterView
                     parts.add(prepareFilePart("file", mArrayUri.get(i)));
                 }
             }
-//            file= new File("/storage/emulated/0/Pictures/Screenshots/Screenshot_20190308-161354.png");
-//            RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-//            body =MultipartBody.Part.createFormData("file", file.getName(), requestFile);
+
 
 
             RequestBody title_ = RequestBody.create(MediaType.parse("text/plain"), title);

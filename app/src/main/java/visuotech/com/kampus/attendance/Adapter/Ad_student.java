@@ -47,6 +47,7 @@ public class Ad_student extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         this.list = list;
     }
 
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder viewHolder = null;
