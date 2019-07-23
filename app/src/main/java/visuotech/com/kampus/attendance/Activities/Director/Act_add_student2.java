@@ -66,6 +66,7 @@ import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 import visuotech.com.kampus.attendance.retrofit.Utility;
 
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
+import static visuotech.com.kampus.attendance.retrofit.WebServiceConstants.BASE_URL;
 
 public class Act_add_student2 extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     private static final String IMAGE_DIRECTORY_NAME = "Directorregistrstion";
@@ -530,7 +531,7 @@ public class Act_add_student2 extends AppCompatActivity implements AdapterView.O
 
 
 
-        baseRequest.callAPIAddstudent(1,"http://collectorexpress.in/",body,fname_,mname_,lname_,email_,mobile_no_,emer_mobbile_,paddress_,taddress_
+        baseRequest.callAPIAddstudent(1,BASE_URL,body,fname_,mname_,lname_,email_,mobile_no_,emer_mobbile_,paddress_,taddress_
                 ,dob_,admission_date_,fat_name_,mot_name_,enrol_no_,session_start_,session_end_,scholarship_,caste_,blood_
                 ,gender_,dept_id_,organization_id_,courseId_,hodId__,semId_,sectionId_,city_,state_,hsc_,ssc_,diploma_);
     }

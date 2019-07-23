@@ -59,6 +59,7 @@ import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 import visuotech.com.kampus.attendance.retrofit.Utility;
 
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
+import static visuotech.com.kampus.attendance.retrofit.WebServiceConstants.BASE_URL;
 
 public class Act_add_faculty extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     Spinner spinner_department,spinner_gender,spinner_course,spinner_hod,spinner_prefix;
@@ -566,7 +567,7 @@ public class Act_add_faculty extends AppCompatActivity implements AdapterView.On
 
 
 
-        baseRequest.callAPIAddfaculty(1,"https://collectorexpress.in/",body,name_,email_,mobile_no_
+        baseRequest.callAPIAddfaculty(1,BASE_URL,body,name_,email_,mobile_no_
                 ,address_,dob_,doj_,faculty_clg_id_,dept_id_,organization_id_,gender_,courseId_,hodId__,experience_,designation_);
     }
 

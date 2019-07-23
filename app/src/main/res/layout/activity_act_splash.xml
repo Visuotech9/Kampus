@@ -1,40 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical"
     android:id="@+id/lin_spl_layout"
-    android:orientation="vertical"
     tools:context=".Activities.Act_splash">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/iv_profile_image"
-        android:layout_width='match_parent'
-        android:layout_height="120dp"
-        android:clickable="true"
-        android:src="@drawable/splash_image"
-        app:civ_border_color="@color/colorPrimaryDark"
-        app:civ_border_width="1dp" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient1" />
 
     <TextView
+        android:id="@+id/tv_imp"
         android:layout_width="match_parent"
-        android:text="K@mpus"
-        android:textSize="30dp"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/colorPrimaryDark"
-        android:gravity="center_horizontal"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:text="IMPOSSIBLE"
+        android:letterSpacing="0.5"
+        android:textColor="@color/White"
+        android:textSize="25dp" />
 
-    <View
+
+    <TextView
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="80dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/colorPrimary"
-        android:layout_height="1dp"></View>
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:letterSpacing="0.1"
+        android:layout_below="@+id/tv_imp"
+        android:text="IS A WORD I DO NOT KNOW"
+        android:textColor="@color/White"
+        android:textSize="18dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:src="@drawable/app_logo_varsity_copy"
+            android:layout_height="150dp" />
 
 
-</LinearLayout>
+
+    </LinearLayout>
+
+
+
+    <!--<de.hdodenhof.circleimageview.CircleImageView-->
+        <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+        <!--android:id="@+id/iv_profile_image"-->
+        <!--android:layout_width='match_parent'-->
+        <!--android:layout_height="120dp"-->
+        <!--android:clickable="true"-->
+        <!--android:src="@drawable/splash_image"-->
+        <!--app:civ_border_color="@color/colorPrimaryDark"-->
+        <!--app:civ_border_width="1dp" />-->
+
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:text="K@mpus"-->
+        <!--android:textSize="30dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:textColor="@color/colorPrimaryDark"-->
+        <!--android:gravity="center_horizontal"-->
+        <!--android:layout_height="wrap_content" />-->
+
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_marginLeft="80dp"-->
+        <!--android:layout_marginRight="80dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:background="@color/colorPrimary"-->
+        <!--android:layout_height="1dp"></View>-->
+
+
+</RelativeLayout>

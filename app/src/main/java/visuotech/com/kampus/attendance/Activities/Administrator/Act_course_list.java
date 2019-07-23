@@ -49,6 +49,8 @@ import visuotech.com.kampus.attendance.SessionParam;
 import visuotech.com.kampus.attendance.retrofit.BaseRequest;
 import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 
+import static visuotech.com.kampus.attendance.retrofit.WebServiceConstants.BASE_URL;
+
 public class Act_course_list extends AppCompatActivity {
 
     Ad_course adapter;
@@ -272,7 +274,7 @@ public class Act_course_list extends AppCompatActivity {
         RequestBody org_id_ = RequestBody.create(MediaType.parse("text/plain"), sessionParam.org_id);
 
 
-        baseRequest.callAPICourse(1,"https://collectorexpress.in/",courseName_,org_id_);
+        baseRequest.callAPICourse(1,BASE_URL,courseName_,org_id_);
 
     }
 

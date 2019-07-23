@@ -1,89 +1,65 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/registration_view"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:fillViewport="true"
-    android:orientation="vertical" >
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
-
-    <LinearLayout
+    <ImageView
         android:layout_width="match_parent"
-        android:background="@color/colorPrimary"
-        android:layout_height="200dp">
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient1"
+        android:scaleType="centerCrop" />
 
-        <TextView
-            android:id="@+id/tv_org_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/White"
-            android:paddingRight="20dp"
-            android:paddingLeft="20dp"
-            android:paddingTop="40dp"
-            android:textSize="25dp"
-            android:gravity="center_horizontal"
-            android:text="Acropolis Institute Of Technology And Research"/>
+    <ImageView
+        android:id="@+id/iv_image"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:src="@drawable/app_logo_varsity_copy" />
 
 
-    </LinearLayout>
-    <android.support.v7.widget.CardView
-        android:id="@+id/profileCard"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/registration_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="28dp"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="4dp"
-        app:cardUseCompatPadding="false"
-        android:layout_alignParentLeft="true">
+        android:layout_below="@id/iv_image"
+        android:fillViewport="true"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="75dp"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:padding="24dp">
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/background_cards"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/background_gradient"
-                android:orientation="horizontal"
-                android:paddingBottom="8dp"
-                android:paddingTop="8dp">
-
-
-                <Spinner
-                    android:id="@+id/spinner1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="20dp" />
-                <!--android:entries="@array/user_type"-->
-
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:text="Get Started"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@color/colorPrimary"></View>
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_height="wrap_content" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Just a few details to get you started"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginTop="5dp"
+                android:textSize="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="wrap_content" />
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:background="@drawable/background_border"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
 
@@ -94,9 +70,9 @@
                     android:background="@null"
                     android:hint="Username"
                     android:inputType="textEmailAddress"
-                    android:paddingBottom="12dp"
+                    android:paddingBottom="10dp"
                     android:paddingLeft="30dp"
-                    android:paddingTop="12dp"
+                    android:paddingTop="10dp"
                     android:scrollHorizontally="true"
                     android:singleLine="true"
                     android:text=""
@@ -106,17 +82,13 @@
 
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@color/colorPrimary"></View>
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/background_border"
                 android:orientation="horizontal">
 
                 <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
@@ -126,10 +98,10 @@
                     android:background="@null"
                     android:hint="@string/password"
                     android:inputType="textPassword"
-                    android:paddingBottom="12dp"
+                    android:paddingBottom="10dp"
                     android:paddingLeft="30dp"
                     android:paddingRight="20dp"
-                    android:paddingTop="12dp"
+                    android:paddingTop="10dp"
                     android:scrollHorizontally="true"
                     android:singleLine="true"
                     android:text=""
@@ -142,48 +114,30 @@
 
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@color/colorPrimary"></View>
-
-
             <Button
                 android:id="@+id/btn_login"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="35dp"
                 android:layout_gravity="bottom"
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="35dp"
                 android:layout_marginRight="35dp"
                 android:layout_marginTop="20dp"
-                android:layout_weight="1"
                 android:background="@drawable/background_gradient"
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:text="@string/login"
                 android:textColor="@color/White"
-                android:textSize="17dp" />
+                android:textSize="15dp" />
+
+
+
+
+
 
         </LinearLayout>
-    </android.support.v7.widget.CardView>
 
 
-
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/iv_profile_image"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="116dp"
-        android:elevation="8dp"
-        app:civ_border_color="@color/colorPrimaryDark"
-        app:civ_border_width="1dp"
-        android:src="@drawable/splash_image" />
+    </ScrollView>
 
 
 </RelativeLayout>
-</ScrollView>

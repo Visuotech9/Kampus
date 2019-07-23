@@ -40,8 +40,16 @@
     <color name="colorPrimaryDark">#FF0C6173</color>
     <color name="colorPrimary2222">#4fb8ce</color>lay_full_prof
     <color name="colorPrimarylight">#e9fafa</color>
-    <!--<color name="colorPrimary">#009999</color>-->
-    <!--<color name="colorPrimaryDark">#076e6e</color>-->
+    <color name="BurlyWood1">#7A6B57</color>
+    <color name="FireBrick">#C21C4F</color>
+    <color name="SlateGray">#708090</color>
+
+    <!--<color name="colorPrimary">#8469b4</color>-->
+    <!--<color name="colorPrimaryDark">#644b92</color>-->
+    <!--<color name="colorPrimary2222">#644b92</color>-->
+    <!--<color name="colorPrimarylight2">#f4ab43</color>-->
+    <!--<color name="colorPrimarylight3">#337ab7</color>-->
+
 
     <color name="OldLace">#FDF5E6</color>
     <color name="LightGoldenrodYellow">#FAFAD2</color>
@@ -83,7 +91,7 @@
     <color name="RosyBrown">#BC8F8F</color>
     <color name="MediumOrchid">#BA55D3</color>
     <color name="DarkGoldenrod">#B8860B</color>
-    <color name="FireBrick">#B22222</color>
+
     <color name="PowderBlue">#B0E0E6</color>
     <color name="LightSteelBlue">#B0C4DE</color>
     <color name="PaleTurquoise">#AFEEEE</color>
@@ -115,7 +123,6 @@
     <color name="LawnGreen">#7CFC00</color>
     <color name="MediumSlateBlue">#7B68EE</color>
     <color name="LightSlateGray">#778899</color>
-    <color name="SlateGray">#708090</color>
     <color name="OliveDrab">#6B8E23</color>
     <color name="SlateBlue">#6A5ACD</color>
     <color name="DimGray">#696969</color>

@@ -6,24 +6,27 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static visuotech.com.kampus.attendance.retrofit.WebServiceConstants.BASE_URL;
+
 
 public class ApiClient {
 
-    public static final String ROOT_URL = "https://collectorexpress.in/";
+//    public static final String ROOT_URL = "https://collectorexpress.in/";
+//    public static final String ROOT_URL = "https://collectorexpress.in/";
 
     private static Retrofit retrofit = null;
 
     public static Retrofit getClient() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl(ROOT_URL)
+                    .baseUrl(BASE_URL)
                     .client(getRequestHeader())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
         return retrofit;
     }
-
+/*
     public static Retrofit getClientChatimage() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
@@ -33,7 +36,7 @@ public class ApiClient {
                     .build();
         }
         return retrofit;
-    }
+    }*/
 
 
     public static Retrofit getCustomClient(String baseURL) {

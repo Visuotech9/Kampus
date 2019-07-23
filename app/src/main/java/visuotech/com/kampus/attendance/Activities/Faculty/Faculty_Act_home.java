@@ -57,6 +57,8 @@ import visuotech.com.kampus.attendance.SessionParam;
 import visuotech.com.kampus.attendance.retrofit.BaseRequest;
 import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 
+import static visuotech.com.kampus.attendance.retrofit.WebServiceConstants.BASE_URL;
+
 public class Faculty_Act_home extends AppCompatActivity {
     String user_typee, user_id, organization_id, device_id, dept_id, course_id, dept_name, fac_director_id, fac_hod_id;
     LinearLayout lay1, lay2, lay3, lay4, lay5, lay6, lay_full_prof, lay;
@@ -445,7 +447,7 @@ public class Faculty_Act_home extends AppCompatActivity {
         RequestBody organization_id_ = RequestBody.create(MediaType.parse("text/plain"), organization_id);
 
 
-        baseRequest.callAPILogout(1, "https://collectorexpress.in/", user_type_, device_id_, user_id_, organization_id_);
+        baseRequest.callAPILogout(1, BASE_URL, user_type_, device_id_, user_id_, organization_id_);
 
     }
 
@@ -483,7 +485,7 @@ public class Faculty_Act_home extends AppCompatActivity {
         RequestBody organization_id_ = RequestBody.create(MediaType.parse("text/plain"), organization_id);
 
 
-        baseRequest.callAPIChangepswd(1, "https://collectorexpress.in/", user_type_, old_pswd_, new_pswd_, cnfirm_pswd_, user_id_, organization_id_);
+        baseRequest.callAPIChangepswd(1, BASE_URL, user_type_, old_pswd_, new_pswd_, cnfirm_pswd_, user_id_, organization_id_);
 
     }
 

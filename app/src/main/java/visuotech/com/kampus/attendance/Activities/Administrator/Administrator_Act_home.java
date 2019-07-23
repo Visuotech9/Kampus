@@ -43,6 +43,8 @@ import visuotech.com.kampus.attendance.retrofit.BaseRequest;
 import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 import visuotech.com.kampus.attendance.retrofit.Utility;
 
+import static visuotech.com.kampus.attendance.retrofit.WebServiceConstants.BASE_URL;
+
 public class Administrator_Act_home extends AppCompatActivity  {
    LinearLayout lay1,lay2,lay3,lay4,lay5,lay6,lay7,lay13,lay14,lay15,lay;
    TextView tv_designation,tv_name;
@@ -455,7 +457,7 @@ public class Administrator_Act_home extends AppCompatActivity  {
         RequestBody organization_id_ = RequestBody.create(MediaType.parse("text/plain"), organization_id);
 
 
-        baseRequest.callAPILogout(1,"https://collectorexpress.in/",user_type_,device_id_,user_id_,organization_id_);
+        baseRequest.callAPILogout(1,BASE_URL,user_type_,device_id_,user_id_,organization_id_);
 
     }
 
@@ -493,7 +495,7 @@ public class Administrator_Act_home extends AppCompatActivity  {
         RequestBody organization_id_ = RequestBody.create(MediaType.parse("text/plain"), organization_id);
 
 
-        baseRequest.callAPIChangepswd(1,"https://collectorexpress.in/",user_type_,old_pswd_,new_pswd_,cnfirm_pswd_,user_id_,organization_id_);
+        baseRequest.callAPIChangepswd(1,BASE_URL,user_type_,old_pswd_,new_pswd_,cnfirm_pswd_,user_id_,organization_id_);
 
     }
 

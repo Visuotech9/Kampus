@@ -462,6 +462,18 @@ public class BaseRequest<T> extends BaseRequestParser {
 
 
 
+    public void callAPILogin(final int APINumber, String remainingURL,RequestBody device_id_, RequestBody email_, RequestBody password_) {//user_type_,device_id_,email_,password_,org_id_
+        APINumber_ = APINumber;
+        requestType = RequestType.Post;
+        showLoader();
+        //String baseURL = ApiClient.getClient().baseUrl().toString() + remainingURL;
+        System.out.println("BaseReq INPUT URL : " + remainingURL);
+        ApiInterface apiInterface_ = ApiClient.getCustomClient(remainingURL).create(ApiInterface.class);
+        //Call<JsonElement> call = apiInterface_.formData(images,latitude,fcm_token,msg_detail,app_name,email_id_to,ssecrete,device_id,longitude,location_detail);
+        Call<JsonElement> call = apiInterface_.postLogin(device_id_,email_,password_);
+        call.enqueue(responseCallback);
+    }
+
     public void callAPILogin(final int APINumber, String remainingURL,RequestBody user_type_,RequestBody device_id_, RequestBody email_, RequestBody password_, RequestBody org_id_) {//user_type_,device_id_,email_,password_,org_id_
         APINumber_ = APINumber;
         requestType = RequestType.Post;
@@ -470,7 +482,7 @@ public class BaseRequest<T> extends BaseRequestParser {
         System.out.println("BaseReq INPUT URL : " + remainingURL);
         ApiInterface apiInterface_ = ApiClient.getCustomClient(remainingURL).create(ApiInterface.class);
         //Call<JsonElement> call = apiInterface_.formData(images,latitude,fcm_token,msg_detail,app_name,email_id_to,ssecrete,device_id,longitude,location_detail);
-        Call<JsonElement> call = apiInterface_.postLogin(user_type_,device_id_,email_,password_,org_id_);
+        Call<JsonElement> call = apiInterface_.postLogin1(user_type_,device_id_,email_,password_,org_id_);
         call.enqueue(responseCallback);
     }
 
@@ -701,6 +713,7 @@ public class BaseRequest<T> extends BaseRequestParser {
         call.enqueue(responseCallbackCustomchat);
     }
 
+/*
 
     public void callAPIGETData2(final int APINumber, String baseURL_) {
         APINumber_ = APINumber;
@@ -715,6 +728,7 @@ public class BaseRequest<T> extends BaseRequestParser {
         Call<JsonElement> call = apiInterface_.getImageUrl(baseURL_);
         call.enqueue(responseCallbackCustom);
     }
+*/
 
 
     public void callAPIGETFeedback(final int APINumber, String baseURL_) {

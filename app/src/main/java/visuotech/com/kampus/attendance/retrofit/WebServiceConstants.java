@@ -2,32 +2,12 @@ package visuotech.com.kampus.attendance.retrofit;
 
 
 public class WebServiceConstants {
-    //http://thechangeconsultancy.co/changeitapp/index.php/Api/postdetails/
-//            public static final String URL = "http://demo.emajdoor.com/familytree/api/";
-//    public static final String URL = "http://thechangeconsultancy.co/tellsid/index.php/apitellsid/";
-    //public static final String URL = "http://live.thechangeconsultancy.co/tellsid/index.php/apitellsid/";  //live url
-    public static final String URL = "https://tellsid.softintelligence.co.uk/index.php/apitellsid/postdetails/"; //test api
 
+    //----------LIVE---------------
+    public static final String BASE_URL = "https://collectorexpress.in/";
 
-//    public static final String URL = "http://thechangeconsultancy.co/demo_tellsid/index.php/apitellsid/";
-//http://thechangeconsultancy.co/changeitapp/index.php/Api/getuserrecord/
-//
-
-    //assets/upload/tellsid/
-    //public static final String imgUrl = "http://live.thechangeconsultancy.co/tellsid/assets/upload/tellsid/";  //live
-    //public static final String chatUrl = "http://live.thechangeconsultancy.co/tellsid/assets/upload/chatimg/"; //live
-
-
-    public static final String imgUrl = "http://live.thechangeconsultancy.co/tellsid/index.php/apitellsid/";
-    public static final String chatUrl = "http://live.thechangeconsultancy.co/tellsid/index.php/apitellsid/";
-
-
-    //    public static final String imgUrl = "http://tellsid.softintelligence.co.uk/assets/upload/tellsid/";
-//public static final String imgUrl = "http://thechangeconsultancy.co/demo_tellsid/assets/upload/tellsid/";
-
-//    public static final String chatUrl = "http://tellsid.softintelligence.co.uk/assets/upload/chatimg/";
-//    public static final String chatUrl = "http://thechangeconsultancy.co/demo_tellsid/assets/upload/chatimg/";
-
+    //----------TEST---------------
+//    public static final String BASE_URL = "http://192.168.1.64/";
 
     public static final String METHOD_SEND = "postdetails/";
     public static final String METHOD_GET = "getuserrecord?device_id=";
@@ -38,11 +18,4 @@ public class WebServiceConstants {
     public static final String METHOD_SIGN_UP = "signup/";
     public static final String METHOD_FEEDBACK = "getquestion?/";
     public static final String METHOD_ANS = "getuseranser/";
-
-
-    public static String getMethodUrl(String methodName) {
-        String url = "";
-        url = URL + methodName;
-        return url;
-    }
 }

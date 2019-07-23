@@ -50,6 +50,8 @@ import visuotech.com.kampus.attendance.SessionParam;
 import visuotech.com.kampus.attendance.retrofit.BaseRequest;
 import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 
+import static visuotech.com.kampus.attendance.retrofit.WebServiceConstants.BASE_URL;
+
 public class Act_department_list extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     Ad_cou_dept adapter;
     Ad_department adapter2;
@@ -245,7 +247,7 @@ public class Act_department_list extends AppCompatActivity implements AdapterVie
         RequestBody cour_id_ = RequestBody.create(MediaType.parse("text/plain"), cour_id);
 
 
-        baseRequest.callAPIDept(1,"https://collectorexpress.in/",dept_name_,org_id_,cour_id_);
+        baseRequest.callAPIDept(1,BASE_URL,dept_name_,org_id_,cour_id_);
 
     }
 

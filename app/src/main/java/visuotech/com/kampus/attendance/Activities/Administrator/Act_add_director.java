@@ -60,6 +60,7 @@ import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 import visuotech.com.kampus.attendance.retrofit.Utility;
 
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
+import static visuotech.com.kampus.attendance.retrofit.WebServiceConstants.BASE_URL;
 
 public class Act_add_director extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
@@ -377,7 +378,7 @@ public class Act_add_director extends AppCompatActivity implements AdapterView.O
 
 
 
-        baseRequest.callAPIAddDirector(1,"http://collectorexpress.in/",body,name_,email_,mobile_no_
+        baseRequest.callAPIAddDirector(1,BASE_URL,body,name_,email_,mobile_no_
                 ,address_,dob_,doj_,dir_id_,cour_id_,organization_id_,gender_);
     }
 

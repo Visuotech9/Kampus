@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -28,6 +29,7 @@ import visuotech.com.kampus.attendance.Activities.Faculty.Faculty_Act_home;
 import visuotech.com.kampus.attendance.Activities.Hod.HOD_Act_home;
 import visuotech.com.kampus.attendance.Activities.Student.Student_Act_home;
 import visuotech.com.kampus.attendance.MarshMallowPermission;
+import visuotech.com.kampus.attendance.NetworkAddress;
 import visuotech.com.kampus.attendance.NetworkConnection;
 import visuotech.com.kampus.attendance.R;
 import visuotech.com.kampus.attendance.SessionParam;
@@ -36,6 +38,7 @@ import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 import visuotech.com.kampus.attendance.retrofit.Utility;
 
 import static visuotech.com.kampus.attendance.MarshMallowPermission.READ_PHONE_STATE;
+import static visuotech.com.kampus.attendance.retrofit.WebServiceConstants.BASE_URL;
 
 public class Act_splash extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 2000;
@@ -47,7 +50,7 @@ public class Act_splash extends AppCompatActivity {
     private BaseRequest baseRequest;
     String splash  ="Yes";
     String other_device_active,user_typee,organization_id,user_id,login_status,payment_status,account_status;
-    LinearLayout lin_spl_layout;
+    RelativeLayout lin_spl_layout;
 
 
     @Override
@@ -65,6 +68,8 @@ public class Act_splash extends AppCompatActivity {
 
         lin_spl_layout=findViewById(R.id.lin_spl_layout);
         permissionPhone();
+
+       NetworkAddress.getInterfaces();
 
 
     }
@@ -91,7 +96,6 @@ public class Act_splash extends AppCompatActivity {
             @Override
             public void run() {
 
-
                 if (!user_id.isEmpty() && !user_typee.isEmpty() && !organization_id.isEmpty()) {
 
                     if (NetworkConnection.checkNetworkStatus(context) == true) {
@@ -101,7 +105,7 @@ public class Act_splash extends AppCompatActivity {
                         Snackbar.make(lin_spl_layout, "No internet connection", Snackbar.LENGTH_LONG).show();
                     }
                 } else {
-                    Intent i = new Intent(Act_splash.this, Act_College_list.class);
+                    Intent i = new Intent(Act_splash.this, Act_Login.class);
                     startActivity(i);
                     finish();
                 }
@@ -207,7 +211,7 @@ public class Act_splash extends AppCompatActivity {
         RequestBody organization_id_ = RequestBody.create(MediaType.parse("text/plain"), organization_id);
 
 
-        baseRequest.callAPILoginStatus(1,"https://collectorexpress.in/",user_type_,device_id_,user_id_,organization_id_);
+        baseRequest.callAPILoginStatus(1,BASE_URL,user_type_,device_id_,user_id_,organization_id_);
 
     }
 

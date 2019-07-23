@@ -125,7 +125,14 @@ public interface ApiInterface {
 
     @Multipart
     @POST("Kampus/Api2.php?apicall=login")
-    Call<JsonElement> postLogin(@Part("user_type") RequestBody user_type_,
+    Call<JsonElement> postLogin(
+                                @Part("device_id") RequestBody device_id_,
+                                @Part("user_name") RequestBody email_,
+                                @Part("password") RequestBody password_);
+
+    @Multipart
+    @POST("Kampus/Api2.php?apicall=login")
+    Call<JsonElement> postLogin1(@Part("user_type") RequestBody user_type_,
                                 @Part("device_id") RequestBody device_id_,
                                 @Part("user_name") RequestBody email_,
                                 @Part("pswd") RequestBody password_,

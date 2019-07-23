@@ -30,8 +30,6 @@ public class Ad_college_list extends RecyclerView.Adapter<Ad_college_list.MyView
         this.list = list;
         this.context=context;
         this.tv_station1=tv_station1;
-
-
     }
 
     @NonNull

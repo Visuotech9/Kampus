@@ -78,6 +78,7 @@ import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 import visuotech.com.kampus.attendance.retrofit.Utility;
 
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
+import static visuotech.com.kampus.attendance.retrofit.WebServiceConstants.BASE_URL;
 
 public class Act_add_studymaterials extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     Button btn_attachment,btn_add,btn_cancel;
@@ -510,7 +511,7 @@ public class Act_add_studymaterials extends AppCompatActivity implements Adapter
 
 
 
-        baseRequest.callAPIAddStudymate(1,"http://collectorexpress.in/",parts,title_,description_
+        baseRequest.callAPIAddStudymate(1,BASE_URL,parts,title_,description_
                 ,dept_id_,course_id_,userId_,hod_id_,director_id_,org_id_,
                 semId_,sectionId_,subId_);
     }

@@ -4,6 +4,7 @@
     android:id="@+id/registration_view"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+
     android:fillViewport="true"
     android:orientation="vertical"
     android:scrollIndicators="none"
@@ -176,8 +177,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:background="@drawable/gradient1"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimarylight"
             android:orientation="vertical"
             android:paddingTop="10dp">
 
@@ -224,7 +225,7 @@
                         android:layout_marginTop="5dp"
                         android:gravity="center_horizontal"
                         android:text="Directors"
-                        android:textColor="@color/Black"
+                        android:textColor="@color/White"
                         android:textSize="15dp" />
 
 
@@ -268,7 +269,7 @@
                         android:layout_marginTop="5dp"
                         android:gravity="center_horizontal"
                         android:text="Hods"
-                        android:textColor="@color/Black"
+                        android:textColor="@color/White"
                         android:textSize="15dp" />
 
 
@@ -310,7 +311,7 @@
                         android:layout_marginTop="5dp"
                         android:gravity="center_horizontal"
                         android:text="Faculties"
-                        android:textColor="@color/Black"
+                        android:textColor="@color/White"
                         android:textSize="15dp" />
 
 
@@ -363,7 +364,7 @@
                         android:layout_marginTop="5dp"
                         android:gravity="center_horizontal"
                         android:text="Students"
-                        android:textColor="@color/Black"
+                        android:textColor="@color/White"
                         android:textSize="15dp" />
 
 
@@ -406,7 +407,7 @@
                         android:layout_marginTop="5dp"
                         android:gravity="center_horizontal"
                         android:text="Courses"
-                        android:textColor="@color/Black"
+                        android:textColor="@color/White"
                         android:textSize="15dp" />
 
 
@@ -448,7 +449,7 @@
                         android:layout_marginTop="5dp"
                         android:gravity="center_horizontal"
                         android:text="Departments"
-                        android:textColor="@color/Black"
+                        android:textColor="@color/White"
                         android:textSize="15dp" />
 
 
@@ -500,7 +501,7 @@
                         android:layout_marginTop="5dp"
                         android:gravity="center_horizontal"
                         android:text="Semister"
-                        android:textColor="@color/Black"
+                        android:textColor="@color/White"
                         android:textSize="15dp" />
 
 
@@ -543,7 +544,7 @@
                         android:layout_marginTop="5dp"
                         android:gravity="center_horizontal"
                         android:text="Section"
-                        android:textColor="@color/Black"
+                        android:textColor="@color/White"
                         android:textSize="15dp" />
 
 
@@ -585,7 +586,7 @@
                         android:layout_marginTop="5dp"
                         android:gravity="center_horizontal"
                         android:text="Subject"
-                        android:textColor="@color/Black"
+                        android:textColor="@color/White"
                         android:textSize="15dp" />
 
 
@@ -638,7 +639,7 @@
                         android:layout_marginTop="5dp"
                         android:gravity="center_horizontal"
                         android:text="Attendence"
-                        android:textColor="@color/Black"
+                        android:textColor="@color/White"
                         android:textSize="15dp" />
 
 
@@ -680,7 +681,7 @@
                         android:layout_marginTop="5dp"
                         android:gravity="center_horizontal"
                         android:text="Results"
-                        android:textColor="@color/Black"
+                        android:textColor="@color/White"
                         android:textSize="15dp" />
 
 
@@ -722,7 +723,7 @@
                         android:layout_marginTop="5dp"
                         android:gravity="center_horizontal"
                         android:text="Fee structure"
-                        android:textColor="@color/Black"
+                        android:textColor="@color/White"
                         android:textSize="15dp" />
 
 
@@ -774,7 +775,7 @@
                         android:layout_marginTop="5dp"
                         android:gravity="center_horizontal"
                         android:text="Time table"
-                        android:textColor="@color/Black"
+                        android:textColor="@color/White"
                         android:textSize="15dp" />
 
 
@@ -816,7 +817,7 @@
                         android:layout_marginTop="5dp"
                         android:gravity="center_horizontal"
                         android:text="Events"
-                        android:textColor="@color/Black"
+                        android:textColor="@color/White"
                         android:textSize="15dp" />
 
 
@@ -858,7 +859,7 @@
                         android:layout_marginTop="5dp"
                         android:gravity="center_horizontal"
                         android:text="Send notification"
-                        android:textColor="@color/Black"
+                        android:textColor="@color/White"
                         android:textSize="15dp" />
 
 
