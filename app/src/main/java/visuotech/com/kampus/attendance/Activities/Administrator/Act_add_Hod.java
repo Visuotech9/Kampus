@@ -63,68 +63,83 @@ import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 import visuotech.com.kampus.attendance.retrofit.Utility;
 
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
+import static visuotech.com.kampus.attendance.Constants.COURSE_LIST;
+import static visuotech.com.kampus.attendance.Constants.DEPT_LIST;
+import static visuotech.com.kampus.attendance.Constants.DIRECTOR_LIST;
 import static visuotech.com.kampus.attendance.retrofit.WebServiceConstants.BASE_URL;
 
 public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    Spinner spinner_department,spinner_gender,spinner_director,spinner_course;
-    ArrayList<Course>course_list1;
-    ArrayList<Department>department_list1;
+    private static final String IMAGE_DIRECTORY_NAME = "Directorregistrstion";
+    private final int REQ_CODE_Gallery = 1;
+    private final int REQ_CODE_Camera = 1888;
+    public String name, email, mobileNumber, dob, doj, address, hod_clg_id, dept_id, directorId;
+    public boolean datafinish = false;
+    Spinner spinner_department, spinner_gender, spinner_director, spinner_course;
+    ArrayList<Course> course_list1;
+    ArrayList<Department> department_list1;
     LinearLayout container;
-
-
-    String department,gender,course,course_id;
-    ImageView iv_profile_image,iv_cal_dob,iv_cal_doj;
-    Button btn_add,btn_upload_image,btn_cancel;
-    private BaseRequest baseRequest;
+    String department, gender, course, course_id;
+    ImageView iv_profile_image, iv_cal_dob, iv_cal_doj;
+    Button btn_add, btn_upload_image, btn_cancel;
     SwipeRefreshLayout mSwipeRefreshLayout;
     Context context;
     Activity activity;
     SessionParam sessionParam;
     MarshMallowPermission marshMallowPermission;
-    String other_device_active,user_typee,organization_id,user_id;
-    EditText et_name,et_email,et_mobile,et_address,et_hod_id;
-    TextView tv_dob,tv_doj;
-    TextView tv_error1,tv_error2,tv_error3,tv_error4,tv_error5,tv_error6,tv_error7,tv_error8,tv_error9,tv_error10,tv_error11;
-    public   String name,email,mobileNumber,dob,doj,address,hod_clg_id,dept_id,directorId;
+    String other_device_active, user_typee, organization_id, user_id;
+    EditText et_name, et_email, et_mobile, et_address, et_hod_id;
+    TextView tv_dob, tv_doj;
+    TextView tv_error1, tv_error2, tv_error3, tv_error4, tv_error5, tv_error6, tv_error7, tv_error8, tv_error9, tv_error10, tv_error11;
     File file;
-    public boolean datafinish = false;
-    private final int REQ_CODE_Gallery = 1;
     Uri selectedImage;
-    private final int REQ_CODE_Camera = 1888;
     Bitmap mainBitmap;
     Uri tempUri;
-    private static final String IMAGE_DIRECTORY_NAME = "Directorregistrstion";
-
-    ArrayList<String>  course_list= new ArrayList<String>();
-
-    ArrayList<String>  department_list= new ArrayList<String>();
-    ArrayList<String>  department_id= new ArrayList<String>();
-
-    ArrayList<String>  director_list= new ArrayList<String>();
-    ArrayList<String>  director_id= new ArrayList<String>();
-
-    ArrayList<Director>director_list1;
-    ArrayList<String>director_name_list1=new ArrayList<>();
-
-    ArrayList<String>error_list;
-
-
-
-
-    String[] gender_list = { "Male", "Female", "others","--Select gender--"};
+    ArrayList<String> course_list = new ArrayList<String>();
+    ArrayList<String> department_list = new ArrayList<String>();
+    ArrayList<String> department_id = new ArrayList<String>();
+    ArrayList<String> director_list = new ArrayList<String>();
+    ArrayList<String> director_id = new ArrayList<String>();
+    ArrayList<Director> director_list1;
+    ArrayList<String> director_name_list1 = new ArrayList<>();
+    ArrayList<String> error_list;
+    String[] gender_list = {"Male", "Female", "others", "--Select gender--"};
     final int listsize = gender_list.length - 1;
-
     DatePickerDialog datePickerDialog;
     int year;
     int month;
     int dayOfMonth;
     Calendar calendar;
-    ArrayAdapter adapter_director,adapter_department;
+    ArrayAdapter adapter_director, adapter_department;
+    private BaseRequest baseRequest;
+
+    private static File getOutputMediaFile(int type) {
+        // External sdcard location
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), IMAGE_DIRECTORY_NAME);
+
+        // Create the storage directory if it does not exist
+        if (!mediaStorageDir.exists()) {
+            if (!mediaStorageDir.mkdirs()) {
+                //  Log.d(IMAGE_DIRECTORY_NAME, "Oops! Failed create " + IMAGE_DIRECTORY_NAME + " directory");
+                return null;
+            }
+        }
+
+        // Create a media file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+        File mediaFile;
+        if (type == MEDIA_TYPE_IMAGE) {
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + timeStamp + ".jpg");
+        } else {
+            return null;
+        }
+
+        return mediaFile;
+    }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_main);
+        setContentView(R.layout.act_home_basic);
 
         //-------------------------toolbar------------------------------------------
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -143,35 +158,34 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
         final View rowView = inflater.inflate(R.layout.content_main_add_hod, null);
         container.addView(rowView, container.getChildCount());
 
-        user_typee= sessionParam.user_type;
-        user_id= sessionParam.userId;
+        user_typee = sessionParam.user_type;
+        user_id = sessionParam.userId;
 
 
+        organization_id = sessionParam.org_id;
 
-        organization_id=sessionParam.org_id;
-
-        btn_add =  findViewById(R.id.btn_add);
-        btn_cancel =  findViewById(R.id.btn_cancel);
-        btn_upload_image =  findViewById(R.id.btn_upload_image);
-        et_name =  findViewById(R.id.et_name);
-        et_email =  findViewById(R.id.et_email);
-        et_mobile =  findViewById(R.id.et_mobile);
-        tv_dob =  findViewById(R.id.tv_dob);
-        et_address =  findViewById(R.id.et_address);
-        et_hod_id =  findViewById(R.id.et_hod_id);
-        tv_doj =  findViewById(R.id.tv_doj);
-        iv_profile_image =  findViewById(R.id.iv_profile_image);
-        tv_error1 =  findViewById(R.id.tv_error1);
-        tv_error2 =  findViewById(R.id.tv_error2);
-        tv_error3 =  findViewById(R.id.tv_error3);
-        tv_error4 =  findViewById(R.id.tv_error4);
-        tv_error5 =  findViewById(R.id.tv_error5);
-        tv_error6 =  findViewById(R.id.tv_error6);
-        tv_error7 =  findViewById(R.id.tv_error7);
-        tv_error8 =  findViewById(R.id.tv_error8);
-        tv_error9 =  findViewById(R.id.tv_error9);
-        tv_error10 =  findViewById(R.id.tv_error10);
-        tv_error11=  findViewById(R.id.tv_error11);
+        btn_add = findViewById(R.id.btn_add);
+        btn_cancel = findViewById(R.id.btn_cancel);
+        btn_upload_image = findViewById(R.id.btn_upload_image);
+        et_name = findViewById(R.id.et_name);
+        et_email = findViewById(R.id.et_email);
+        et_mobile = findViewById(R.id.et_mobile);
+        tv_dob = findViewById(R.id.tv_dob);
+        et_address = findViewById(R.id.et_address);
+        et_hod_id = findViewById(R.id.et_hod_id);
+        tv_doj = findViewById(R.id.tv_doj);
+        iv_profile_image = findViewById(R.id.iv_profile_image);
+        tv_error1 = findViewById(R.id.tv_error1);
+        tv_error2 = findViewById(R.id.tv_error2);
+        tv_error3 = findViewById(R.id.tv_error3);
+        tv_error4 = findViewById(R.id.tv_error4);
+        tv_error5 = findViewById(R.id.tv_error5);
+        tv_error6 = findViewById(R.id.tv_error6);
+        tv_error7 = findViewById(R.id.tv_error7);
+        tv_error8 = findViewById(R.id.tv_error8);
+        tv_error9 = findViewById(R.id.tv_error9);
+        tv_error10 = findViewById(R.id.tv_error10);
+        tv_error11 = findViewById(R.id.tv_error11);
 
 
         spinner_course = findViewById(R.id.spinner_course);
@@ -180,21 +194,17 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
         spinner_department.setOnItemSelectedListener(this);
         spinner_gender.setOnItemSelectedListener(this);
         spinner_course.setOnItemSelectedListener(this);
-        department_list1=new ArrayList<>();
-        course_list1=new ArrayList<>();
-        error_list=new ArrayList<>();
+        department_list1 = new ArrayList<>();
+        course_list1 = new ArrayList<>();
+        error_list = new ArrayList<>();
 
         //Creating the ArrayAdapter instance having the country list
 
 
-        ArrayAdapter adapter_gender = new ArrayAdapter(this,android.R.layout.simple_spinner_item,gender_list);
+        ArrayAdapter adapter_gender = new ArrayAdapter(this, android.R.layout.simple_spinner_item, gender_list);
         adapter_gender.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_gender.setAdapter(adapter_gender);
         spinner_gender.setSelection(listsize);
-
-
-
-
 
 
         ApigetCourse();
@@ -210,13 +220,12 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
                     marshMallowPermission.requestPermissionForCamera();
                 } else if (!marshMallowPermission.checkPermissionForExternalStorage()) {
                     marshMallowPermission.requestPermissionForExternalStorage();
-                } else{
+                } else {
                     selectImage();
                 }
 
             }
         });
-
 
 
         tv_dob.setOnClickListener(new View.OnClickListener() {
@@ -267,7 +276,6 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
                         + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
 
-
                 if (et_name.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Please enter your  name", Toast.LENGTH_SHORT).show();
                     return;
@@ -280,8 +288,8 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
                     Toast.makeText(getApplicationContext(), "Please enter your email", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(!Utility.checkEmail(et_email.getText().toString())) {
-                    Toast.makeText(getApplicationContext(),"Please enter valied email",Toast.LENGTH_SHORT).show();
+                if (!Utility.checkEmail(et_email.getText().toString())) {
+                    Toast.makeText(getApplicationContext(), "Please enter valied email", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (et_mobile.getText().toString().isEmpty()) {
@@ -292,33 +300,40 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
                     Toast.makeText(getApplicationContext(), "Please select gender", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(!et_mobile.getText().toString().matches(MobilePattern)) {
+                if (!et_mobile.getText().toString().matches(MobilePattern)) {
                     Toast.makeText(getApplicationContext(), "Please enter valid 10 digit mobile number", Toast.LENGTH_SHORT).show();
-                    return ;
-                }if (tv_dob.getText().toString().isEmpty()) {
+                    return;
+                }
+                if (tv_dob.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Please enter your email", Toast.LENGTH_SHORT).show();
                     return;
-                }if (tv_doj.getText().toString().isEmpty()) {
+                }
+                if (tv_doj.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Please enter your email", Toast.LENGTH_SHORT).show();
                     return;
-                }if (et_address.getText().toString().isEmpty()) {
+                }
+                if (et_address.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Please enter your email", Toast.LENGTH_SHORT).show();
                     return;
-                }if (et_hod_id.getText().toString().isEmpty()) {
+                }
+                if (et_hod_id.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Please enter your email", Toast.LENGTH_SHORT).show();
                     return;
-                }if (file==null){
+                }
+                if (file == null) {
                     Toast.makeText(getApplicationContext(), "Please Select Any Image", Toast.LENGTH_SHORT).show();
                     return;
-                }if (director_list1.isEmpty()){
-                    String sucessMessage="First add Directort for perticular course"+"'"+course+"'";
-                    Utility.sucessDialog(sucessMessage,context);
+                }
+                if (director_list1.isEmpty()) {
+                    String sucessMessage = "First add Directort for perticular course" + "'" + course + "'";
+                    Utility.sucessDialog(sucessMessage, context);
                     return;
-                }if (department_list1.isEmpty()){
-                    String sucessMessage="Add department for course "+"'"+course+"'";
-                    Utility.sucessDialog(sucessMessage,context);
+                }
+                if (department_list1.isEmpty()) {
+                    String sucessMessage = "Add department for course " + "'" + course + "'";
+                    Utility.sucessDialog(sucessMessage, context);
                     return;
-                }else{
+                } else {
 
                     name = et_name.getText().toString();
                     email = et_email.getText().toString();
@@ -326,18 +341,17 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
                     address = et_address.getText().toString();
                     dob = tv_dob.getText().toString();
                     doj = tv_doj.getText().toString();
-                    hod_clg_id =et_hod_id.getText().toString();
+                    hod_clg_id = et_hod_id.getText().toString();
 
 
-                    if (NetworkConnection.checkNetworkStatus(context)==true){
+                    if (NetworkConnection.checkNetworkStatus(context) == true) {
                         ApiPostAddHod();
-                    }else{
-                        Toast.makeText(getApplicationContext(),"Please check internet connection",Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Please check internet connection", Toast.LENGTH_SHORT).show();
                     }
 
 
                 }
-
 
 
             }
@@ -346,16 +360,14 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
 
     }
 
-
-
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        switch(adapterView.getId()){
-            case R.id.spinner_course :
+        switch (adapterView.getId()) {
+            case R.id.spinner_course:
                 //Your Action Here.
 
-                course=course_list1.get(i).getCourse_name();
-                course_id=course_list1.get(i).getCourse_id();
+                course = course_list1.get(i).getCourse_name();
+                course_id = course_list1.get(i).getCourse_id();
                 department_list.clear();
                 ApigetDepartment();
                 ApigetDirector();
@@ -366,14 +378,14 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
             case R.id.spinner_department:
                 //Your Action Here.
 
-                department=department_list1.get(i).getDepartment_name();
-                dept_id=department_list1.get(i).getDepartment_id();
+                department = department_list1.get(i).getDepartment_name();
+                dept_id = department_list1.get(i).getDepartment_id();
 //                Toast.makeText(getApplicationContext(),department, Toast.LENGTH_LONG).show();
                 break;
 
-            case R.id.spinner_gender :
+            case R.id.spinner_gender:
                 //Your Another Action Here.
-                gender=gender_list[i];
+                gender = gender_list[i];
 //                Toast.makeText(getApplicationContext(),gender_list[i] , Toast.LENGTH_LONG).show();
                 break;
         }
@@ -385,28 +397,26 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
 
     }
 
-    private void ApigetCourse(){
+    private void ApigetCourse() {
         baseRequest = new BaseRequest(context);
         baseRequest.setBaseRequestListner(new RequestReciever() {
             @Override
             public void onSuccess(int requestCode, String Json, Object object) {
                 try {
                     JSONObject jsonObject = new JSONObject(Json);
-                    JSONArray jsonArray=jsonObject.optJSONArray("user");
+                    JSONArray jsonArray = jsonObject.optJSONArray("user");
 
-                    course_list1=baseRequest.getDataList(jsonArray,Course.class);
+                    course_list1 = baseRequest.getDataList(jsonArray, Course.class);
 
-                    for (int i=0;i<course_list1.size();i++){
+                    for (int i = 0; i < course_list1.size(); i++) {
                         course_list.add(course_list1.get(i).getCourse_name());
 //                       department_id.add(department_list1.get(i).getDepartment_id());
                     }
-                    ArrayAdapter adapter_course = new ArrayAdapter(context,android.R.layout.simple_spinner_item,course_list);
+                    ArrayAdapter adapter_course = new ArrayAdapter(context, android.R.layout.simple_spinner_item, course_list);
                     adapter_course.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinner_course.setAdapter(adapter_course);
 
 
-
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -418,39 +428,37 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
             public void onFailure(int requestCode, String errorCode, String message) {
 
             }
+
             @Override
             public void onNetworkFailure(int requestCode, String message) {
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=course_list&organization_id="+organization_id;
+        String remainingUrl2 = COURSE_LIST + "&organization_id=" + organization_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
-
-    private void ApigetDepartment(){
+    private void ApigetDepartment() {
         baseRequest = new BaseRequest(context);
         baseRequest.setBaseRequestListner(new RequestReciever() {
             @Override
             public void onSuccess(int requestCode, String Json, Object object) {
                 try {
                     JSONObject jsonObject = new JSONObject(Json);
-                    JSONArray jsonArray=jsonObject.optJSONArray("user");
+                    JSONArray jsonArray = jsonObject.optJSONArray("user");
 
 
-                    department_list1=baseRequest.getDataList(jsonArray,Department.class);
+                    department_list1 = baseRequest.getDataList(jsonArray, Department.class);
 
-                    for (int i=0;i<department_list1.size();i++){
+                    for (int i = 0; i < department_list1.size(); i++) {
                         department_list.add(department_list1.get(i).getDepartment_name());
                         department_id.add(department_list1.get(i).getDepartment_id());
                     }
-                    adapter_department = new ArrayAdapter(context,android.R.layout.simple_spinner_item,department_list);
+                    adapter_department = new ArrayAdapter(context, android.R.layout.simple_spinner_item, department_list);
                     adapter_department.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinner_department.setAdapter(adapter_department);
 
 
-
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -462,26 +470,27 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
             public void onFailure(int requestCode, String errorCode, String message) {
 
             }
+
             @Override
             public void onNetworkFailure(int requestCode, String message) {
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=department_list&organization_id="+organization_id+"&course_id="+course_id;
+        String remainingUrl2 = DEPT_LIST + "&organization_id=" + organization_id + "&course_id=" + course_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
-    private void ApigetDirector(){
+    private void ApigetDirector() {
         baseRequest = new BaseRequest(context);
         baseRequest.setBaseRequestListner(new RequestReciever() {
             @Override
             public void onSuccess(int requestCode, String Json, Object object) {
                 try {
                     JSONObject jsonObject = new JSONObject(Json);
-                    JSONArray jsonArray=jsonObject.optJSONArray("user");
+                    JSONArray jsonArray = jsonObject.optJSONArray("user");
 
-                    director_list1=baseRequest.getDataListreverse(jsonArray,Director.class);
-                    for (int i=0;i<director_list1.size();i++){
+                    director_list1 = baseRequest.getDataListreverse(jsonArray, Director.class);
+                    for (int i = 0; i < director_list1.size(); i++) {
                         director_name_list1.add(director_list1.get(i).getDirector_name());
 //                       department_id.add(department_list1.get(i).getDepartment_id());
                     }
@@ -497,18 +506,15 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
             public void onFailure(int requestCode, String errorCode, String message) {
 
             }
+
             @Override
             public void onNetworkFailure(int requestCode, String message) {
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=director_list&organization_id="+sessionParam.org_id+"&course_id="+course_id;
+        String remainingUrl2 = DIRECTOR_LIST+"&organization_id=" + sessionParam.org_id + "&course_id=" + course_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
-
-
-
-
 
     private void ApiPostAddHod() {
         baseRequest = new BaseRequest(context);
@@ -519,8 +525,8 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
 //                et_title.setText("");
 //                et_description.setText("");
 ////                Toast.makeText(getApplicationContext(),"sucess",Toast.LENGTH_SHORT).show();
-                String sucessMessage="HOD added sucessfully";
-                Utility.sucessDialog(sucessMessage,context);
+                String sucessMessage = "HOD added sucessfully";
+                Utility.sucessDialog(sucessMessage, context);
 
             }
 
@@ -539,7 +545,7 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
 //        RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
 
-        MultipartBody.Part body =MultipartBody.Part.createFormData("file", file.getName(), requestFile);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
         RequestBody name_ = RequestBody.create(MediaType.parse("text/plain"), name);
         RequestBody email_ = RequestBody.create(MediaType.parse("text/plain"), email);
         RequestBody mobile_no_ = RequestBody.create(MediaType.parse("text/plain"), mobileNumber);
@@ -554,12 +560,9 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
         RequestBody course_id_ = RequestBody.create(MediaType.parse("text/plain"), course_id);
 
 
-
-
-        baseRequest.callAPIAddhod(1,BASE_URL,body,name_,email_,mobile_no_
-                ,address_,dob_,doj_,hod_clg_id_,dept_id_,organization_id_,gender_,course_id_);
+        baseRequest.callAPIAddhod(1, BASE_URL, body, name_, email_, mobile_no_
+                , address_, dob_, doj_, hod_clg_id_, dept_id_, organization_id_, gender_, course_id_);
     }
-
 
     private void selectImage() {
         final CharSequence[] options = {"Take Photo", "Choose from Gallery", "Cancel"};
@@ -580,7 +583,7 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
                     if (pickPhoto.resolveActivity(getPackageManager()) != null) {
                         //Device has no app that handles gallery intent
                         startActivityForResult(pickPhoto, REQ_CODE_Gallery);
-                    }else{
+                    } else {
                         Intent intent = new Intent();
                         intent.setType("image/*");
                         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -602,32 +605,9 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
         });
         builder.show();
     }
+
     public Uri getOutputMediaFileUri(int type) {
         return Uri.fromFile(getOutputMediaFile(type));
-    }
-
-    private static File getOutputMediaFile(int type) {
-        // External sdcard location
-        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), IMAGE_DIRECTORY_NAME);
-
-        // Create the storage directory if it does not exist
-        if (!mediaStorageDir.exists()) {
-            if (!mediaStorageDir.mkdirs()) {
-                //  Log.d(IMAGE_DIRECTORY_NAME, "Oops! Failed create " + IMAGE_DIRECTORY_NAME + " directory");
-                return null;
-            }
-        }
-
-        // Create a media file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
-        File mediaFile;
-        if (type == MEDIA_TYPE_IMAGE) {
-            mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + timeStamp + ".jpg");
-        } else {
-            return null;
-        }
-
-        return mediaFile;
     }
 
     @Override
@@ -712,11 +692,11 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
     }
 
 
-    public String BitMapToString(Bitmap bitmap){
-        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
-        byte [] b=baos.toByteArray();
-        String temp= Base64.encodeToString(b, Base64.DEFAULT);
+    public String BitMapToString(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] b = baos.toByteArray();
+        String temp = Base64.encodeToString(b, Base64.DEFAULT);
         return temp;
     }
 
@@ -740,6 +720,7 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
         bitmap = BitmapFactory.decodeFile(file, bmpFactoryOptions);
         return bitmap;
     }
+
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent i = new Intent(Act_add_Hod.this, Act_hod_list.class);
         startActivity(i);
@@ -747,6 +728,7 @@ public class Act_add_Hod extends AppCompatActivity implements AdapterView.OnItem
         return true;
 
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

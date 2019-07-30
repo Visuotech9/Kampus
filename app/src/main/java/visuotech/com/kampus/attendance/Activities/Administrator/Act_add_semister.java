@@ -53,6 +53,9 @@ import visuotech.com.kampus.attendance.retrofit.BaseRequest;
 import visuotech.com.kampus.attendance.retrofit.Functions;
 import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 
+import static visuotech.com.kampus.attendance.Constants.ADD_SEM;
+import static visuotech.com.kampus.attendance.Constants.COURSE_LIST;
+
 public class Act_add_semister extends AppCompatActivity {
 
     SwipeRefreshLayout mSwipeRefreshLayout;
@@ -66,7 +69,7 @@ public class Act_add_semister extends AppCompatActivity {
     ArrayList<String> course_list1 = new ArrayList<>();
     ArrayList<String> sem_list_string = new ArrayList<>();
     ArrayList<SemList> sem_list = new ArrayList<>();
-    ArrayList<SemList> list=new ArrayList<>();
+    ArrayList<SemList> list = new ArrayList<>();
     LinearLayoutManager linearLayoutManager;
     RecyclerView rv;
     Ad_ValueListNew adapter1;
@@ -79,7 +82,7 @@ public class Act_add_semister extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_main);
+        setContentView(R.layout.act_home_basic);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -179,7 +182,7 @@ public class Act_add_semister extends AppCompatActivity {
         object.addProperty("course_id", course_id);
         object.addProperty("organization_id", sessionParam.org_id);
 
-        baseRequest.callAPIPostCustomURL(1, object, "Kampus/Api2.php?apicall=add_sem");
+        baseRequest.callAPIPostCustomURL(1, object, ADD_SEM);
 
     }
 
@@ -309,7 +312,7 @@ public class Act_add_semister extends AppCompatActivity {
         tv_select_all = mDialog.findViewById(R.id.tv_select_all);
         checkbox_all = mDialog.findViewById(R.id.checkbox_all);
         LinearLayout lay1 = mDialog.findViewById(R.id.lay1);
-         lay = mDialog.findViewById(R.id.lay);
+        lay = mDialog.findViewById(R.id.lay);
         lay1.setVisibility(View.GONE);
         tv_title.setText("Semister ");
         tv_retry.setText("OK");
@@ -318,7 +321,7 @@ public class Act_add_semister extends AppCompatActivity {
         rv.setLayoutManager(linearLayoutManager);
         rv.setItemAnimator(new DefaultItemAnimator());
         sem_list_string.clear();
-        adapter1 = new Ad_ValueListNew(context, thana_list1, tv_station1, tv_select_all, checkbox_all,list,lay);
+        adapter1 = new Ad_ValueListNew(context, thana_list1, tv_station1, tv_select_all, checkbox_all, list, lay);
         rv.setAdapter(adapter1);
 
 
@@ -426,7 +429,7 @@ public class Act_add_semister extends AppCompatActivity {
 
             }
         });
-        String remainingUrl2 = "/Kampus/Api2.php?apicall=course_list&organization_id=" + sessionParam.org_id;
+        String remainingUrl2 = COURSE_LIST + "t&organization_id=" + sessionParam.org_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 

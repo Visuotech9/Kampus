@@ -15,6 +15,7 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -55,6 +56,10 @@ import visuotech.com.kampus.attendance.retrofit.ApiClient;
 import visuotech.com.kampus.attendance.retrofit.ApiInterface;
 import visuotech.com.kampus.attendance.retrofit.BaseRequest;
 import visuotech.com.kampus.attendance.retrofit.RequestReciever;
+
+import static visuotech.com.kampus.attendance.Constants.SECTION_LIST;
+import static visuotech.com.kampus.attendance.Constants.SEM_LIST;
+import static visuotech.com.kampus.attendance.Constants.STUDENT_LIST;
 
 public class Act_student_list4 extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     private static final String TAG ="UserListActivity";
@@ -238,9 +243,9 @@ public class Act_student_list4 extends AppCompatActivity implements AdapterView.
         ModelResponse topRatedMovies = response.body();
         return topRatedMovies.getmData();
     }
-    private Call<ModelResponse> callTopRatedMoviesApi() {
-        return apiInterface.getUserList(Integer.parseInt(sessionParam.org_id),currentPage);
-    }
+//    private Call<ModelResponse> callTopRatedMoviesApi() {
+//        return apiInterface.getUserList(Integer.parseInt(sessionParam.org_id),currentPage);
+//    }
 
     private void ApigetStudent1(){
         baseRequest = new BaseRequest(context);
@@ -274,7 +279,7 @@ public class Act_student_list4 extends AppCompatActivity implements AdapterView.
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=student_list&organization_id="+sessionParam.org_id+"&department_id="+sessionParam.dept_id+"&currentpage="+currentPage;
+        String remainingUrl2=STUDENT_LIST+"&organization_id="+sessionParam.org_id+"&department_id="+sessionParam.dept_id+"&currentpage="+currentPage;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
@@ -315,7 +320,7 @@ public class Act_student_list4 extends AppCompatActivity implements AdapterView.
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=student_list&organization_id="+sessionParam.org_id+"&department_id="+sessionParam.dept_id+"&currentpage="+currentPage;
+        String remainingUrl2=STUDENT_LIST+"&organization_id="+sessionParam.org_id+"&department_id="+sessionParam.dept_id+"&currentpage="+currentPage;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
@@ -350,7 +355,7 @@ public class Act_student_list4 extends AppCompatActivity implements AdapterView.
 
             }
         });
-        String remainingUrl2 = "/Kampus/Api2.php?apicall=sem_list&organization_id=" + sessionParam.org_id + "&course_id=" + sessionParam.course_id;
+        String remainingUrl2 = SEM_LIST+"&organization_id=" + sessionParam.org_id + "&course_id=" + sessionParam.course_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
@@ -384,7 +389,7 @@ public class Act_student_list4 extends AppCompatActivity implements AdapterView.
 
             }
         });
-        String remainingUrl2 = "/Kampus/Api2.php?apicall=section_list&organization_id=" + sessionParam.org_id + "&course_id=" + sessionParam.course_id+"&department_id="+sessionParam.dept_id;
+        String remainingUrl2 = SECTION_LIST+"&organization_id=" + sessionParam.org_id + "&course_id=" + sessionParam.course_id+"&department_id="+sessionParam.dept_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
@@ -541,6 +546,15 @@ public class Act_student_list4 extends AppCompatActivity implements AdapterView.
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search, menu);
+        return true;
+    }
+
+
+/*
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search, menu);
 
         MenuItem search_item = menu.findItem(R.id.mi_search);
@@ -607,6 +621,7 @@ public class Act_student_list4 extends AppCompatActivity implements AdapterView.
 
         return true;
     }
+*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

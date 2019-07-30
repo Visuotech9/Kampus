@@ -26,6 +26,8 @@ import visuotech.com.kampus.attendance.SessionParam;
 import visuotech.com.kampus.attendance.retrofit.BaseRequest;
 import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 
+import static visuotech.com.kampus.attendance.Constants.DIRECTOR_LIST;
+
 public class Act_director_profile2 extends AppCompatActivity {
     ImageView iv_back;
     //    CircleImageView iv_profile_image;
@@ -126,7 +128,7 @@ public class Act_director_profile2 extends AppCompatActivity {
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=director_list&organization_id="+sessionParam.org_id+"&user_id="+sessionParam.userId;
+        String remainingUrl2=DIRECTOR_LIST+"&organization_id="+sessionParam.org_id+"&user_id="+sessionParam.userId;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 

@@ -58,6 +58,7 @@ import visuotech.com.kampus.attendance.SessionParam;
 import visuotech.com.kampus.attendance.retrofit.BaseRequest;
 import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 
+import static visuotech.com.kampus.attendance.Constants.HOD_LIST;
 import static visuotech.com.kampus.attendance.retrofit.WebServiceConstants.BASE_URL;
 
 public class HOD_Act_home extends AppCompatActivity {
@@ -283,7 +284,7 @@ public class HOD_Act_home extends AppCompatActivity {
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=hod_list&organization_id="+sessionParam.org_id+"&user_id="+sessionParam.userId;
+        String remainingUrl2=HOD_LIST+"&organization_id="+sessionParam.org_id+"&user_id="+sessionParam.userId;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 

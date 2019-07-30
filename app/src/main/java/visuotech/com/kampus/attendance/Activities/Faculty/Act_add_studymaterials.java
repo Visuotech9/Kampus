@@ -78,6 +78,9 @@ import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 import visuotech.com.kampus.attendance.retrofit.Utility;
 
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
+import static visuotech.com.kampus.attendance.Constants.SECTION_LIST;
+import static visuotech.com.kampus.attendance.Constants.SEM_LIST;
+import static visuotech.com.kampus.attendance.Constants.SUB_LIST;
 import static visuotech.com.kampus.attendance.retrofit.WebServiceConstants.BASE_URL;
 
 public class Act_add_studymaterials extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
@@ -382,7 +385,7 @@ public class Act_add_studymaterials extends AppCompatActivity implements Adapter
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=sem_list&organization_id="+sessionParam.org_id+"&course_id="+sessionParam.course_id;
+        String remainingUrl2=SEM_LIST+"&organization_id="+sessionParam.org_id+"&course_id="+sessionParam.course_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
     private void ApigetSection(){
@@ -422,7 +425,7 @@ public class Act_add_studymaterials extends AppCompatActivity implements Adapter
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=section_list&organization_id="+sessionParam.org_id+"&course_id="+sessionParam.course_id+"&department_id="+sessionParam.dept_id;
+        String remainingUrl2=SECTION_LIST+"&organization_id="+sessionParam.org_id+"&course_id="+sessionParam.course_id+"&department_id="+sessionParam.dept_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
     private void ApigetSubject(){
@@ -459,7 +462,7 @@ public class Act_add_studymaterials extends AppCompatActivity implements Adapter
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=subject_list&organization_id="+sessionParam.org_id+"&department_id="+sessionParam.dept_id+"&course_id="+sessionParam.course_id+"&sem_id="+semId;
+        String remainingUrl2=SUB_LIST+"&organization_id="+sessionParam.org_id+"&department_id="+sessionParam.dept_id+"&course_id="+sessionParam.course_id+"&sem_id="+semId;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 

@@ -59,6 +59,9 @@ import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 import visuotech.com.kampus.attendance.retrofit.Utility;
 
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
+import static visuotech.com.kampus.attendance.Constants.COURSE_LIST;
+import static visuotech.com.kampus.attendance.Constants.DEPT_LIST;
+import static visuotech.com.kampus.attendance.Constants.HOD_LIST;
 import static visuotech.com.kampus.attendance.retrofit.WebServiceConstants.BASE_URL;
 
 public class Act_add_faculty extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
@@ -78,6 +81,7 @@ public class Act_add_faculty extends AppCompatActivity implements AdapterView.On
     MarshMallowPermission marshMallowPermission;
     String other_device_active,user_typee,organization_id,user_id;
     EditText et_name,et_email,et_mobile,et_address,et_faculty_id,et_experience,et_designation;
+
     TextView tv_dob,tv_doj,tv_select_course;
     LinearLayout lay_course;
     public   String name,email,mobileNumber,dob,doj,address,faculty_clg_id,dept_id,courseId,hodId,experience,designation;
@@ -114,7 +118,7 @@ public class Act_add_faculty extends AppCompatActivity implements AdapterView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_main);
+        setContentView(R.layout.act_home_basic);
 
         //-------------------------toolbar------------------------------------------
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -424,7 +428,7 @@ public class Act_add_faculty extends AppCompatActivity implements AdapterView.On
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=course_list&organization_id="+organization_id;
+        String remainingUrl2=COURSE_LIST+"&organization_id="+organization_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
@@ -468,7 +472,7 @@ public class Act_add_faculty extends AppCompatActivity implements AdapterView.On
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=department_list&organization_id="+organization_id+"&course_id="+courseId;
+        String remainingUrl2=DEPT_LIST+"&organization_id="+organization_id+"&course_id="+courseId;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
@@ -512,7 +516,7 @@ public class Act_add_faculty extends AppCompatActivity implements AdapterView.On
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=hod_list&organization_id="+organization_id+"&department_id="+dept_id+"&course_id="+courseId;
+        String remainingUrl2=HOD_LIST+"&organization_id="+organization_id+"&department_id="+dept_id+"&course_id="+courseId;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 

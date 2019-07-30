@@ -8,9 +8,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -39,24 +36,14 @@ import java.util.ArrayList;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import visuotech.com.kampus.attendance.Activities.Act_College_list;
-import visuotech.com.kampus.attendance.Activities.Administrator.Act_course_list;
-import visuotech.com.kampus.attendance.Activities.Administrator.Act_department_list;
-import visuotech.com.kampus.attendance.Activities.Administrator.Act_director_list;
-import visuotech.com.kampus.attendance.Activities.Administrator.Act_faculty_list;
-import visuotech.com.kampus.attendance.Activities.Administrator.Act_hod_list;
-import visuotech.com.kampus.attendance.Activities.Administrator.Act_student_list;
-import visuotech.com.kampus.attendance.Activities.Administrator.Administrator_Act_home;
-import visuotech.com.kampus.attendance.Activities.Director.Act_director_profile2;
-import visuotech.com.kampus.attendance.Activities.Director.Director_Act_home;
-import visuotech.com.kampus.attendance.MainActivity;
 import visuotech.com.kampus.attendance.MarshMallowPermission;
 import visuotech.com.kampus.attendance.Model.Faculty;
-import visuotech.com.kampus.attendance.Model.HOD;
 import visuotech.com.kampus.attendance.R;
 import visuotech.com.kampus.attendance.SessionParam;
 import visuotech.com.kampus.attendance.retrofit.BaseRequest;
 import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 
+import static visuotech.com.kampus.attendance.Constants.FACULTY_LIST;
 import static visuotech.com.kampus.attendance.retrofit.WebServiceConstants.BASE_URL;
 
 public class Faculty_Act_home extends AppCompatActivity {
@@ -307,7 +294,7 @@ public class Faculty_Act_home extends AppCompatActivity {
 
             }
         });
-        String remainingUrl2 = "/Kampus/Api2.php?apicall=faculty_list&organization_id=" + sessionParam.org_id + "&user_id=" + sessionParam.userId;
+        String remainingUrl2 =  FACULTY_LIST+"&organization_id=" + sessionParam.org_id + "&user_id=" + sessionParam.userId;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 

@@ -9,14 +9,17 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,6 +28,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -33,6 +37,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import visuotech.com.kampus.attendance.Activities.Act_College_list;
@@ -60,66 +65,37 @@ public class Administrator_Act_home extends AppCompatActivity  {
     SessionParam sessionParam;
     MarshMallowPermission marshMallowPermission;
     private BaseRequest baseRequest;
-
+    LinearLayout container;
+    CircleImageView iv_toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_administrator__act_home);
 
+        setContentView(R.layout.act_main);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        iv_toolbar = findViewById(R.id.iv_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
+        toolbar.setTitleTextColor((Color.parseColor("#FFFFFF")));
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        container =  findViewById(R.id.container);
+//        cont_lay = (ConstraintLayout) findViewById(R.id.cont_lay);
+//        cont_lay.setBackgroundColor(getResources().getColor(R.color.lightgrey));
+
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View rowView = inflater.inflate(R.layout.admin, null);
+        container.addView(rowView, container.getChildCount());
+
+//        setContentView(R.layout.activity_administrator__act_home);
+//
         context = this;
         activity = this;
         sessionParam = new SessionParam(getApplicationContext());
         marshMallowPermission = new MarshMallowPermission(activity);
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        TextView tv_toolbar=findViewById(R.id.tv_toolbar);
-        ImageView iv_toolbar=findViewById(R.id.iv_toolbar);
-        tv_toolbar.setText(sessionParam.org_name);
-        String aUrl = sessionParam.org_logo.replace("http", "https");
-        Picasso.get().load(aUrl).into(iv_toolbar);
-        setSupportActionBar(toolbar);
-      /*
-        if(getSupportActionBar()!=null){
-            Drawable drawable= getResources().getDrawable(R.drawable.app_logo);
-            Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
-            Drawable newdrawable = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 100, 100, true));
-//            newdrawable.setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_ATOP);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeAsUpIndicator(newdrawable);
-
-        }
-*/
-
-/*
-        Picasso.get()
-                .load(sessionParam.org_logo)
-                .into(new com.squareup.picasso.Target() {
-                    @Override
-                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                        if (Utility.getAPIVerison()){
-                             d = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 120, 120, true));
-                        }else {
-                             d = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 80, 80, true));
-                        }
-                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                        getSupportActionBar().setHomeAsUpIndicator(d);
-                    }
-
-                    @Override
-                    public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-
-                    }
-
-                    @Override
-                    public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-                    }
-                });
-*/
-
-
-
 
 
 
@@ -137,88 +113,88 @@ public class Administrator_Act_home extends AppCompatActivity  {
         organization_id=sessionParam.org_id;
 
 
-        lay1=findViewById(R.id.lay1);
-        lay2=findViewById(R.id.lay2);
-        lay3=findViewById(R.id.lay3);
-        lay4=findViewById(R.id.lay4);
-        lay5=findViewById(R.id.lay5);
-        lay6=findViewById(R.id.lay6);
-        lay7=findViewById(R.id.lay7);
-        lay13=findViewById(R.id.lay13);
-        lay14=findViewById(R.id.lay14);
-        lay15=findViewById(R.id.lay15);
-        lay=findViewById(R.id.lay);
+        lay1=rowView.findViewById(R.id.lay1);
+        lay2=rowView.findViewById(R.id.lay2);
+        lay3=rowView.findViewById(R.id.lay3);
+        lay4=rowView.findViewById(R.id.lay4);
+        lay5=rowView.findViewById(R.id.lay5);
+        lay6=rowView.findViewById(R.id.lay6);
+        lay7=rowView.findViewById(R.id.lay7);
+        lay13=rowView.findViewById(R.id.lay13);
+        lay14=rowView.findViewById(R.id.lay14);
+        lay15=rowView.findViewById(R.id.lay15);
+        lay=rowView.findViewById(R.id.lay);
 
-        tv_designation=findViewById(R.id.tv_designation);
-        tv_name=findViewById(R.id.tv_name);
-        iv_image=findViewById(R.id.iv_image);
+        tv_designation=rowView.findViewById(R.id.tv_designation);
+        tv_name=rowView.findViewById(R.id.tv_name);
+        iv_image=rowView.findViewById(R.id.iv_image);
 
 
-        tv_name.setText(sessionParam.login_name);
-        tv_designation.setText("("+sessionParam.designation+")");
-        String aUrl1 = sessionParam.user_image.replace("http", "https");
-        Picasso.get().load(aUrl1).into(iv_image);
+//        tv_name.setText(sessionParam.login_name);
+//        tv_designation.setText("("+sessionParam.designation+")");
+//        String aUrl1 = sessionParam.user_image.replace("http", "https");
+//        Picasso.get().load(aUrl1).into(iv_image);
 
-        iv_image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mDialog=new Dialog(context);
-                mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);  //without extar space of title
-                mDialog.setContentView(R.layout.full_image);
-                mDialog.setCanceledOnTouchOutside(true);
-                //dialog layout
-
-                ImageView iv_profile;
-                 TextView tv_name2,tv_cancel;
+//        iv_image.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                mDialog=new Dialog(context);
+//                mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);  //without extar space of title
+//                mDialog.setContentView(R.layout.full_image);
+//                mDialog.setCanceledOnTouchOutside(true);
+//                //dialog layout
 //
-                iv_profile=mDialog.findViewById(R.id.iv_profile);
-                tv_name2=mDialog.findViewById(R.id.tv_name2);
-                tv_cancel= mDialog.findViewById(R.id.tv_cancel);
-                Picasso.get().load(sessionParam.user_image).into(iv_profile);
-                tv_name2.setText(sessionParam.login_name);
-                tv_cancel.setOnClickListener(new View.OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View v) {
-                        mDialog.cancel();
-
-                    }
-                });
-                mDialog.show();
-
-            }
-        });
-        iv_toolbar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mDialog=new Dialog(context);
-                mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);  //without extar space of title
-                mDialog.setContentView(R.layout.full_image);
-                mDialog.setCanceledOnTouchOutside(true);
-                //dialog layout
-
-                ImageView iv_profile;
-                TextView tv_name2,tv_cancel;
+//                ImageView iv_profile;
+//                 TextView tv_name2,tv_cancel;
+////
+//                iv_profile=mDialog.findViewById(R.id.iv_profile);
+//                tv_name2=mDialog.findViewById(R.id.tv_name2);
+//                tv_cancel= mDialog.findViewById(R.id.tv_cancel);
+//                Picasso.get().load(sessionParam.user_image).into(iv_profile);
+//                tv_name2.setText(sessionParam.login_name);
+//                tv_cancel.setOnClickListener(new View.OnClickListener() {
 //
-                iv_profile=mDialog.findViewById(R.id.iv_profile);
-                tv_name2=mDialog.findViewById(R.id.tv_name2);
-                tv_cancel= mDialog.findViewById(R.id.tv_cancel);
-                Picasso.get().load(sessionParam.org_logo).into(iv_profile);
-                tv_name2.setText(sessionParam.org_name);
-                tv_cancel.setOnClickListener(new View.OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View v) {
-                        mDialog.cancel();
-
-                    }
-                });
-                mDialog.show();
-
-            }
-        });
+//
+//                    @Override
+//                    public void onClick(View v) {
+//                        mDialog.cancel();
+//
+//                    }
+//                });
+//                mDialog.show();
+//
+//            }
+//        });
+//        iv_toolbar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                mDialog=new Dialog(context);
+//                mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);  //without extar space of title
+//                mDialog.setContentView(R.layout.full_image);
+//                mDialog.setCanceledOnTouchOutside(true);
+//                //dialog layout
+//
+//                ImageView iv_profile;
+//                TextView tv_name2,tv_cancel;
+////
+//                iv_profile=mDialog.findViewById(R.id.iv_profile);
+//                tv_name2=mDialog.findViewById(R.id.tv_name2);
+//                tv_cancel= mDialog.findViewById(R.id.tv_cancel);
+//                Picasso.get().load(sessionParam.org_logo).into(iv_profile);
+//                tv_name2.setText(sessionParam.org_name);
+//                tv_cancel.setOnClickListener(new View.OnClickListener() {
+//
+//
+//                    @Override
+//                    public void onClick(View v) {
+//                        mDialog.cancel();
+//
+//                    }
+//                });
+//                mDialog.show();
+//
+//            }
+//        });
 
         lay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -487,14 +463,13 @@ public class Administrator_Act_home extends AppCompatActivity  {
 
             }
         });
+
         RequestBody user_type_ = RequestBody.create(MediaType.parse("text/plain"), user_typee);
         RequestBody old_pswd_ = RequestBody.create(MediaType.parse("text/plain"), old_pswd);
         RequestBody new_pswd_ = RequestBody.create(MediaType.parse("text/plain"), new_pswd);
         RequestBody cnfirm_pswd_ = RequestBody.create(MediaType.parse("text/plain"), cnfirm_pswd);
         RequestBody user_id_ = RequestBody.create(MediaType.parse("text/plain"), user_id);
         RequestBody organization_id_ = RequestBody.create(MediaType.parse("text/plain"), organization_id);
-
-
         baseRequest.callAPIChangepswd(1,BASE_URL,user_type_,old_pswd_,new_pswd_,cnfirm_pswd_,user_id_,organization_id_);
 
     }

@@ -1,13 +1,18 @@
 package visuotech.com.kampus.attendance.Activities.Administrator;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.speech.RecognizerIntent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +22,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -33,6 +39,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import visuotech.com.kampus.attendance.Adapter.Ad_director;
 import visuotech.com.kampus.attendance.Adapter.Ad_faculty;
@@ -46,6 +53,8 @@ import visuotech.com.kampus.attendance.R;
 import visuotech.com.kampus.attendance.SessionParam;
 import visuotech.com.kampus.attendance.retrofit.BaseRequest;
 import visuotech.com.kampus.attendance.retrofit.RequestReciever;
+
+import static visuotech.com.kampus.attendance.Constants.HOD_LIST;
 
 public class Act_hod_list extends AppCompatActivity {
     Ad_hod adapter;
@@ -65,16 +74,22 @@ public class Act_hod_list extends AppCompatActivity {
     ArrayList<HOD> hod_list2 = new ArrayList<>();
     ArrayList<HOD> hod_list=new ArrayList<>();
     ImageView iv_add;
+    private final int REQ_CODE_SPEECH_INPUT = 100;
+    public boolean datafinish = false;
+    String strSpeechText;
+    CardView profileCard;
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_main);
+        setContentView(R.layout.act_home_basic);
 
         //-------------------------toolbar------------------------------------------
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor((Color.parseColor("#FFFFFF")));
-        getSupportActionBar().setTitle("Head of departments");
+        getSupportActionBar().setTitle("Directors");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         context = this;
@@ -82,10 +97,14 @@ public class Act_hod_list extends AppCompatActivity {
         sessionParam = new SessionParam(getApplicationContext());
         marshMallowPermission = new MarshMallowPermission(activity);
 
+        profileCard =  findViewById(R.id.profileCard);
+
+
         container = (LinearLayout) findViewById(R.id.container);
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View rowView = inflater.inflate(R.layout.content_main_hod_list, null);
+        final View rowView = inflater.inflate(R.layout.content_main_director_list, null);
         container.addView(rowView, container.getChildCount());
+
 
 //-------------------------recyclerview------------------------------------------
         rv_list=rowView.findViewById(R.id.rv_list);
@@ -97,20 +116,69 @@ public class Act_hod_list extends AppCompatActivity {
         inputSearch = (EditText) rowView.findViewById(R.id.inputSearch);
         iv_add =  rowView.findViewById(R.id.iv_add);
 
-        mSwipeRefreshLayout = rowView.findViewById(R.id.activity_main_swipe_refresh_layout);
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
+//        mSwipeRefreshLayout = rowView.findViewById(R.id.activity_main_swipe_refresh_layout);
+//        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//
+//                if (NetworkConnection.checkNetworkStatus(getApplicationContext()) == true) {
+//                    callApi();
+//                    mSwipeRefreshLayout.setRefreshing(false);
+//                } else {
+//                    sucessDialog(getResources().getString(R.string.Internet_connection), context);
+//                }
+//
+//            }
+//        });
 
-                if (NetworkConnection.checkNetworkStatus(getApplicationContext()) == true) {
-                    callApi();
-                    mSwipeRefreshLayout.setRefreshing(false);
-                } else {
-                    sucessDialog(getResources().getString(R.string.Internet_connection), context);
-                }
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toolbar.setVisibility(View.GONE);
+                profileCard.setVisibility(View.VISIBLE);
+            }
+        });
+
+
+        ImageView search_icon=findViewById(R.id.search_icon);
+        EditText inputSearch=findViewById(R.id.inputSearch);
+        ImageView iv_voice=findViewById(R.id.iv_voice);
+        inputSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                //after the change calling the method and passing the search input
+                filter(editable.toString());
+            }
+        });
+
+        search_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toolbar.setVisibility(View.VISIBLE);
+                profileCard.setVisibility(View.GONE);
+            }
+        });
+
+        iv_voice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datafinish = true;
+                promptSpeechInput();
 
             }
         });
+
+
         callApi();
 
 
@@ -190,15 +258,23 @@ public class Act_hod_list extends AppCompatActivity {
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=hod_list&organization_id="+sessionParam.org_id;
+        String remainingUrl2=HOD_LIST+"&organization_id="+sessionParam.org_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search, menu);
+        return true;
+    }
+
+
     private void filter(String text) {
-        //new array list that will hold the filtered data
+        hod_list2.clear();
 
-
-        //looping through existing elements
         for (int i=0;i<hod_list.size();i++){
             if (hod_list.get(i).getHod_name().toLowerCase().contains(text.toLowerCase())){
                 HOD hod=new HOD();
@@ -206,14 +282,78 @@ public class Act_hod_list extends AppCompatActivity {
                 hod.setHod_department_name(hod_list.get(i).getHod_department_name());
                 hod.setHod_username(hod_list.get(i).getHod_username());
                 hod.setHod_pic(hod_list.get(i).getHod_pic());
+                hod.setHod_mobile_no(hod_list.get(i).getHod_mobile_no());
+                hod.setHod_email_id(hod_list.get(i).getHod_email_id());
+                hod.setHod_dob(hod_list.get(i).getHod_dob());
+                hod.setHod_pic(hod_list.get(i).getHod_date_of_joining());
+                hod.setHod_date_of_joining(hod_list.get(i).getHod_address());
+                hod.setHod_gender(hod_list.get(i).getHod_gender());
+                hod.setHod_course_name(hod_list.get(i).getHod_course_name());
                 hod_list2.add(hod);
             }
         }
-
-        //calling a method of the adapter class and passing the filtered list
-        adapter.filterList(hod_list2);
+        adapter = new Ad_hod(hod_list2, context);
+        rv_list.setAdapter(adapter);
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case REQ_CODE_SPEECH_INPUT: {
+                if (resultCode == RESULT_OK && null != data) {
+                    strSpeechText = inputSearch.getText().toString();
+
+                    ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+
+                    if (strSpeechText.length() == 0) {
+                        inputSearch.setText(result.get(0));
+                        strSpeechText = inputSearch.getText().toString();
+                    } else if (strSpeechText.length() > 0 && strSpeechText != null) {
+                        String temp = result.get(0);
+
+                        inputSearch.setText(strSpeechText+" "+temp);
+
+                        strSpeechText = inputSearch.getText().toString();
+                    }
+                    datafinish = false;
+                }
+                break;
+            }
+
+        }
+    }
+
+
+    private void promptSpeechInput() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, getString(R.string.speech_prompt));
+        try {
+            startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
+        } catch (ActivityNotFoundException a) {
+
+            displayAlertDialogueWithOK(getResources().getString(R.string.app_name), getResources().getString(R.string.speech_not_supported));
+        }
+    }
+
+    @SuppressWarnings({"deprecation", "unused"})
+    private void displayAlertDialogueWithOK(String title, String Msg) {
+        AlertDialog alertDialog = new AlertDialog.Builder(Act_hod_list.this).create();
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(Msg);
+        alertDialog.setCancelable(false);
+        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                return;
+            }
+        });
+        alertDialog.show();
+    }
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search, menu);
@@ -286,6 +426,7 @@ public class Act_hod_list extends AppCompatActivity {
 
         return true;
     }
+*/
 
     public boolean onOptionsItemSelected(MenuItem item) {
 

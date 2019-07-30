@@ -1,54 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/tools"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        app:popupTheme="@style/AppTheme.PopupOverlay"
-        app:theme="@style/ToolbarColoredBackArrow">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:theme="@style/AppTheme">
 
-        <!--<de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"-->
-            <!--android:id="@+id/iv_toolbar"-->
-            <!--android:layout_width='50dp'-->
-            <!--android:layout_height="50dp"-->
-            <!--android:background="@drawable/bg_circular_imageview"-->
-            <!--android:clickable="true"-->
-            <!--android:src="@drawable/logo2"-->
-            <!--app:civ_border_color="@color/colorPrimaryDark"-->
-            <!--app:civ_border_width="1dp" />-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/tv_toolbar"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:text="Kampus"-->
-        <!--android:singleLine="true"-->
-        <!--android:layout_marginLeft="30dp"-->
-        <!--android:textSize="20dp"-->
-        <!--android:textColor="@color/White"-->
-        <!--android:layout_height="wrap_content" />-->
-    </android.support.v7.widget.Toolbar>
-
-    <!--<include layout="@layout/contain_main_election" />-->
-
-    <LinearLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"></LinearLayout>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|snap|enterAlways"
+            app:popupTheme="@style/AppTheme"
+            app:theme="@style/ToolbarColoredBackArrow"
+            app:titleTextColor="@color/White" >
 
 
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/iv_toolbar"
+            android:layout_width='35dp'
+            android:layout_height="35dp"
+            android:background="@drawable/bg_circular_imageview"
+            android:clickable="true"
+            android:src="@drawable/app_logo_varsity"
+            app:civ_border_color="@color/colorPrimaryDark"
+            app:civ_border_width="1dp" />
+
+            <TextView
+                android:layout_marginLeft="30dp"
+                android:textColor="@color/White"
+                android:textSize="18dp"
+                android:text="The Varsity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </android.support.v7.widget.Toolbar>
+
+        <!--<android.support.v7.widget.CardView-->
+            <!--android:id="@+id/profileCard"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="45dp"-->
+            <!--android:layout_margin="5dp"-->
+            <!--android:visibility="gone"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:gravity="center_vertical"-->
+            <!--app:cardCornerRadius="4dp"-->
+            <!--app:cardElevation="7dp"-->
+            <!--app:cardUseCompatPadding="false"-->
+            <!--android:layout_alignParentLeft="true">-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:focusableInTouchMode="true"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="horizontal"-->
+                <!--&gt;-->
+
+                <!--<SearchView-->
+                    <!--android:id="@+id/searchView"-->
+                    <!--android:background="@color/White"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:queryHint="Search Here"-->
+                    <!--android:iconifiedByDefault="false"-->
+                    <!--android:layout_alignParentTop="true" />-->
+            <!--</LinearLayout>-->
+        <!--</android.support.v7.widget.CardView>-->
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_home" />
 
 
-    <!--<include layout="@layout/activity_ham_button" />-->
 
     <!--<android.support.design.widget.FloatingActionButton-->
     <!--android:id="@+id/fab"-->
@@ -56,9 +85,6 @@
     <!--android:layout_height="wrap_content"-->
     <!--android:layout_gravity="bottom|end"-->
     <!--android:layout_margin="@dimen/fab_margin"-->
-    <!--android:visibility="gone"-->
     <!--app:srcCompat="@android:drawable/ic_dialog_email" />-->
 
-
-
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

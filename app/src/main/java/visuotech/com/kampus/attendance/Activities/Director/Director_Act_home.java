@@ -46,6 +46,7 @@ import visuotech.com.kampus.attendance.SessionParam;
 import visuotech.com.kampus.attendance.retrofit.BaseRequest;
 import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 
+import static visuotech.com.kampus.attendance.Constants.DIRECTOR_LIST;
 import static visuotech.com.kampus.attendance.retrofit.WebServiceConstants.BASE_URL;
 
 public class Director_Act_home extends AppCompatActivity {
@@ -450,7 +451,7 @@ public class Director_Act_home extends AppCompatActivity {
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=director_list&organization_id="+organization_id+"&user_id="+sessionParam.userId;
+        String remainingUrl2=DIRECTOR_LIST+"&organization_id="+organization_id+"&user_id="+sessionParam.userId;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 

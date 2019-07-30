@@ -62,6 +62,7 @@ import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 import visuotech.com.kampus.attendance.retrofit.Utility;
 
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
+import static visuotech.com.kampus.attendance.Constants.DEPT_LIST;
 import static visuotech.com.kampus.attendance.retrofit.WebServiceConstants.BASE_URL;
 
 public class Act_add_Hod2 extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
@@ -355,7 +356,7 @@ public class Act_add_Hod2 extends AppCompatActivity implements AdapterView.OnIte
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=department_list&organization_id="+organization_id+"&director_id="+sessionParam.userId;
+        String remainingUrl2=DEPT_LIST+"&organization_id="+organization_id+"&director_id="+sessionParam.userId;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 

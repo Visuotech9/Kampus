@@ -4,7 +4,7 @@ package visuotech.com.kampus.attendance.retrofit;
 public class WebServiceConstants {
 
     //----------LIVE---------------
-    public static final String BASE_URL = "https://collectorexpress.in/";
+    public static final String BASE_URL = "https://thevarsity.in/";
 
     //----------TEST---------------
 //    public static final String BASE_URL = "http://192.168.1.64/";

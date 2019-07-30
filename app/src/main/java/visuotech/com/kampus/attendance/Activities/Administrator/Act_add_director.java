@@ -60,6 +60,7 @@ import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 import visuotech.com.kampus.attendance.retrofit.Utility;
 
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
+import static visuotech.com.kampus.attendance.Constants.COURSE_LIST;
 import static visuotech.com.kampus.attendance.retrofit.WebServiceConstants.BASE_URL;
 
 public class Act_add_director extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
@@ -97,7 +98,7 @@ public class Act_add_director extends AppCompatActivity implements AdapterView.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_main);
+        setContentView(R.layout.act_home_basic);
 
 //-------------------------toolbar------------------------------------------
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -330,7 +331,7 @@ public class Act_add_director extends AppCompatActivity implements AdapterView.O
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=course_list&organization_id="+organization_id;
+        String remainingUrl2=COURSE_LIST+"&organization_id="+organization_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 

@@ -154,9 +154,6 @@
             android:name=".Activities.Director.Act_add_student2"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".Activities.Faculty.Act_student_list4"
             android:screenOrientation="portrait" />
         <activity

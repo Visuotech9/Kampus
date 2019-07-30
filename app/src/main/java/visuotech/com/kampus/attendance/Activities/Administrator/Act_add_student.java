@@ -65,6 +65,11 @@ import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 import visuotech.com.kampus.attendance.retrofit.Utility;
 
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
+import static visuotech.com.kampus.attendance.Constants.COURSE_LIST;
+import static visuotech.com.kampus.attendance.Constants.DEPT_LIST;
+import static visuotech.com.kampus.attendance.Constants.HOD_LIST;
+import static visuotech.com.kampus.attendance.Constants.SECTION_LIST;
+import static visuotech.com.kampus.attendance.Constants.SEM_LIST;
 import static visuotech.com.kampus.attendance.retrofit.WebServiceConstants.BASE_URL;
 
 public class Act_add_student extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -148,7 +153,7 @@ public class Act_add_student extends AppCompatActivity implements AdapterView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_main);
+        setContentView(R.layout.act_home_basic);
 
         //-------------------------toolbar------------------------------------------
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -561,7 +566,7 @@ public class Act_add_student extends AppCompatActivity implements AdapterView.On
 
             }
         });
-        String remainingUrl2 = "/Kampus/Api2.php?apicall=course_list&organization_id=" + organization_id;
+        String remainingUrl2 = COURSE_LIST+"&organization_id=" + organization_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
@@ -603,7 +608,7 @@ public class Act_add_student extends AppCompatActivity implements AdapterView.On
 
             }
         });
-        String remainingUrl2 = "/Kampus/Api2.php?apicall=department_list&organization_id=" + organization_id;
+        String remainingUrl2 = DEPT_LIST+"&organization_id=" + organization_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
@@ -645,7 +650,7 @@ public class Act_add_student extends AppCompatActivity implements AdapterView.On
 
             }
         });
-        String remainingUrl2 = "/Kampus/Api2.php?apicall=sem_list&organization_id=" + organization_id + "&course_id=" + courseId;
+        String remainingUrl2 = SEM_LIST+"&organization_id=" + organization_id + "&course_id=" + courseId;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
@@ -685,7 +690,7 @@ public class Act_add_student extends AppCompatActivity implements AdapterView.On
 
             }
         });
-        String remainingUrl2 = "/Kampus/Api2.php?apicall=hod_list&organization_id=" + organization_id + "&department_id=" + dept_id + "&course_id=" + courseId;
+        String remainingUrl2 = HOD_LIST+"&organization_id=" + organization_id + "&department_id=" + dept_id + "&course_id=" + courseId;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
@@ -725,7 +730,7 @@ public class Act_add_student extends AppCompatActivity implements AdapterView.On
 
             }
         });
-        String remainingUrl2 = "/Kampus/Api2.php?apicall=section_list&organization_id=" + organization_id + "&course_id=" + courseId + "&department_id=" + dept_id;
+        String remainingUrl2 = SECTION_LIST+"&organization_id=" + organization_id + "&course_id=" + courseId + "&department_id=" + dept_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 

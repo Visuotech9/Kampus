@@ -1,12 +1,17 @@
 package visuotech.com.kampus.attendance.Activities.Administrator;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -35,13 +40,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import visuotech.com.kampus.attendance.Adapter.Ad_Semister_list;
 import visuotech.com.kampus.attendance.Adapter.Ad_course;
+import visuotech.com.kampus.attendance.Adapter.Ad_director;
 import visuotech.com.kampus.attendance.Adapter.Ad_faculty;
 import visuotech.com.kampus.attendance.Adapter.Ad_subject;
 import visuotech.com.kampus.attendance.MarshMallowPermission;
 import visuotech.com.kampus.attendance.Model.Course;
+import visuotech.com.kampus.attendance.Model.Director;
 import visuotech.com.kampus.attendance.Model.Faculty;
 import visuotech.com.kampus.attendance.Model.Semister;
 import visuotech.com.kampus.attendance.Model.Subjects;
@@ -50,6 +58,9 @@ import visuotech.com.kampus.attendance.RecyclerTouchListener;
 import visuotech.com.kampus.attendance.SessionParam;
 import visuotech.com.kampus.attendance.retrofit.BaseRequest;
 import visuotech.com.kampus.attendance.retrofit.RequestReciever;
+
+import static visuotech.com.kampus.attendance.Constants.COURSE_LIST;
+import static visuotech.com.kampus.attendance.Constants.SEM_LIST;
 
 //import android.widget.SearchView;
 
@@ -79,13 +90,18 @@ public class Act_semister_list extends AppCompatActivity implements AdapterView.
     Spinner spinner_course;
     private BaseRequest baseRequest;
     private String keyword, course_id, course_name;
+    private final int REQ_CODE_SPEECH_INPUT = 100;
+    public boolean datafinish = false;
+    String strSpeechText;
+    CardView profileCard;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_main);
+        setContentView(R.layout.act_home_basic);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor((Color.parseColor("#FFFFFF")));
@@ -96,6 +112,9 @@ public class Act_semister_list extends AppCompatActivity implements AdapterView.
         activity = this;
         sessionParam = new SessionParam(getApplicationContext());
         marshMallowPermission = new MarshMallowPermission(activity);
+
+        profileCard =  findViewById(R.id.profileCard);
+
 
         container = (LinearLayout) findViewById(R.id.container);
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -117,6 +136,54 @@ public class Act_semister_list extends AppCompatActivity implements AdapterView.
                 sucessDialog1(context, tv_station, course_list);
             }
         });
+
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toolbar.setVisibility(View.GONE);
+                profileCard.setVisibility(View.VISIBLE);
+            }
+        });
+
+
+        ImageView search_icon=findViewById(R.id.search_icon);
+        EditText inputSearch=findViewById(R.id.inputSearch);
+        ImageView iv_voice=findViewById(R.id.iv_voice);
+        inputSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                //after the change calling the method and passing the search input
+//                filter(editable.toString());
+            }
+        });
+
+        search_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toolbar.setVisibility(View.VISIBLE);
+                profileCard.setVisibility(View.GONE);
+            }
+        });
+
+        iv_voice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datafinish = true;
+                promptSpeechInput();
+
+            }
+        });
+
 
 
         ApigetCourse();
@@ -232,7 +299,7 @@ public class Act_semister_list extends AppCompatActivity implements AdapterView.
 
             }
         });
-        String remainingUrl2 = "/Kampus/Api2.php?apicall=course_list&organization_id=" + sessionParam.org_id;
+        String remainingUrl2 =COURSE_LIST+"&organization_id=" + sessionParam.org_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
@@ -278,7 +345,7 @@ public class Act_semister_list extends AppCompatActivity implements AdapterView.
 
             }
         });
-        String remainingUrl2 = "/Kampus/Api2.php?apicall=sem_list&organization_id=" + sessionParam.org_id + "&course_id=" + course_id;
+        String remainingUrl2 = SEM_LIST+"&organization_id=" + sessionParam.org_id + "&course_id=" + course_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
@@ -322,12 +389,95 @@ public class Act_semister_list extends AppCompatActivity implements AdapterView.
 //        return super.onOptionsItemSelected(item);
     }
 
+
+/*
+    private void filter(String text) {
+        director_list2.clear();
+
+//                keyword = s.toUpperCase();
+
+        for (int i = 0; i < director_list.size(); i++) {
+            if (director_list.get(i).getDirector_name().toLowerCase().contains(text.toLowerCase())) {
+                Director faculty = new Director();
+                faculty.setDirector_name(director_list.get(i).getDirector_name());
+                faculty.setDir_course_name(director_list.get(i).getDir_course_name());
+                faculty.setDirector_username(director_list.get(i).getDirector_username());
+                faculty.setDirector_pic(director_list.get(i).getDirector_pic());
+                faculty.setDirector_mobile_no(director_list.get(i).getDirector_mobile_no());
+                faculty.setDirector_email_id(director_list.get(i).getDirector_email_id());
+                faculty.setDiretor_dob(director_list.get(i).getDiretor_dob());
+                faculty.setDirector_date_of_joining(director_list.get(i).getDirector_date_of_joining());
+                faculty.setDirector_address(director_list.get(i).getDirector_address());
+                faculty.setDirector_gender(director_list.get(i).getDirector_gender());
+                director_list2.add(faculty);
+            }
+        }
+        adapter = new Ad_director(director_list2, context);
+        rv_list.setAdapter(adapter);
+    }
+*/
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case REQ_CODE_SPEECH_INPUT: {
+                if (resultCode == RESULT_OK && null != data) {
+                    strSpeechText = inputSearch.getText().toString();
+
+                    ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+
+                    if (strSpeechText.length() == 0) {
+                        inputSearch.setText(result.get(0));
+                        strSpeechText = inputSearch.getText().toString();
+                    } else if (strSpeechText.length() > 0 && strSpeechText != null) {
+                        String temp = result.get(0);
+
+                        inputSearch.setText(strSpeechText+" "+temp);
+
+                        strSpeechText = inputSearch.getText().toString();
+                    }
+                    datafinish = false;
+                }
+                break;
+            }
+
+        }
+    }
+
+
+    private void promptSpeechInput() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, getString(R.string.speech_prompt));
+        try {
+            startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
+        } catch (ActivityNotFoundException a) {
+
+            displayAlertDialogueWithOK(getResources().getString(R.string.app_name), getResources().getString(R.string.speech_not_supported));
+        }
+    }
+
+    @SuppressWarnings({"deprecation", "unused"})
+    private void displayAlertDialogueWithOK(String title, String Msg) {
+        AlertDialog alertDialog = new AlertDialog.Builder(Act_semister_list.this).create();
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(Msg);
+        alertDialog.setCancelable(false);
+        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                return;
+            }
+        });
+        alertDialog.show();
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.search, menu);
-        MenuItem search_item = menu.findItem(R.id.mi_search);
-        search_item.setVisible(false);
         return true;
     }
 

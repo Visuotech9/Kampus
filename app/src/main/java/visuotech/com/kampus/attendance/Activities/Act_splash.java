@@ -14,6 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -56,6 +58,12 @@ public class Act_splash extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_act_splash);
 
         activity = this;
@@ -95,20 +103,35 @@ public class Act_splash extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
-                if (!user_id.isEmpty() && !user_typee.isEmpty() && !organization_id.isEmpty()) {
-
-                    if (NetworkConnection.checkNetworkStatus(context) == true) {
-                        api_loginStatus();
-
-                    } else {
-                        Snackbar.make(lin_spl_layout, "No internet connection", Snackbar.LENGTH_LONG).show();
+                if (NetworkConnection.checkNetworkStatus(context) == true) {
+//                        api_loginStatus();
+                    if (sessionParam.login.equals("yes")){
+                        Intent i = new Intent(Act_splash.this, Administrator_Act_home.class);
+                        startActivity(i);
+                        finish();
+                    }else {
+                        Intent i = new Intent(Act_splash.this, Act_Login.class);
+                        startActivity(i);
+                        finish();
                     }
-                } else {
-                    Intent i = new Intent(Act_splash.this, Act_Login.class);
-                    startActivity(i);
-                    finish();
+
                 }
+
+//                if (!user_id.isEmpty() && !user_typee.isEmpty() && !organization_id.isEmpty()) {
+//                    if (NetworkConnection.checkNetworkStatus(context) == true) {
+////                        api_loginStatus();
+//                        if (sessionParam.login.equals("yes")){
+//
+//                        }
+//
+//                    } else {
+//                        Snackbar.make(lin_spl_layout, "No internet connection", Snackbar.LENGTH_LONG).show();
+//                    }
+//                } else {
+//                    Intent i = new Intent(Act_splash.this, Act_Login.class);
+//                    startActivity(i);
+//                    finish();
+//                }
             }
 
         }, SPLASH_TIME_OUT);

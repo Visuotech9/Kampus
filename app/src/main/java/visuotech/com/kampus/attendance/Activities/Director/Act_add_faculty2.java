@@ -61,6 +61,8 @@ import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 import visuotech.com.kampus.attendance.retrofit.Utility;
 
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
+import static visuotech.com.kampus.attendance.Constants.DEPT_LIST;
+import static visuotech.com.kampus.attendance.Constants.HOD_LIST;
 import static visuotech.com.kampus.attendance.retrofit.WebServiceConstants.BASE_URL;
 
 public class Act_add_faculty2 extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
@@ -433,7 +435,7 @@ public class Act_add_faculty2 extends AppCompatActivity implements AdapterView.O
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=department_list&organization_id="+organization_id+"&course_id="+sessionParam.course_id;
+        String remainingUrl2=DEPT_LIST+"&organization_id="+organization_id+"&course_id="+sessionParam.course_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
@@ -474,7 +476,7 @@ public class Act_add_faculty2 extends AppCompatActivity implements AdapterView.O
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=hod_list&organization_id="+organization_id+"&department_id="+dept_id+"&course_id="+sessionParam.course_id;
+        String remainingUrl2=HOD_LIST+"&organization_id="+organization_id+"&department_id="+dept_id+"&course_id="+sessionParam.course_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 

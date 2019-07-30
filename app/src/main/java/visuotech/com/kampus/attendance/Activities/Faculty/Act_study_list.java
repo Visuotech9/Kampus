@@ -15,6 +15,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -38,6 +39,8 @@ import visuotech.com.kampus.attendance.R;
 import visuotech.com.kampus.attendance.SessionParam;
 import visuotech.com.kampus.attendance.retrofit.BaseRequest;
 import visuotech.com.kampus.attendance.retrofit.RequestReciever;
+
+import static visuotech.com.kampus.attendance.Constants.STUDY_LIST;
 
 public class Act_study_list extends AppCompatActivity {
     Ad_study adapter;
@@ -122,10 +125,19 @@ public class Act_study_list extends AppCompatActivity {
 
             }
         });
-        String remainingUrl2 = "/Kampus/Api2.php?apicall=studymaterial_list&organization_id=" + sessionParam.org_id + "&faculty_id=" + sessionParam.userId;
+        String remainingUrl2 = STUDY_LIST+"&organization_id=" + sessionParam.org_id + "&faculty_id=" + sessionParam.userId;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search, menu);
+        return true;
+    }
+
+
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search, menu);
@@ -185,6 +197,7 @@ public class Act_study_list extends AppCompatActivity {
 
         return true;
     }
+*/
 
     public boolean onOptionsItemSelected(MenuItem item) {
 

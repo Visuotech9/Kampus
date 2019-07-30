@@ -1,16 +1,23 @@
 package visuotech.com.kampus.attendance.Activities.Administrator;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,16 +40,19 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.EventListener;
+import java.util.Locale;
 
 import visuotech.com.kampus.attendance.Activities.Director.Act_add_Hod2;
 import visuotech.com.kampus.attendance.Activities.Director.Act_hod_list2;
 import visuotech.com.kampus.attendance.Adapter.Ad_Semister_list;
 import visuotech.com.kampus.attendance.Adapter.Ad_course;
 import visuotech.com.kampus.attendance.Adapter.Ad_department;
+import visuotech.com.kampus.attendance.Adapter.Ad_director;
 import visuotech.com.kampus.attendance.Adapter.Ad_subject;
 import visuotech.com.kampus.attendance.MarshMallowPermission;
 import visuotech.com.kampus.attendance.Model.Course;
 import visuotech.com.kampus.attendance.Model.Department;
+import visuotech.com.kampus.attendance.Model.Director;
 import visuotech.com.kampus.attendance.Model.Semister;
 import visuotech.com.kampus.attendance.Model.Subjects;
 import visuotech.com.kampus.attendance.NetworkConnection;
@@ -51,6 +61,11 @@ import visuotech.com.kampus.attendance.RecyclerTouchListener;
 import visuotech.com.kampus.attendance.SessionParam;
 import visuotech.com.kampus.attendance.retrofit.BaseRequest;
 import visuotech.com.kampus.attendance.retrofit.RequestReciever;
+
+import static visuotech.com.kampus.attendance.Constants.COURSE_LIST;
+import static visuotech.com.kampus.attendance.Constants.DEPT_LIST;
+import static visuotech.com.kampus.attendance.Constants.SEM_LIST;
+import static visuotech.com.kampus.attendance.Constants.SUB_LIST;
 
 //import android.widget.SearchView;
 
@@ -89,11 +104,16 @@ public class Act_subject_list extends AppCompatActivity {
     Button btn_view;
     private BaseRequest baseRequest;
     private String keyword, course_id, course_name;
+    private final int REQ_CODE_SPEECH_INPUT = 100;
+    public boolean datafinish = false;
+    String strSpeechText;
+    CardView profileCard;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_main);
+        setContentView(R.layout.act_home_basic);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -315,23 +335,6 @@ public class Act_subject_list extends AppCompatActivity {
             }
         }));
 
-//        inputSearch.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//                filter1(editable.toString(), adapter, sp_list);
-//            }
-//        });
-
 
         tv_retry.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -440,7 +443,7 @@ public class Act_subject_list extends AppCompatActivity {
 
             }
         });
-        String remainingUrl2 = "/Kampus/Api2.php?apicall=department_list&organization_id=" + sessionParam.org_id + "&course_id=" + course_id;
+        String remainingUrl2 = DEPT_LIST+"&organization_id=" + sessionParam.org_id + "&course_id=" + course_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
@@ -477,7 +480,7 @@ public class Act_subject_list extends AppCompatActivity {
 
             }
         });
-        String remainingUrl2 = "/Kampus/Api2.php?apicall=course_list&organization_id=" + sessionParam.org_id;
+        String remainingUrl2 = COURSE_LIST+"&organization_id=" + sessionParam.org_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
@@ -512,7 +515,7 @@ public class Act_subject_list extends AppCompatActivity {
 
             }
         });
-        String remainingUrl2 = "/Kampus/Api2.php?apicall=sem_list&organization_id=" + sessionParam.org_id + "&course_id=" + course_id;
+        String remainingUrl2 = SEM_LIST+"&organization_id=" + sessionParam.org_id + "&course_id=" + course_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
@@ -559,7 +562,7 @@ public class Act_subject_list extends AppCompatActivity {
 
             }
         });
-        String remainingUrl2 = "/Kampus/Api2.php?apicall=subject_list&organization_id=" + sessionParam.org_id + "&course_id=" + course_id + "&department_id=" + dept_id + "&sem_id=" + sem_id;
+        String remainingUrl2 = SUB_LIST+"&organization_id=" + sessionParam.org_id + "&course_id=" + course_id + "&department_id=" + dept_id + "&sem_id=" + sem_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
@@ -615,6 +618,65 @@ public class Act_subject_list extends AppCompatActivity {
     }
 
 
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case REQ_CODE_SPEECH_INPUT: {
+                if (resultCode == RESULT_OK && null != data) {
+                    strSpeechText = inputSearch.getText().toString();
+
+                    ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+
+                    if (strSpeechText.length() == 0) {
+                        inputSearch.setText(result.get(0));
+                        strSpeechText = inputSearch.getText().toString();
+                    } else if (strSpeechText.length() > 0 && strSpeechText != null) {
+                        String temp = result.get(0);
+
+                        inputSearch.setText(strSpeechText+" "+temp);
+
+                        strSpeechText = inputSearch.getText().toString();
+                    }
+                    datafinish = false;
+                }
+                break;
+            }
+
+        }
+    }
+
+
+    private void promptSpeechInput() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, getString(R.string.speech_prompt));
+        try {
+            startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
+        } catch (ActivityNotFoundException a) {
+
+            displayAlertDialogueWithOK(getResources().getString(R.string.app_name), getResources().getString(R.string.speech_not_supported));
+        }
+    }
+
+    @SuppressWarnings({"deprecation", "unused"})
+    private void displayAlertDialogueWithOK(String title, String Msg) {
+        AlertDialog alertDialog = new AlertDialog.Builder(Act_subject_list.this).create();
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(Msg);
+        alertDialog.setCancelable(false);
+        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                return;
+            }
+        });
+        alertDialog.show();
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -626,8 +688,6 @@ public class Act_subject_list extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.search, menu);
-        MenuItem search_item = menu.findItem(R.id.mi_search);
-        search_item.setVisible(false);
         return true;
     }
 

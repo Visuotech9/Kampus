@@ -58,6 +58,10 @@ import visuotech.com.kampus.attendance.retrofit.FileUtils;
 import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 import visuotech.com.kampus.attendance.retrofit.Utility;
 
+import static visuotech.com.kampus.attendance.Constants.FACULTY_LIST;
+import static visuotech.com.kampus.attendance.Constants.SECTION_LIST;
+import static visuotech.com.kampus.attendance.Constants.SEM_LIST;
+
 public class Act_add_timetable extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private static final String IMAGE_DIRECTORY_NAME = "Directorregistrstion";
     static Dialog d;
@@ -381,7 +385,7 @@ public class Act_add_timetable extends AppCompatActivity implements AdapterView.
 
             }
         });
-        String remainingUrl2 = "/Kampus/Api2.php?apicall=sem_list&organization_id=" + sessionParam.org_id + "&course_id=" + sessionParam.course_id;
+        String remainingUrl2 = SEM_LIST+"&organization_id=" + sessionParam.org_id + "&course_id=" + sessionParam.course_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
@@ -421,7 +425,7 @@ public class Act_add_timetable extends AppCompatActivity implements AdapterView.
 
             }
         });
-        String remainingUrl2 = "/Kampus/Api2.php?apicall=section_list&organization_id=" + sessionParam.org_id + "&course_id=" + sessionParam.course_id + "&department_id=" + sessionParam.dept_id;
+        String remainingUrl2 = SECTION_LIST+"&organization_id=" + sessionParam.org_id + "&course_id=" + sessionParam.course_id + "&department_id=" + sessionParam.dept_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
@@ -468,7 +472,7 @@ public class Act_add_timetable extends AppCompatActivity implements AdapterView.
 
             }
         });
-        String remainingUrl2 = "/Kampus/Api2.php?apicall=faculty_list&organization_id=" + sessionParam.org_id + "&department_id=" + sessionParam.dept_id;
+        String remainingUrl2 =  FACULTY_LIST+"&organization_id=" + sessionParam.org_id + "&department_id=" + sessionParam.dept_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 

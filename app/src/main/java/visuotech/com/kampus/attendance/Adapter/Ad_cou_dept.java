@@ -41,6 +41,8 @@ import visuotech.com.kampus.attendance.SessionParam;
 import visuotech.com.kampus.attendance.retrofit.BaseRequest;
 import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 
+import static visuotech.com.kampus.attendance.Constants.DEPT_LIST;
+
 
 public class Ad_cou_dept extends RecyclerView.Adapter<Ad_cou_dept.MyViewHolder> {
     ArrayList<Course> list;
@@ -183,7 +185,7 @@ public class Ad_cou_dept extends RecyclerView.Adapter<Ad_cou_dept.MyViewHolder> 
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=department_list&organization_id="+sessionParam.org_id+"&course_id="+course_id;
+        String remainingUrl2=DEPT_LIST+"&organization_id="+sessionParam.org_id+"&course_id="+course_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 

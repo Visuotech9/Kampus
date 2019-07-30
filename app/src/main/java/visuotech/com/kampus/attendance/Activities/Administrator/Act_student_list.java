@@ -1,12 +1,17 @@
 package visuotech.com.kampus.attendance.Activities.Administrator;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +21,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -30,9 +36,11 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Response;
+import visuotech.com.kampus.attendance.Adapter.Ad_director;
 import visuotech.com.kampus.attendance.Adapter.Ad_student;
 import visuotech.com.kampus.attendance.MarshMallowPermission;
 import visuotech.com.kampus.attendance.Model.Director;
@@ -45,6 +53,8 @@ import visuotech.com.kampus.attendance.retrofit.ApiClient;
 import visuotech.com.kampus.attendance.retrofit.ApiInterface;
 import visuotech.com.kampus.attendance.retrofit.BaseRequest;
 import visuotech.com.kampus.attendance.retrofit.RequestReciever;
+
+import static visuotech.com.kampus.attendance.Constants.STUDENT_LIST;
 
 public class Act_student_list extends AppCompatActivity {
     private static final String TAG ="UserListActivity";
@@ -76,15 +86,20 @@ public class Act_student_list extends AppCompatActivity {
     ArrayList<String>director_name_list=new ArrayList<>();
     List<Student> students;
     List<Student>results;
-
+    private final int REQ_CODE_SPEECH_INPUT = 100;
+    public boolean datafinish = false;
+    String strSpeechText;
     ImageView iv_add;
+    CardView profileCard;
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_main);
+        setContentView(R.layout.act_home_basic);
 
         //-------------------------toolbar------------------------------------------
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor((Color.parseColor("#FFFFFF")));
         getSupportActionBar().setTitle("Student");
@@ -94,6 +109,9 @@ public class Act_student_list extends AppCompatActivity {
         activity = this;
         sessionParam = new SessionParam(getApplicationContext());
         marshMallowPermission = new MarshMallowPermission(activity);
+
+
+
 
         container = (LinearLayout) findViewById(R.id.container);
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -109,11 +127,10 @@ public class Act_student_list extends AppCompatActivity {
         students=new ArrayList<>();
         results=new ArrayList<>();
 
-        inputSearch = (EditText) rowView.findViewById(R.id.inputSearch);
-        iv_add =  rowView.findViewById(R.id.iv_add);
-
-
-
+        profileCard =  findViewById(R.id.profileCard);
+        ImageView search_icon=findViewById(R.id.search_icon);
+        EditText inputSearch=findViewById(R.id.inputSearch);
+        ImageView iv_voice=findViewById(R.id.iv_voice);
         inputSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -128,7 +145,33 @@ public class Act_student_list extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
                 //after the change calling the method and passing the search input
-//                filter(editable.toString());
+                filter(editable.toString());
+            }
+        });
+
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toolbar.setVisibility(View.GONE);
+                profileCard.setVisibility(View.VISIBLE);
+            }
+        });
+
+
+        search_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toolbar.setVisibility(View.VISIBLE);
+                profileCard.setVisibility(View.GONE);
+            }
+        });
+
+        iv_voice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datafinish = true;
+                promptSpeechInput();
+
             }
         });
 
@@ -235,9 +278,9 @@ public class Act_student_list extends AppCompatActivity {
         ModelResponse topRatedMovies = response.body();
         return topRatedMovies.getmData();
     }
-    private Call<ModelResponse> callTopRatedMoviesApi() {
-        return apiInterface.getUserList(Integer.parseInt(sessionParam.org_id),currentPage);
-    }
+//    private Call<ModelResponse> callTopRatedMoviesApi() {
+//        return apiInterface.getUserList(Integer.parseInt(sessionParam.org_id),currentPage);
+//    }
 
     private void ApigetStudent1(){
         baseRequest = new BaseRequest(context);
@@ -271,7 +314,7 @@ public class Act_student_list extends AppCompatActivity {
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=student_list&organization_id="+sessionParam.org_id+"&currentpage="+currentPage+"&department_id="+sessionParam.dept_id;
+        String remainingUrl2=STUDENT_LIST+"&organization_id="+sessionParam.org_id+"&currentpage="+currentPage+"&department_id="+sessionParam.dept_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
@@ -312,10 +355,98 @@ public class Act_student_list extends AppCompatActivity {
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=student_list&organization_id="+sessionParam.org_id+"&currentpage="+currentPage+"&department_id="+sessionParam.dept_id;
+        String remainingUrl2=STUDENT_LIST+"&organization_id="+sessionParam.org_id+"&currentpage="+currentPage+"&department_id="+sessionParam.dept_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search, menu);
+        return true;
+    }
+
+    private void filter(String text) {
+        student_list2.clear();
+
+
+
+        for (int i = 0; i < student_list.size(); i++) {
+            if (student_list.get(i).getFullName().toLowerCase().contains(text.toLowerCase())) {
+                Student student = new Student();
+                student.setFullName(student_list.get(i).getFullName());
+                student.setStudentDepartmentName(student_list.get(i).getStudentDepartmentName());
+                student.setEnrollmentNo(student_list.get(i).getEnrollmentNo());
+                student.setStudentPic(student_list.get(i).getStudentPic());
+                student.setStudentSemester(student_list.get(i).getStudentSemester());
+                student.setStudentSection(student_list.get(i).getStudentSection());
+
+
+                student_list2.add(student);
+            }
+        }
+        adapter = new Ad_student(student_list2, context);
+        rv_list.setAdapter(adapter);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case REQ_CODE_SPEECH_INPUT: {
+                if (resultCode == RESULT_OK && null != data) {
+                    strSpeechText = inputSearch.getText().toString();
+
+                    ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+
+                    if (strSpeechText.length() == 0) {
+                        inputSearch.setText(result.get(0));
+                        strSpeechText = inputSearch.getText().toString();
+                    } else if (strSpeechText.length() > 0 && strSpeechText != null) {
+                        String temp = result.get(0);
+
+                        inputSearch.setText(strSpeechText+" "+temp);
+
+                        strSpeechText = inputSearch.getText().toString();
+                    }
+                    datafinish = false;
+                }
+                break;
+            }
+
+        }
+    }
+
+
+    private void promptSpeechInput() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, getString(R.string.speech_prompt));
+        try {
+            startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
+        } catch (ActivityNotFoundException a) {
+
+            displayAlertDialogueWithOK(getResources().getString(R.string.app_name), getResources().getString(R.string.speech_not_supported));
+        }
+    }
+
+    @SuppressWarnings({"deprecation", "unused"})
+    private void displayAlertDialogueWithOK(String title, String Msg) {
+        AlertDialog alertDialog = new AlertDialog.Builder(Act_student_list.this).create();
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(Msg);
+        alertDialog.setCancelable(false);
+        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                return;
+            }
+        });
+        alertDialog.show();
+    }
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search, menu);
@@ -386,6 +517,7 @@ public class Act_student_list extends AppCompatActivity {
 
         return true;
     }
+*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

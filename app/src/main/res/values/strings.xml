@@ -19,6 +19,8 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="speech_prompt">Say something&#8230;</string>
+    <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
 
     <string name="string_internet_connection_not_available">Internet Connection Not Available</string>
     <string name="string_some_thing_wrong">Something went wrong.</string>

@@ -16,7 +16,6 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -63,15 +62,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import visuotech.com.kampus.attendance.Activities.Administrator.Act_add_director;
-import visuotech.com.kampus.attendance.Activities.Administrator.Act_director_list;
-import visuotech.com.kampus.attendance.Activities.Hod.Act_add_timetable;
 import visuotech.com.kampus.attendance.ApiService;
 import visuotech.com.kampus.attendance.GalleryAdapter;
 import visuotech.com.kampus.attendance.InternetConnection;
-import visuotech.com.kampus.attendance.MainActivity;
 import visuotech.com.kampus.attendance.MarshMallowPermission;
-import visuotech.com.kampus.attendance.Model.Faculty;
 import visuotech.com.kampus.attendance.Model.Section;
 import visuotech.com.kampus.attendance.Model.Semister;
 import visuotech.com.kampus.attendance.Model.Subjects;
@@ -84,6 +78,9 @@ import visuotech.com.kampus.attendance.retrofit.RequestReciever;
 import visuotech.com.kampus.attendance.retrofit.Utility;
 
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
+import static visuotech.com.kampus.attendance.Constants.SECTION_LIST;
+import static visuotech.com.kampus.attendance.Constants.SEM_LIST;
+import static visuotech.com.kampus.attendance.Constants.SUB_LIST;
 import static visuotech.com.kampus.attendance.retrofit.WebServiceConstants.BASE_URL;
 
 public class Act_add_assignment extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
@@ -382,7 +379,7 @@ public class Act_add_assignment extends AppCompatActivity implements AdapterView
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=sem_list&organization_id="+sessionParam.org_id+"&course_id="+sessionParam.course_id;
+        String remainingUrl2=SEM_LIST+"&organization_id="+sessionParam.org_id+"&course_id="+sessionParam.course_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
     private void ApigetSection(){
@@ -422,7 +419,7 @@ public class Act_add_assignment extends AppCompatActivity implements AdapterView
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=section_list&organization_id="+sessionParam.org_id+"&course_id="+sessionParam.course_id+"&department_id="+sessionParam.dept_id;
+        String remainingUrl2=SECTION_LIST+"&organization_id="+sessionParam.org_id+"&course_id="+sessionParam.course_id+"&department_id="+sessionParam.dept_id;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
     private void ApigetSubject(){
@@ -459,7 +456,7 @@ public class Act_add_assignment extends AppCompatActivity implements AdapterView
 
             }
         });
-        String remainingUrl2="/Kampus/Api2.php?apicall=subject_list&organization_id="+sessionParam.org_id+"&department_id="+sessionParam.dept_id+"&course_id="+sessionParam.course_id+"&sem_id="+semId;
+        String remainingUrl2=SUB_LIST+"&organization_id="+sessionParam.org_id+"&department_id="+sessionParam.dept_id+"&course_id="+sessionParam.course_id+"&sem_id="+semId;
         baseRequest.callAPIGETData(1, remainingUrl2);
     }
 

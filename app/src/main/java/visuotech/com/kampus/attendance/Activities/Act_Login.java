@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -13,6 +14,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -72,6 +75,12 @@ public class Act_Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.smdnvfsdnfcd);
         init();
         context = this;
@@ -176,6 +185,16 @@ public class Act_Login extends AppCompatActivity {
                 .show();
     }
 
+    private void changeStatusBarColor(String color) {
+        if (Build.VERSION.SDK_INT >= 21) {
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.parseColor(color));
+        }
+    }
+
+
     @Override
     public void onRequestPermissionsResult(int requestCode, final String[] permissions, int[] grantResults) {
         switch (requestCode) {
@@ -248,45 +267,48 @@ public class Act_Login extends AppCompatActivity {
             public void onSuccess(int requestCode, String Json, Object object) {
                 sessionParam.loginSession(context);
                 Toast.makeText(getApplicationContext(), "Login sucessfully", Toast.LENGTH_SHORT).show();
-              /*  try {
+                try {
                     JSONObject jsonObject = new JSONObject(object.toString());
                     JSONObject jsonObject1 = jsonObject.getJSONObject("user");
                     SessionParam sessionParam = new SessionParam(context, jsonObject1);
-                    user_typee = jsonObject1.getString("login_user_type");
-                    user_id = String.valueOf(jsonObject1.optInt("user_id"));
-                    organization_id = String.valueOf(jsonObject1.optInt("organization_id"));
+                    Intent i = new Intent(Act_Login.this, Administrator_Act_home.class);
+                    startActivity(i);
+
+//                    user_typee = jsonObject1.getString("login_user_type");
+//                    user_id = String.valueOf(jsonObject1.optInt("user_id"));
+//                    organization_id = String.valueOf(jsonObject1.optInt("organization_id"));
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
 
-                if (user_typee.equals("Administrator")) {
-                    Intent i = new Intent(Act_Login.this, Administrator_Act_home.class);
-                    startActivity(i);
-                    finish();
-                }
-                if (user_typee.equals("Director")) {
-                    Intent i = new Intent(Act_Login.this, Director_Act_home.class);
-                    startActivity(i);
-                    finish();
-                }
-                if (user_typee.equals("HOD")) {
-                    Intent i = new Intent(Act_Login.this, HOD_Act_home.class);
-                    startActivity(i);
-                    finish();
-                }
-                if (user_typee.equals("Faculty")) {
-                    Intent i = new Intent(Act_Login.this, Faculty_Act_home.class);
-                    startActivity(i);
-                    finish();
-                }
-                if (user_typee.equals("Student")) {
-                    Intent i = new Intent(Act_Login.this, Student_Act_home.class);
-                    startActivity(i);
-                    finish();
-                }
-*/
+//                if (user_typee.equals("Administrator")) {
+//                    Intent i = new Intent(Act_Login.this, Administrator_Act_home.class);
+//                    startActivity(i);
+//                    finish();
+//                }
+//                if (user_typee.equals("Director")) {
+//                    Intent i = new Intent(Act_Login.this, Director_Act_home.class);
+//                    startActivity(i);
+//                    finish();
+//                }
+//                if (user_typee.equals("HOD")) {
+//                    Intent i = new Intent(Act_Login.this, HOD_Act_home.class);
+//                    startActivity(i);
+//                    finish();
+//                }
+//                if (user_typee.equals("Faculty")) {
+//                    Intent i = new Intent(Act_Login.this, Faculty_Act_home.class);
+//                    startActivity(i);
+//                    finish();
+//                }
+//                if (user_typee.equals("Student")) {
+//                    Intent i = new Intent(Act_Login.this, Student_Act_home.class);
+//                    startActivity(i);
+//                    finish();
+//                }
+
 //                api_loginStatus();
 
 
